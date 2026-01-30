@@ -22,16 +22,17 @@ export function App() {
     <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-white)]">
       {/* Nav */}
       <Nav
-        logo={<span className="font-display text-xl font-semibold">@n3wth/ui</span>}
+        logo="@n3wth/ui"
+        logoHref="#"
         items={[
           { label: 'Get Started', href: '#get-started' },
           { label: 'Atoms', href: '#atoms' },
           { label: 'Molecules', href: '#molecules' },
           { label: 'Organisms', href: '#organisms' },
+          { label: 'GitHub', href: 'https://github.com/n3wth/ui', external: true },
         ]}
         theme={theme}
         onThemeToggle={toggleTheme}
-        cta={{ label: 'GitHub', href: 'https://github.com/n3wth/n3wth-ui' }}
       />
 
       {/* Hero */}
