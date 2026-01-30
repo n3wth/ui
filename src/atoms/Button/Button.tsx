@@ -48,6 +48,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         'bg-[var(--color-white)] text-[var(--color-bg)]',
         'border-[var(--color-white)]',
         'hover:scale-[1.02] active:scale-[0.96]',
+        'glow-white',
       ],
       secondary: [
         'bg-transparent text-[var(--color-white)]',

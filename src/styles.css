@@ -109,6 +109,7 @@
 
 :root,
 [data-theme='dark'] {
+  color-scheme: dark;
   --font-display: 'Mona Sans', system-ui, sans-serif;
   --font-sans: 'Geist Sans', system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
@@ -141,6 +142,7 @@
    ============================================================ */
 
 [data-theme='light'] {
+  color-scheme: light;
   --color-bg: #ffffff;
   --color-bg-secondary: #f5f5f7;
   --color-white: #1d1d1f;
@@ -213,33 +215,35 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
-/* Hero gradient text animation */
+/* Hero gradient text animation - enhanced with more dimension */
 .hero-gradient-text {
   background: linear-gradient(
-    90deg,
+    105deg,
     var(--color-white) 0%,
-    var(--color-grey-300) 25%,
-    var(--color-white) 50%,
-    var(--color-grey-300) 75%,
-    var(--color-white) 100%
+    var(--color-grey-200) 20%,
+    var(--color-white) 40%,
+    var(--color-grey-300) 60%,
+    var(--color-white) 80%,
+    var(--color-grey-200) 100%
   );
-  background-size: 200% auto;
+  background-size: 300% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradientShift 8s ease-in-out infinite;
+  animation: gradientShift 12s ease-in-out infinite;
 }
 
 [data-theme='light'] .hero-gradient-text {
   background: linear-gradient(
-    90deg,
+    105deg,
     var(--color-white) 0%,
-    var(--color-grey-400) 25%,
-    var(--color-white) 50%,
-    var(--color-grey-400) 75%,
-    var(--color-white) 100%
+    var(--color-grey-300) 20%,
+    var(--color-white) 40%,
+    var(--color-grey-400) 60%,
+    var(--color-white) 80%,
+    var(--color-grey-300) 100%
   );
-  background-size: 200% auto;
+  background-size: 300% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -249,7 +253,7 @@ body {
    Link Utilities
    ============================================================ */
 
-/* Underline link animation */
+/* Underline link animation - refined with subtle glow */
 .link-hover {
   position: relative;
 }
@@ -257,16 +261,21 @@ body {
 .link-hover::after {
   content: '';
   position: absolute;
-  bottom: -1px;
+  bottom: -2px;
   left: 0;
   width: 0;
   height: 1px;
-  background: currentColor;
-  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(90deg, currentColor, currentColor);
+  box-shadow: 0 0 8px currentColor;
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .link-hover:hover::after {
   width: 100%;
+}
+
+[data-theme='light'] .link-hover::after {
+  box-shadow: none;
 }
 
 /* ============================================================
@@ -278,7 +287,7 @@ body {
   background: transparent;
   border: 1px solid var(--glass-border);
   border-radius: 20px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
@@ -314,7 +323,10 @@ body {
   border: 1px solid var(--glass-border);
   border-radius: 9999px;
   color: var(--color-grey-400);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   transform: scale(1);
 }
 
@@ -363,7 +375,7 @@ body {
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .command-box:hover {
@@ -437,13 +449,16 @@ body {
    Animations
    ============================================================ */
 
-/* Gradient shift for hero text */
+/* Gradient shift for hero text - smoother oscillation */
 @keyframes gradientShift {
-  0%, 100% {
+  0% {
     background-position: 0% 50%;
   }
   50% {
     background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
@@ -695,6 +710,105 @@ body {
 
 .hover-preview button:active {
   transform: scale(0.98);
+}
+
+/* ============================================================
+   Enhanced Visual Effects
+   ============================================================ */
+
+/* Subtle glow for primary interactive elements */
+.glow-white {
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-white:hover {
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.15),
+              0 0 40px rgba(255, 255, 255, 0.05);
+}
+
+[data-theme='light'] .glow-white:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12),
+              0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* Accent glow for colored elements */
+.glow-accent {
+  box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-accent:hover {
+  box-shadow: 0 0 24px var(--color-accent-soft),
+              0 0 48px rgba(255, 255, 255, 0.03);
+}
+
+/* Gradient border effect for cards */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    var(--glass-highlight) 0%,
+    transparent 50%,
+    var(--glass-highlight) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* Shine sweep effect for glass elements */
+.shine-sweep {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-sweep::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.03),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.shine-sweep:hover::after {
+  left: 150%;
+}
+
+/* Focus glow for inputs */
+.focus-glow:focus-within {
+  box-shadow: 0 0 0 1px var(--color-accent),
+              0 0 16px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme='light'] .focus-glow:focus-within {
+  box-shadow: 0 0 0 1px var(--color-accent),
+              0 0 16px rgba(0, 0, 0, 0.08);
 }
 
 /* ============================================================

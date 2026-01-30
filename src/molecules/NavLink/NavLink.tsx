@@ -12,7 +12,7 @@ export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(
     const baseStyles = [
       'inline-flex items-center',
       'text-sm font-normal',
-      'transition-all duration-200 ease-out',
+      'transition-[color,background-color,border-color,transform] duration-200 ease-out',
       'focus-ring',
     ]
 

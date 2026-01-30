@@ -36,6 +36,7 @@ export function Card({
       'hover:border-[var(--glass-highlight)]',
       'hover:bg-[var(--glass-bg)]',
       'cursor-pointer',
+      'gradient-border shine-sweep',
     ],
   }
 

@@ -33,8 +33,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const wrapperStyles = [
       'relative inline-flex items-center w-full',
       'border rounded-xl',
-      'transition-all duration-200',
+      'transition-[border-color,background-color,box-shadow] duration-200',
       'focus-within:border-[var(--color-white)]',
+      'focus-glow',
     ]
 
     const variants = {

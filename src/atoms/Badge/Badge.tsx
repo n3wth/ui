@@ -20,6 +20,7 @@ export function Badge({
     'rounded-full',
     'whitespace-nowrap',
     'transition-colors duration-200',
+    'backdrop-blur-sm',
   ]
 
   const variants = {

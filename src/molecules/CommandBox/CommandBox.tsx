@@ -36,7 +36,7 @@ export function CommandBox({
     'rounded-xl',
     'border',
     'backdrop-blur-lg',
-    'transition-all duration-200',
+    'transition-[background-color,border-color] duration-200',
   ]
 
   const variants = {
@@ -57,22 +57,28 @@ export function CommandBox({
     <div className={cn(baseStyles, variants[variant], className)} {...props}>
       <code className="text-sm font-mono text-[var(--color-grey-300)] truncate">{command}</code>
       {showCopyButton && (
-        <button
-          type="button"
-          onClick={handleCopy}
-          className={cn(
-            'flex-shrink-0',
-            'p-2 rounded-lg',
-            'transition-all duration-200',
-            'hover:scale-105 active:scale-92',
-            copied
-              ? 'bg-[var(--color-sage)] text-[var(--color-bg)]'
-              : 'bg-[rgba(255,255,255,0.1)] text-[var(--color-grey-400)] hover:bg-[rgba(255,255,255,0.15)] hover:text-[var(--color-white)]'
-          )}
-          aria-label={copied ? 'Copied!' : 'Copy to clipboard'}
-        >
-          <Icon name={copied ? 'check' : 'copy'} size="sm" />
-        </button>
+        <>
+          <button
+            type="button"
+            onClick={handleCopy}
+            className={cn(
+              'flex-shrink-0',
+              'p-2 rounded-lg',
+              'transition-[background-color,color,transform] duration-200',
+              'hover:scale-105 active:scale-92',
+              copied
+                ? 'bg-[var(--color-sage)] text-[var(--color-bg)]'
+                : 'bg-[rgba(255,255,255,0.1)] text-[var(--color-grey-400)] hover:bg-[rgba(255,255,255,0.15)] hover:text-[var(--color-white)]'
+            )}
+            aria-label={copied ? 'Copied!' : 'Copy to clipboard'}
+          >
+            <Icon name={copied ? 'check' : 'copy'} size="sm" />
+          </button>
+          {/* Live region for screen reader announcement */}
+          <span className="sr-only" role="status" aria-live="polite">
+            {copied ? 'Copied to clipboard' : ''}
+          </span>
+        </>
       )}
     </div>
   )

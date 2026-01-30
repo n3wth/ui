@@ -84,7 +84,7 @@ export function Nav({
         {/* Mobile Menu Button */}
         <button
           onClick={toggleMenu}
-          className="md:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-all duration-200 hover:opacity-70"
+          className="md:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-opacity duration-200 hover:opacity-70"
           style={{ color: 'var(--color-grey-200)' }}
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMenuOpen}
@@ -100,6 +100,7 @@ export function Nav({
             strokeLinecap="round"
             strokeLinejoin="round"
             className="transition-transform duration-300"
+            aria-hidden="true"
           >
             {isMenuOpen ? (
               <>
@@ -158,6 +159,7 @@ export function Nav({
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     className="ml-2 opacity-50"
+                    aria-hidden="true"
                   >
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                     <polyline points="15 3 21 3 21 9" />

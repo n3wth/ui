@@ -30,9 +30,12 @@ export function Section({
     lg: 'py-24 md:py-32',
   }
 
+  // Add scroll-margin-top when section has an id for anchor links
+  const hasId = Boolean(props.id)
+
   return (
     <section
-      className={cn(spacings[spacing], className)}
+      className={cn(spacings[spacing], hasId && 'scroll-mt-20', className)}
       {...props}
     >
       {container ? (
