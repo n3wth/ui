@@ -4,25 +4,13 @@ Atomic design system for Newth sites - flat, minimal, iOS-inspired.
 
 ## Publishing
 
-**GitHub Actions workflow** triggers on release creation (`on: release`).
-
-Uses **OIDC trusted publishing** - no npm token needed. Authentication happens via GitHub's OIDC provider.
-
-**One-time setup on npmjs.com**:
-1. Go to https://www.npmjs.com/package/@n3wth/ui/access
-2. Find "Trusted Publisher" section → Select GitHub Actions
-3. Configure: org=`n3wth`, repo=`ui`, workflow=`publish.yml`
-
-**To publish a new version**:
-1. Update version in `package.json`
-2. Commit and push to main
-3. Create a GitHub release: `gh release create v0.x.x --title "v0.x.x" --notes "changelog"`
-4. Workflow publishes to npm automatically
-
-**Manual publish** (if needed):
 ```bash
-npm publish --access public --otp=<code>
+npm run release:patch   # 0.3.2 → 0.3.3
+npm run release:minor   # 0.3.2 → 0.4.0
+npm run release:major   # 0.3.2 → 1.0.0
 ```
+
+Single command: bumps version, commits, pushes, tags, creates GitHub release with auto-generated notes. GitHub Actions then publishes to npm via OIDC trusted publishing.
 
 ## Development
 
@@ -48,7 +36,7 @@ npm run demo:build   # Build demo app for Vercel
 2. Create files: `ComponentName.tsx`, `index.ts`
 3. Export from `src/atoms/index.ts` (or molecules/organisms)
 4. Export from `src/index.ts`
-5. Bump version, commit, create release
+5. Run `npm run release:patch`
 
 ## Consumers
 
