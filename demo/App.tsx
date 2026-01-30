@@ -23,25 +23,117 @@ export function App() {
       <Nav
         logo={<span className="font-display text-xl font-semibold">@n3wth/ui</span>}
         items={[
-          { label: 'Atoms', href: '#atoms', isActive: true },
+          { label: 'Get Started', href: '#get-started' },
+          { label: 'Atoms', href: '#atoms' },
           { label: 'Molecules', href: '#molecules' },
           { label: 'Organisms', href: '#organisms' },
         ]}
         theme={theme}
         onThemeToggle={toggleTheme}
-        cta={{ label: 'GitHub', href: '#' }}
+        cta={{ label: 'GitHub', href: 'https://github.com/n3wth/n3wth-ui' }}
       />
 
       {/* Hero */}
       <Hero
-        badge="v0.1.0"
+        badge="v0.2.2"
         title={<>Flat. Minimal. <span style={{ opacity: 0.5 }}>Beautiful.</span></>}
-        description="A shared atomic design system for skills.newth.ai and newth.ai. No shadows, no glows — just clean glass morphism."
+        description="Atomic design system for Newth sites. No shadows, no glows — just clean glass morphism."
         ctas={[
-          { label: 'Get Started', href: '#atoms' },
-          { label: 'View Source', href: '#', variant: 'secondary' },
+          { label: 'Get Started', href: '#get-started' },
+          { label: 'View Source', href: 'https://github.com/n3wth/n3wth-ui', variant: 'secondary' },
         ]}
       />
+
+      {/* Get Started Section */}
+      <Section id="get-started">
+        <SectionHeader
+          title="Get Started"
+          description="Install and configure @n3wth/ui in your project"
+        />
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Installation */}
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-medium mb-3 text-[var(--color-grey-400)]">1. Install the package</h3>
+              <CommandBox command="npm install @n3wth/ui" />
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium mb-3 text-[var(--color-grey-400)]">2. Import components and styles</h3>
+              <div className="p-4 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)] font-mono text-sm">
+                <div className="text-[var(--color-sage)]">import</div>
+                <div className="pl-4 text-[var(--color-white)]">{`{ Button, Card, Nav }`}</div>
+                <div className="text-[var(--color-sage)]">from <span className="text-[var(--color-coral)]">'@n3wth/ui'</span></div>
+                <div className="mt-2 text-[var(--color-sage)]">import <span className="text-[var(--color-coral)]">'@n3wth/ui/styles'</span></div>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium mb-3 text-[var(--color-grey-400)]">3. Add Tailwind preset (optional)</h3>
+              <div className="p-4 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)] font-mono text-sm">
+                <div className="text-[var(--color-grey-400)]">// tailwind.config.js</div>
+                <div className="text-[var(--color-sage)]">export default {'{'}</div>
+                <div className="pl-4">presets: [<span className="text-[var(--color-coral)]">require('@n3wth/ui/tailwind')</span>]</div>
+                <div className="text-[var(--color-sage)]">{'}'}</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Reference */}
+          <div className="space-y-6">
+            <Card variant="glass">
+              <CardHeader>
+                <CardTitle>Components</CardTitle>
+                <CardDescription>What's included</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3 text-sm">
+                  <div>
+                    <span className="text-[var(--color-sage)] font-medium">Atoms:</span>
+                    <span className="text-[var(--color-grey-400)]"> Button, Badge, Input, Icon, AnimatedText</span>
+                  </div>
+                  <div>
+                    <span className="text-[var(--color-coral)] font-medium">Molecules:</span>
+                    <span className="text-[var(--color-grey-400)]"> Card, NavLink, CommandBox, ThemeToggle, MobileDrawer</span>
+                  </div>
+                  <div>
+                    <span className="text-[var(--color-mint)] font-medium">Organisms:</span>
+                    <span className="text-[var(--color-grey-400)]"> Nav, Hero, Section, Footer</span>
+                  </div>
+                  <div>
+                    <span className="text-[var(--color-gold)] font-medium">Hooks:</span>
+                    <span className="text-[var(--color-grey-400)]"> useTheme, useMediaQuery, useKeyboardShortcuts</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card variant="glass">
+              <CardHeader>
+                <CardTitle>Requirements</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm text-[var(--color-grey-400)]">
+                  <li>React 18+ or React 19</li>
+                  <li>Tailwind CSS v4 (for preset)</li>
+                  <li>Modern browser with CSS custom properties</li>
+                </ul>
+              </CardContent>
+              <CardFooter>
+                <Button
+                  size="sm"
+                  variant="secondary"
+                  rightIcon={<Icon name="external" size="sm" />}
+                  onClick={() => window.open('https://github.com/n3wth/n3wth-ui', '_blank')}
+                >
+                  View on GitHub
+                </Button>
+              </CardFooter>
+            </Card>
+          </div>
+        </div>
+      </Section>
 
       {/* Atoms Section */}
       <Section id="atoms">
@@ -235,18 +327,19 @@ export function App() {
         description="A flat, minimal design system for modern web applications."
         sections={[
           {
-            title: 'Resources',
+            title: 'Documentation',
             links: [
-              { label: 'Documentation', href: '#' },
+              { label: 'Get Started', href: '#get-started' },
               { label: 'Components', href: '#atoms' },
-              { label: 'GitHub', href: '#' },
+              { label: 'Hooks', href: '#molecules' },
             ],
           },
           {
-            title: 'Community',
+            title: 'Resources',
             links: [
-              { label: 'Discord', href: '#' },
-              { label: 'Twitter', href: '#' },
+              { label: 'GitHub', href: 'https://github.com/n3wth/n3wth-ui' },
+              { label: 'npm', href: 'https://www.npmjs.com/package/@n3wth/ui' },
+              { label: 'newth.ai', href: 'https://newth.ai' },
             ],
           },
         ]}
