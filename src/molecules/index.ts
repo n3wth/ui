@@ -26,3 +26,8 @@ export type { ThemeToggleProps } from './ThemeToggle'
 
 export { MobileDrawer } from './MobileDrawer'
 export type { MobileDrawerProps } from './MobileDrawer'
+
+export { CompositeShape } from './CompositeShape'
+export type { CompositeShapeProps } from './CompositeShape'
+export { presets } from './CompositeShape'
+export type { CompositePreset, ShapeLayer } from './CompositeShape'

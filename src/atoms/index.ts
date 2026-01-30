@@ -21,3 +21,12 @@ export type { HamburgerIconProps } from './HamburgerIcon'
 
 export { AnimatedText } from './AnimatedText'
 export type { AnimatedTextProps } from './AnimatedText'
+
+export { Shape } from './Shape'
+export type { ShapeProps, ShapeType, PatternType } from './Shape'
+
+export { Character } from './Character'
+export type { CharacterProps, Expression, Accessory } from './Character'
+
+export { SpeechBubble } from './SpeechBubble'
+export type { SpeechBubbleProps, BubbleDirection, BubbleVariant, BubbleSize } from './SpeechBubble'

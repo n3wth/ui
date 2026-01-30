@@ -35,6 +35,15 @@ export type { CodeBlockProps } from './atoms/CodeBlock'
 export { Skeleton, CardSkeleton } from './atoms/Skeleton'
 export type { SkeletonProps, CardSkeletonProps } from './atoms/Skeleton'
 
+export { Shape } from './atoms/Shape'
+export type { ShapeProps, ShapeType, PatternType } from './atoms/Shape'
+
+export { Character } from './atoms/Character'
+export type { CharacterProps, Expression, Accessory } from './atoms/Character'
+
+export { SpeechBubble } from './atoms/SpeechBubble'
+export type { SpeechBubbleProps, BubbleDirection, BubbleVariant, BubbleSize } from './atoms/SpeechBubble'
+
 // Molecules
 export {
   Card,
@@ -67,6 +76,11 @@ export type { MobileDrawerProps } from './molecules/MobileDrawer'
 
 export { ErrorBoundary, ErrorFallback } from './molecules/ErrorBoundary'
 export type { ErrorBoundaryProps, ErrorFallbackProps } from './molecules/ErrorBoundary'
+
+export { CompositeShape } from './molecules/CompositeShape'
+export type { CompositeShapeProps } from './molecules/CompositeShape'
+export { presets } from './molecules/CompositeShape'
+export type { CompositePreset, ShapeLayer } from './molecules/CompositeShape'
 
 // Organisms
 export { Nav } from './organisms/Nav'

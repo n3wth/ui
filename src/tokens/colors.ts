@@ -26,6 +26,17 @@ export const colors = {
       mint: '#64d2ff',
       gold: '#ffd60a',
     },
+    // Playful illustration colors
+    playful: {
+      pink: '#FF6B9D',
+      green: '#2ECC71',
+      maroon: '#922B3E',
+      olive: '#8B7355',
+      peach: '#FFAB91',
+      lavender: '#A78BFA',
+      teal: '#20B2AA',
+      mustard: '#F39C12',
+    },
   },
   // Light mode
   light: {
@@ -52,6 +63,17 @@ export const colors = {
       coral: '#d70015',
       mint: '#0071e3',
       gold: '#b25000',
+    },
+    // Playful illustration colors (slightly adjusted for light mode)
+    playful: {
+      pink: '#E91E63',
+      green: '#27AE60',
+      maroon: '#7B1E2E',
+      olive: '#6B5344',
+      peach: '#FF8A65',
+      lavender: '#9575CD',
+      teal: '#009688',
+      mustard: '#E67E22',
     },
   },
 } as const
