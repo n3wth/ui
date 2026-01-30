@@ -71,11 +71,11 @@ export function MobileDrawer({
       {/* Drawer panel */}
       <div
         className={cn(
-          'fixed top-0 h-full bg-[var(--color-bg,#0a0a0a)] border-[var(--glass-border,rgba(255,255,255,0.1))]',
+          'mobile-menu-drawer',
+          'fixed top-0 h-full',
           'transition-transform duration-300 ease-out',
           translateClass,
           positionClass,
-          position === 'right' ? 'border-l' : 'border-r',
           className
         )}
         style={{

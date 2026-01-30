@@ -17,7 +17,7 @@ export function Card({
   const baseStyles = [
     'rounded-2xl',
     'border',
-    'transition-all duration-300 ease-out',
+    'transition-[background-color,border-color] duration-300 ease-out',
   ]
 
   const variants = {

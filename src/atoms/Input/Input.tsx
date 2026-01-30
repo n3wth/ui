@@ -6,7 +6,10 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputSize?: 'sm' | 'md' | 'lg'
   leftIcon?: ReactNode
   rightIcon?: ReactNode
-  error?: boolean
+  /** Error state - boolean for styling only, or string to display error message */
+  error?: boolean | string
+  /** Associated label id for accessibility */
+  labelId?: string
 }
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -17,11 +20,16 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       leftIcon,
       rightIcon,
       error = false,
+      labelId,
       className,
+      id,
       ...props
     },
     ref
   ) => {
+    const hasError = Boolean(error)
+    const errorMessage = typeof error === 'string' ? error : undefined
+    const errorId = errorMessage && id ? `${id}-error` : undefined
     const wrapperStyles = [
       'relative inline-flex items-center w-full',
       'border rounded-xl',
@@ -32,13 +40,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const variants = {
       default: [
         'bg-transparent',
-        error ? 'border-[var(--color-coral)]' : 'border-[var(--glass-border)]',
+        hasError ? 'border-[var(--color-coral)]' : 'border-[var(--glass-border)]',
         'hover:border-[var(--glass-highlight)]',
       ],
       glass: [
         'bg-[var(--glass-bg)]',
         'backdrop-blur-lg',
-        error ? 'border-[var(--color-coral)]' : 'border-[var(--glass-border)]',
+        hasError ? 'border-[var(--color-coral)]' : 'border-[var(--glass-border)]',
         'hover:bg-[rgba(255,255,255,0.08)]',
       ],
     }
@@ -62,27 +70,38 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     }
 
     return (
-      <div className={cn(wrapperStyles, variants[variant], sizes[inputSize], className)}>
-        {leftIcon && (
-          <span className="absolute left-3 text-[var(--color-grey-400)] pointer-events-none">
-            {leftIcon}
-          </span>
-        )}
-        <input
-          ref={ref}
-          className={cn(
-            'w-full h-full bg-transparent',
-            'text-[var(--color-white)]',
-            'placeholder:text-[var(--color-grey-600)]',
-            'outline-none',
-            inputSizes[inputSize],
-            leftIcon && iconPadding[inputSize].left,
-            rightIcon && iconPadding[inputSize].right
+      <div className="flex flex-col gap-1.5">
+        <div className={cn(wrapperStyles, variants[variant], sizes[inputSize], className)}>
+          {leftIcon && (
+            <span className="absolute left-3 text-[var(--color-grey-400)] pointer-events-none" aria-hidden="true">
+              {leftIcon}
+            </span>
           )}
-          {...props}
-        />
-        {rightIcon && (
-          <span className="absolute right-3 text-[var(--color-grey-400)]">{rightIcon}</span>
+          <input
+            ref={ref}
+            id={id}
+            className={cn(
+              'w-full h-full bg-transparent',
+              'text-[var(--color-white)]',
+              'placeholder:text-[var(--color-grey-600)]',
+              'focus:outline-none focus-visible:outline-none',
+              inputSizes[inputSize],
+              leftIcon && iconPadding[inputSize].left,
+              rightIcon && iconPadding[inputSize].right
+            )}
+            aria-invalid={hasError || undefined}
+            aria-describedby={errorId}
+            aria-labelledby={labelId}
+            {...props}
+          />
+          {rightIcon && (
+            <span className="absolute right-3 text-[var(--color-grey-400)]" aria-hidden="true">{rightIcon}</span>
+          )}
+        </div>
+        {errorMessage && (
+          <span id={errorId} className="text-xs text-[var(--color-coral)]" role="alert">
+            {errorMessage}
+          </span>
         )}
       </div>
     )

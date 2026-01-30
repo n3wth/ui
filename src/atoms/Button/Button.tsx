@@ -38,7 +38,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       'font-medium',
       'border',
       'rounded-full',
-      'transition-all duration-200 ease-out',
+      'transition-[transform,background-color,border-color,color,opacity] duration-200 ease-out',
       'focus-ring',
       'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
     ]

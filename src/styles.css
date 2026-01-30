@@ -641,6 +641,7 @@ body {
 }
 
 .mobile-menu-drawer {
+  background: var(--color-bg);
   border-left: 1px solid var(--glass-border);
 }
 

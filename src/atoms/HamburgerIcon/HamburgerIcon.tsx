@@ -26,6 +26,7 @@ export function HamburgerIcon({
       strokeLinecap="round"
       strokeLinejoin="round"
       className={cn('transition-transform duration-300', className)}
+      aria-hidden="true"
       {...props}
     >
       <path
