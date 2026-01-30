@@ -1,7 +1,7 @@
 {
   "name": "@n3wth/ui",
   "version": "0.2.2",
-  "description": "Atomic design system for Newth sites - flat, minimal, iOS-inspired",
+  "description": "Flat, minimal, iOS-inspired React design system with glass morphism components and Tailwind CSS tokens.",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -52,8 +52,13 @@
     "design-system",
     "react",
     "tailwind",
-    "atomic-design"
+    "atomic-design",
+    "glass-morphism",
+    "design-tokens",
+    "component-library",
+    "ios-inspired"
   ],
+  "homepage": "https://ui.newth.ai",
   "license": "MIT",
   "repository": {
     "type": "git",

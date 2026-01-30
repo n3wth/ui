@@ -52,6 +52,30 @@ export function App() {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="lg:col-span-2">
+            <Card variant="glass">
+              <CardHeader>
+                <CardTitle>Why teams pick @n3wth/ui</CardTitle>
+                <CardDescription>Design tokens, accessibility helpers, and clean UI primitives</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid gap-4 md:grid-cols-3 text-sm text-[var(--color-grey-400)]">
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[var(--color-white)] font-medium">Fast setup</span>
+                    <span>Import styles and use the Tailwind preset to match tokens instantly.</span>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[var(--color-white)] font-medium">Accessible</span>
+                    <span>Keyboard shortcuts and reduced motion support are built in.</span>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[var(--color-white)] font-medium">Production ready</span>
+                    <span>Designed for modern React apps with a minimal, polished aesthetic.</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
           {/* Installation */}
           <div className="space-y-6">
             <div>

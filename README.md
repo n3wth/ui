@@ -8,6 +8,12 @@ Atomic design system for Newth sites. Flat, minimal, iOS-inspired. No shadows, n
 
 **Demo**: [ui.newth.ai](https://ui.newth.ai)
 
+## Highlights
+
+- Glass morphism tokens with a Tailwind CSS preset
+- Dark/light themes with system preference sync
+- Accessibility helpers: keyboard shortcuts + reduced motion support
+
 ## Installation
 
 ```bash
@@ -105,6 +111,16 @@ The Tailwind preset includes:
 - **Typography**: Display and body font families
 - **Spacing**: Consistent spacing scale
 - **Effects**: Glass morphism and blur effects
+
+## Customization
+
+Override the CSS variables or extend the Tailwind preset to match your brand.
+
+```css
+:root {
+  --color-bg: #0b0b0c;
+}
+```
 
 ## Development
 
