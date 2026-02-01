@@ -20,6 +20,9 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-white)]">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-sage)] focus:text-black focus:rounded">
+        Skip to main content
+      </a>
       {/* Nav */}
       <Nav
         logo="@n3wth/ui"
@@ -42,10 +45,11 @@ export function App() {
         description={<>Atomic design system for Newth sites.<br />No shadows, no glows - just clean glass morphism.</>}
         ctas={[
           { label: 'Get Started', href: '#get-started' },
-          { label: 'View Source', href: 'https://github.com/n3wth/n3wth-ui', variant: 'secondary' },
+          { label: 'View Source', href: 'https://github.com/n3wth/ui', variant: 'secondary' },
         ]}
       />
 
+      <main id="main-content">
       {/* Get Started Section */}
       <Section id="get-started">
         <SectionHeader
@@ -127,7 +131,7 @@ export function App() {
                   size="sm"
                   variant="secondary"
                   rightIcon={<Icon name="external" size="sm" />}
-                  onClick={() => window.open('https://github.com/n3wth/n3wth-ui', '_blank')}
+                  onClick={() => window.open('https://github.com/n3wth/ui', '_blank')}
                 >
                   View on GitHub
                 </Button>
@@ -333,6 +337,7 @@ export function App() {
           </div>
         </div>
       </Section>
+      </main>
 
       {/* Footer */}
       <Footer
@@ -350,9 +355,16 @@ export function App() {
           {
             title: 'Resources',
             links: [
-              { label: 'GitHub', href: 'https://github.com/n3wth/n3wth-ui' },
+              { label: 'GitHub', href: 'https://github.com/n3wth/ui' },
               { label: 'npm', href: 'https://www.npmjs.com/package/@n3wth/ui' },
               { label: 'newth.ai', href: 'https://newth.ai' },
+            ],
+          },
+          {
+            title: 'Legal',
+            links: [
+              { label: 'Privacy', href: 'https://newth.ai/privacy' },
+              { label: 'MIT License', href: 'https://opensource.org/licenses/MIT' },
             ],
           },
         ]}

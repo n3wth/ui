@@ -3,10 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>@n3wth/ui Demo</title>
+  <title>@n3wth/ui - Flat, Minimal Design System for React</title>
+  <meta name="description" content="Atomic design system for React applications. Flat, minimal, iOS-inspired components with no shadows or glows - just clean glass morphism. Includes Button, Card, Nav, and more." />
+  <meta name="author" content="Oliver Newth" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://ui.newth.ai/" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="@n3wth/ui - Flat, Minimal Design System" />
+  <meta property="og:description" content="Atomic design system for React. No shadows, no glows - just clean glass morphism." />
+  <meta property="og:url" content="https://ui.newth.ai/" />
+  <meta property="og:image" content="https://ui.newth.ai/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@olivernewth" />
+  <meta name="twitter:creator" content="@olivernewth" />
+  <meta name="twitter:image" content="https://ui.newth.ai/og-image.png" />
+
+  <!-- Theme -->
+  <meta name="theme-color" content="#0a0a0f" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "@n3wth/ui",
+    "description": "Atomic design system for React applications. Flat, minimal, iOS-inspired components.",
+    "url": "https://ui.newth.ai",
+    "codeRepository": "https://github.com/n3wth/ui",
+    "programmingLanguage": ["TypeScript", "React"],
+    "author": {
+      "@type": "Person",
+      "name": "Oliver Newth",
+      "url": "https://newth.ai"
+    },
+    "license": "https://opensource.org/licenses/MIT"
+  }
+  </script>
+
+  <!-- Critical CSS -->
+  <style>
+    html, body { background: #0a0a0f; color: #f5f5f7; margin: 0; }
+    #root { opacity: 0; transition: opacity 0.2s; }
+    .seo-fallback { display: none; }
+  </style>
 </head>
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!-- Static content for SEO crawlers (hidden, replaced by React) -->
+    <main class="seo-fallback">
+      <h1>@n3wth/ui - Flat, Minimal Design System</h1>
+
+      <section>
+        <h2>About</h2>
+        <p>@n3wth/ui is an atomic design system for React applications. Built with a flat, minimal, iOS-inspired aesthetic, it provides components with no shadows or glows - just clean glass morphism effects.</p>
+      </section>
+
+      <section>
+        <h2>Components</h2>
+        <p>The design system follows atomic design principles with three levels of components:</p>
+
+        <article>
+          <h3>Atoms</h3>
+          <p>Building blocks including Button, Badge, Input, Icon, AnimatedText, HamburgerIcon, NoiseOverlay, and ScrollIndicator. Each atom is designed to be minimal and composable.</p>
+        </article>
+
+        <article>
+          <h3>Molecules</h3>
+          <p>Functional UI patterns combining atoms: Card, NavLink, CommandBox, ThemeToggle, MobileDrawer, and ErrorBoundary. These handle common interaction patterns.</p>
+        </article>
+
+        <article>
+          <h3>Organisms</h3>
+          <p>Complex components for page-level structure: Nav, Hero, Section, and Footer. These provide consistent layouts across applications.</p>
+        </article>
+      </section>
+
+      <section>
+        <h2>Features</h2>
+        <ul>
+          <li>React 18+ and React 19 compatible</li>
+          <li>TypeScript with full type definitions</li>
+          <li>Tailwind CSS v4 preset included</li>
+          <li>Dark and light theme support</li>
+          <li>Respects user motion preferences</li>
+          <li>GSAP animation hooks (optional)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Installation</h2>
+        <p>Install via npm: <code>npm install @n3wth/ui</code></p>
+        <p>Import components: <code>import { Button, Card, Nav } from '@n3wth/ui'</code></p>
+      </section>
+
+      <nav aria-label="Main navigation">
+        <a href="#get-started">Get Started</a>
+        <a href="#atoms">Atoms</a>
+        <a href="#molecules">Molecules</a>
+        <a href="#organisms">Organisms</a>
+        <a href="https://github.com/n3wth/ui" rel="noopener">GitHub</a>
+        <a href="https://www.npmjs.com/package/@n3wth/ui" rel="noopener">npm</a>
+      </nav>
+
+      <footer>
+        <p>Created by <a href="https://newth.ai" rel="noopener">Oliver Newth</a>. Licensed under MIT.</p>
+        <a href="https://newth.ai/privacy">Privacy Policy</a>
+      </footer>
+    </main>
+  </div>
   <script type="module" src="./main.tsx"></script>
 </body>
 </html>
