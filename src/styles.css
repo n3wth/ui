@@ -215,6 +215,25 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* Apple-style text shadow for readability over shapes/backgrounds */
+.text-glow {
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5),
+               0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.text-glow-subtle {
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='light'] .text-glow {
+  text-shadow: 0 2px 20px rgba(255, 255, 255, 0.5),
+               0 1px 3px rgba(255, 255, 255, 0.3);
+}
+
+[data-theme='light'] .text-glow-subtle {
+  text-shadow: 0 1px 12px rgba(255, 255, 255, 0.4);
+}
+
 /* Hero gradient text animation - enhanced with more dimension */
 .hero-gradient-text {
   background: linear-gradient(
