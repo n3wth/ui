@@ -6,7 +6,7 @@ export { cn } from './utils/cn'
 
 // Atoms
 export { Button } from './atoms/Button'
-export type { ButtonProps } from './atoms/Button'
+export type { ButtonProps, ButtonSize } from './atoms/Button'
 
 export { Badge } from './atoms/Badge'
 export type { BadgeProps } from './atoms/Badge'
@@ -36,7 +36,7 @@ export { Skeleton, CardSkeleton } from './atoms/Skeleton'
 export type { SkeletonProps, CardSkeletonProps } from './atoms/Skeleton'
 
 export { Shape } from './atoms/Shape'
-export type { ShapeProps, ShapeType, PatternType } from './atoms/Shape'
+export type { ShapeProps, ShapeType, PatternType, ResponsiveSize } from './atoms/Shape'
 
 export { Character } from './atoms/Character'
 export type { CharacterProps, Expression, Accessory } from './atoms/Character'
@@ -106,14 +106,21 @@ export {
 } from './hooks/useKeyboardShortcuts'
 export type { KeyboardShortcut, UseKeyboardShortcutsOptions } from './hooks/useKeyboardShortcuts'
 
-export { useReducedMotion } from './hooks/useReducedMotion'
+export { useReducedMotion, useMotionConfig, usePrefersHighContrast } from './hooks/useReducedMotion'
 
 export {
   useMediaQuery,
   useIsMobile,
   useIsTablet,
   useIsDesktop,
+  useIsLargeDesktop,
+  useBreakpoint,
+  useIsTouchDevice,
+  useIsPortrait,
+  useIsLandscape,
+  BREAKPOINTS,
 } from './hooks/useMediaQuery'
+export type { Breakpoint } from './hooks/useMediaQuery'
 
 export { useCountUp } from './hooks/useCountUp'
 export type { UseCountUpOptions, UseCountUpReturn } from './hooks/useCountUp'

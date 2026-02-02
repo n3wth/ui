@@ -897,6 +897,230 @@ body {
 }
 
 /* ============================================================
+   Mobile-First Responsive Utilities
+   ============================================================ */
+
+/* Touch-friendly minimum target sizes (WCAG 2.5.5 AAA = 44px) */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.touch-target-sm {
+  min-width: 36px;
+  min-height: 36px;
+}
+
+/* Safe area insets for notched devices */
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.safe-area-left {
+  padding-left: env(safe-area-inset-left);
+}
+
+.safe-area-right {
+  padding-right: env(safe-area-inset-right);
+}
+
+.safe-area-inset {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Mobile viewport height (accounts for mobile browser chrome) */
+.min-h-screen-mobile {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.h-screen-mobile {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* Disable hover effects on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .glass-pill:hover,
+  .glass-card:hover,
+  .skill-card:hover,
+  .glow-white:hover,
+  .glow-accent:hover,
+  .link-hover:hover::after,
+  .gradient-border:hover::before,
+  .shine-sweep:hover::after {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Use active states for touch feedback */
+  .glass-pill:active {
+    background: var(--glass-highlight);
+    transform: scale(0.98);
+  }
+
+  .glass-card:active,
+  .skill-card:active {
+    background: var(--glass-bg);
+  }
+
+  /* Disable shine sweep on touch */
+  .shine-sweep::after {
+    display: none;
+  }
+}
+
+/* Improved tap highlight for iOS */
+@supports (-webkit-touch-callout: none) {
+  .tap-highlight-none {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button,
+  a,
+  [role="button"] {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+  }
+
+  [data-theme='light'] button,
+  [data-theme='light'] a,
+  [data-theme='light'] [role="button"] {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Mobile-specific text sizing for readability */
+@media (max-width: 767px) {
+  .text-fluid-sm {
+    font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+  }
+
+  .text-fluid-base {
+    font-size: clamp(0.875rem, 3vw, 1rem);
+  }
+
+  .text-fluid-lg {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .text-fluid-xl {
+    font-size: clamp(1.25rem, 5vw, 1.5rem);
+  }
+
+  .text-fluid-2xl {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .text-fluid-3xl {
+    font-size: clamp(1.875rem, 8vw, 3rem);
+  }
+
+  /* Prevent zoom on input focus (iOS) */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="number"],
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* Responsive spacing utilities */
+.gap-responsive {
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .gap-responsive {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gap-responsive {
+    gap: 2rem;
+  }
+}
+
+.p-responsive {
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .p-responsive {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .p-responsive {
+    padding: 2rem;
+  }
+}
+
+/* Mobile container padding */
+.container-mobile {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-mobile {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-mobile {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-mobile {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* Landscape orientation handling */
+@media (max-height: 500px) and (orientation: landscape) {
+  .landscape-compact {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .landscape-hidden {
+    display: none;
+  }
+}
+
+/* Stack on mobile, row on larger screens */
+.stack-mobile {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .stack-mobile {
+    flex-direction: row;
+  }
+}
+
+/* ============================================================
    Reduced Motion Preferences
    ============================================================ */
 
@@ -983,5 +1207,102 @@ body {
 
   .connection-line {
     animation: none !important;
+  }
+
+  /* Disable gradient animations */
+  .gradient-border::before {
+    transition: none !important;
+  }
+
+  /* Disable glow effects */
+  .glow-white,
+  .glow-accent,
+  .focus-glow:focus-within {
+    box-shadow: none !important;
+    transition: none !important;
+  }
+
+  /* Disable shine sweep */
+  .shine-sweep::after {
+    display: none !important;
+  }
+
+  /* Ensure instant state changes */
+  button,
+  a,
+  [role="button"],
+  .glass-pill,
+  .glass-card,
+  .skill-card,
+  .copy-btn,
+  .command-box {
+    transition: none !important;
+  }
+
+  /* Keep functional focus indicators */
+  .focus-ring:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+/* ============================================================
+   Responsive Shape Component
+   ============================================================ */
+
+.shape-responsive {
+  width: var(--shape-size-base, 48px);
+  height: var(--shape-size-base, 48px);
+}
+
+@media (min-width: 640px) {
+  .shape-responsive {
+    width: var(--shape-size-sm, var(--shape-size-base, 48px));
+    height: var(--shape-size-sm, var(--shape-size-base, 48px));
+  }
+}
+
+@media (min-width: 768px) {
+  .shape-responsive {
+    width: var(--shape-size-md, var(--shape-size-sm, var(--shape-size-base, 48px)));
+    height: var(--shape-size-md, var(--shape-size-sm, var(--shape-size-base, 48px)));
+  }
+}
+
+@media (min-width: 1024px) {
+  .shape-responsive {
+    width: var(--shape-size-lg, var(--shape-size-md, var(--shape-size-sm, var(--shape-size-base, 48px))));
+    height: var(--shape-size-lg, var(--shape-size-md, var(--shape-size-sm, var(--shape-size-base, 48px))));
+  }
+}
+
+/* ============================================================
+   High Contrast Mode Support
+   ============================================================ */
+
+@media (prefers-contrast: high) {
+  :root,
+  [data-theme='dark'] {
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --glass-highlight: rgba(255, 255, 255, 0.5);
+    --color-grey-400: #a1a1a6;
+    --color-grey-600: #8e8e93;
+  }
+
+  [data-theme='light'] {
+    --glass-border: rgba(0, 0, 0, 0.3);
+    --glass-highlight: rgba(0, 0, 0, 0.5);
+    --color-grey-400: #636366;
+    --color-grey-600: #48484a;
+  }
+
+  .glass-card,
+  .glass-pill,
+  .command-box {
+    border-width: 2px;
+  }
+
+  .focus-ring:focus-visible {
+    outline-width: 3px;
   }
 }

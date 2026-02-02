@@ -54,6 +54,38 @@ module.exports = {
           '50%': { backgroundPosition: '100% 50%' },
         },
       },
+      // Mobile-first spacing scale
+      spacing: {
+        'safe-top': 'env(safe-area-inset-top)',
+        'safe-bottom': 'env(safe-area-inset-bottom)',
+        'safe-left': 'env(safe-area-inset-left)',
+        'safe-right': 'env(safe-area-inset-right)',
+      },
+      // Touch-friendly minimum sizes (WCAG 2.5.5)
+      minWidth: {
+        'touch': '44px',
+        'touch-sm': '36px',
+      },
+      minHeight: {
+        'touch': '44px',
+        'touch-sm': '36px',
+        'screen-dvh': '100dvh',
+      },
+      height: {
+        'screen-dvh': '100dvh',
+      },
+      // Fluid typography scale
+      fontSize: {
+        'fluid-xs': 'clamp(0.75rem, 2vw, 0.875rem)',
+        'fluid-sm': 'clamp(0.875rem, 2.5vw, 1rem)',
+        'fluid-base': 'clamp(1rem, 3vw, 1.125rem)',
+        'fluid-lg': 'clamp(1.125rem, 3.5vw, 1.25rem)',
+        'fluid-xl': 'clamp(1.25rem, 4vw, 1.5rem)',
+        'fluid-2xl': 'clamp(1.5rem, 5vw, 2rem)',
+        'fluid-3xl': 'clamp(1.875rem, 6vw, 2.5rem)',
+        'fluid-4xl': 'clamp(2.25rem, 8vw, 3.5rem)',
+        'fluid-5xl': 'clamp(3rem, 10vw, 4.5rem)',
+      },
     },
   },
 }
