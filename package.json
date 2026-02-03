@@ -26,7 +26,7 @@
     "build": "tsc && vite build && node -e \"const fs=require('fs');const css=fs.readFileSync('src/styles.css','utf8').replace(/@import 'tailwindcss';\\n\\n/,'');fs.writeFileSync('dist/styles.css',css)\"",
     "lint": "eslint src",
     "prepublishOnly": "npm run build",
-    "release:patch": "npm version patch -m 'chore: bump version to %s' && git push && git push --tags && gh release create v$(node -p \"require('./package.json').version\") --generate-notes",
+    "release:patch": "npm version patch -m 'chore: bump version to %s' && git add . && git commit -m 'chore: add v0 compatibility config' && git push && git push --tags && gh release create v$(node -p \"require('./package.json').version\") --generate-notes",
     "release:minor": "npm version minor -m 'chore: bump version to %s' && git push && git push --tags && gh release create v$(node -p \"require('./package.json').version\") --generate-notes",
     "release:major": "npm version major -m 'chore: bump version to %s' && git push && git push --tags && gh release create v$(node -p \"require('./package.json').version\") --generate-notes"
   },
