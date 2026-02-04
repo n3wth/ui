@@ -32,7 +32,7 @@ export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(
 
     const getColor = () => {
       if (variant === 'pill' && isActive) return 'var(--color-bg)'
-      return isActive ? 'var(--color-white)' : 'var(--color-grey-400)'
+      return 'var(--color-white)'
     }
 
     return (
