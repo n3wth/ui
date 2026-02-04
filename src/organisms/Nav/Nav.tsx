@@ -47,75 +47,76 @@ export function Nav({
       <nav
         className={cn(
           'glass-nav',
-          'px-6 md:px-12 py-3 md:py-4',
-          'flex items-center justify-between',
+          'py-4 md:py-6',
           fixed && 'fixed top-0 left-0 right-0 z-50',
           className
         )}
         {...props}
       >
-        {/* Logo */}
-        <a
-          href={logoHref}
-          className="text-base md:text-lg font-display font-semibold hover:opacity-70 transition-opacity"
-          style={{ color: 'var(--color-accent)' }}
-        >
-          {logo}
-        </a>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex md:items-center md:gap-6">
-          {items.map((item) => (
-            <NavLink
-              key={item.href}
-              href={item.href}
-              isActive={item.isActive}
-              variant="underline"
-              {...(item.external && { target: '_blank', rel: 'noopener noreferrer' })}
-            >
-              {item.label}
-            </NavLink>
-          ))}
-          {showThemeToggle && onThemeToggle && (
-            <ThemeToggle theme={theme} onToggle={onThemeToggle} size="sm" />
-          )}
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={toggleMenu}
-          className="md:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-opacity duration-200 hover:opacity-70"
-          style={{ color: 'var(--color-grey-200)' }}
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isMenuOpen}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="transition-transform duration-300"
-            aria-hidden="true"
+        <div className="mx-auto max-w-6xl px-6 md:px-12 flex items-center justify-between">
+          {/* Logo */}
+          <a
+            href={logoHref}
+            className="text-base md:text-lg font-display font-semibold hover:opacity-70 transition-opacity"
+            style={{ color: 'var(--color-accent)' }}
           >
-            {isMenuOpen ? (
-              <>
-                <path d="M18 6L6 18" />
-                <path d="M6 6l12 12" />
-              </>
-            ) : (
-              <>
-                <path d="M4 6h16" />
-                <path d="M4 12h16" />
-                <path d="M4 18h16" />
-              </>
+            {logo}
+          </a>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex md:items-center md:gap-6">
+            {items.map((item) => (
+              <NavLink
+                key={item.href}
+                href={item.href}
+                isActive={item.isActive}
+                variant="underline"
+                {...(item.external && { target: '_blank', rel: 'noopener noreferrer' })}
+              >
+                {item.label}
+              </NavLink>
+            ))}
+            {showThemeToggle && onThemeToggle && (
+              <ThemeToggle theme={theme} onToggle={onThemeToggle} size="sm" />
             )}
-          </svg>
-        </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMenu}
+            className="md:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-opacity duration-200 hover:opacity-70"
+            style={{ color: 'var(--color-grey-200)' }}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="transition-transform duration-300"
+              aria-hidden="true"
+            >
+              {isMenuOpen ? (
+                <>
+                  <path d="M18 6L6 18" />
+                  <path d="M6 6l12 12" />
+                </>
+              ) : (
+                <>
+                  <path d="M4 6h16" />
+                  <path d="M4 12h16" />
+                  <path d="M4 18h16" />
+                </>
+              )}
+            </svg>
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Drawer */}
