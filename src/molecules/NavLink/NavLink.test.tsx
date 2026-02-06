@@ -10,14 +10,16 @@ describe('NavLink', () => {
     expect(link).toHaveAttribute('href', '/about')
   })
 
-  it('applies default variant', () => {
+  it('applies default variant with inline color', () => {
     render(<NavLink href="/">Home</NavLink>)
-    expect(screen.getByRole('link')).toHaveClass('text-[var(--color-grey-400)]')
+    const link = screen.getByRole('link')
+    expect(link).toHaveStyle({ color: 'var(--color-white)' })
   })
 
-  it('applies active state', () => {
-    render(<NavLink href="/" isActive>Home</NavLink>)
-    expect(screen.getByRole('link')).toHaveClass('text-[var(--color-white)]')
+  it('applies active pill variant style', () => {
+    render(<NavLink href="/" isActive variant="pill">Home</NavLink>)
+    const link = screen.getByRole('link')
+    expect(link).toHaveStyle({ color: 'var(--color-bg)' })
   })
 
   it('applies pill variant', () => {
