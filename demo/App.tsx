@@ -76,6 +76,8 @@ export function App() {
         ]}
         theme={theme}
         onThemeToggle={toggleTheme}
+        fixed
+        hideOnScroll
       />
 
       {/* Hero */}
