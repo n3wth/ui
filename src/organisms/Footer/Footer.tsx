@@ -44,7 +44,7 @@ export function Footer({
       )}
       {...props}
     >
-      <div className="mx-auto max-w-7xl px-6 py-16 md:px-10">
+      <div className="mx-auto max-w-6xl px-6 py-16 md:px-12">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-4 lg:grid-cols-5">
           {/* Brand Column */}
           <div className="md:col-span-2 lg:col-span-2">

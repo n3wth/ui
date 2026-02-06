@@ -92,7 +92,7 @@ export function App() {
       />
 
       {/* Main content with sidebar */}
-      <div id="main-content" className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+      <div id="main-content" className="max-w-6xl mx-auto px-6 md:px-12 pb-24">
         <div className="lg:grid lg:grid-cols-[220px_1fr] lg:gap-12">
           {/* Sidebar - desktop */}
           <aside className="hidden lg:block">
