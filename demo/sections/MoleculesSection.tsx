@@ -26,6 +26,13 @@ interface MoleculesSectionProps {
   onThemeToggle: () => void
 }
 
+const controlBtnClass = (active: boolean) =>
+  `px-2 py-1 text-xs rounded-full border transition-colors ${
+    active
+      ? 'bg-[var(--color-white)] text-[var(--color-bg)] border-[var(--color-white)]'
+      : 'bg-transparent text-[var(--color-grey-400)] border-[var(--glass-border)] hover:border-[var(--glass-highlight)]'
+  }`
+
 export function MoleculesSection({ theme, onThemeToggle }: MoleculesSectionProps) {
   const [modalOpen, setModalOpen] = useState(false)
   const [modalSize, setModalSize] = useState<ModalSize>('md')
@@ -34,58 +41,74 @@ export function MoleculesSection({ theme, onThemeToggle }: MoleculesSectionProps
   const [tabValue, setTabValue] = useState('tab1')
   const [tabVariant, setTabVariant] = useState<'underline' | 'pill'>('underline')
 
+  const [cardVariant, setCardVariant] = useState<'default' | 'glass' | 'interactive'>('default')
+  const [cardPadding, setCardPadding] = useState<'none' | 'sm' | 'md' | 'lg'>('md')
+
+  const [navVariant, setNavVariant] = useState<'default' | 'underline' | 'pill'>('underline')
+  const [navActive, setNavActive] = useState(true)
+
   return (
     <DemoSection id="molecules" title="Molecules" description="Combinations of atoms forming functional UI patterns.">
       {/* Cards */}
       <DemoBlock title="Card">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Default Card</CardTitle>
-              <CardDescription>Basic border card</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-[var(--color-grey-400)]">
-                Cards contain content and actions about a single subject.
-              </p>
-            </CardContent>
-            <CardFooter>
-              <Button size="sm" variant="secondary">Action</Button>
-            </CardFooter>
-          </Card>
-          <Card variant="glass">
-            <CardHeader>
-              <CardTitle>Glass Card</CardTitle>
-              <CardDescription>With backdrop blur</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-[var(--color-grey-400)]">
-                Glass morphism variant with subtle transparency.
-              </p>
-            </CardContent>
-          </Card>
-          <Card variant="interactive">
-            <CardHeader>
-              <CardTitle>Interactive Card</CardTitle>
-              <CardDescription>Hover to see effects</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-[var(--color-grey-400)]">
-                Gradient border and shine sweep on hover.
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-        <CodeSnippet className="mt-4" code={`<Card variant="glass">
+        <div className="space-y-6">
+          {/* Controls */}
+          <div className="flex flex-wrap gap-2 items-center">
+            <span className="text-xs text-[var(--color-grey-400)] mr-2">Variant:</span>
+            {(['default', 'glass', 'interactive'] as const).map((v) => (
+              <button
+                key={v}
+                onClick={() => setCardVariant(v)}
+                className={controlBtnClass(cardVariant === v)}
+              >
+                {v}
+              </button>
+            ))}
+            <span className="text-xs text-[var(--color-grey-400)] ml-4 mr-2">Padding:</span>
+            {(['none', 'sm', 'md', 'lg'] as const).map((p) => (
+              <button
+                key={p}
+                onClick={() => setCardPadding(p)}
+                className={controlBtnClass(cardPadding === p)}
+              >
+                {p}
+              </button>
+            ))}
+          </div>
+
+          {/* Preview */}
+          <div className="p-8 rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)] flex items-center justify-center">
+            <div className="w-full max-w-sm">
+              <Card variant={cardVariant} padding={cardPadding}>
+                <CardHeader>
+                  <CardTitle>{cardVariant.charAt(0).toUpperCase() + cardVariant.slice(1)} Card</CardTitle>
+                  <CardDescription>
+                    {cardVariant === 'glass' ? 'With backdrop blur' : cardVariant === 'interactive' ? 'Hover to see effects' : 'Basic border card'}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm text-[var(--color-grey-400)]">
+                    Cards contain content and actions about a single subject.
+                  </p>
+                </CardContent>
+                <CardFooter>
+                  <Button size="sm" variant="secondary">Action</Button>
+                </CardFooter>
+              </Card>
+            </div>
+          </div>
+
+          <CodeSnippet code={`<Card variant="${cardVariant}"${cardPadding !== 'md' ? ` padding="${cardPadding}"` : ''}>
   <CardHeader>
-    <CardTitle>Glass Card</CardTitle>
-    <CardDescription>With backdrop blur</CardDescription>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Description text</CardDescription>
   </CardHeader>
   <CardContent>Content here</CardContent>
   <CardFooter>
     <Button size="sm" variant="secondary">Action</Button>
   </CardFooter>
 </Card>`} />
+        </div>
       </DemoBlock>
 
       {/* Tabs */}
@@ -97,11 +120,7 @@ export function MoleculesSection({ theme, onThemeToggle }: MoleculesSectionProps
               <button
                 key={v}
                 onClick={() => setTabVariant(v)}
-                className={`px-2 py-1 text-xs rounded-full border transition-colors ${
-                  tabVariant === v
-                    ? 'bg-[var(--color-white)] text-[var(--color-bg)] border-[var(--color-white)]'
-                    : 'bg-transparent text-[var(--color-grey-400)] border-[var(--glass-border)]'
-                }`}
+                className={controlBtnClass(tabVariant === v)}
               >
                 {v}
               </button>
@@ -152,11 +171,7 @@ export function MoleculesSection({ theme, onThemeToggle }: MoleculesSectionProps
               <button
                 key={s}
                 onClick={() => setModalSize(s)}
-                className={`px-2 py-1 text-xs rounded-full border transition-colors ${
-                  modalSize === s
-                    ? 'bg-[var(--color-white)] text-[var(--color-bg)] border-[var(--color-white)]'
-                    : 'bg-transparent text-[var(--color-grey-400)] border-[var(--glass-border)]'
-                }`}
+                className={controlBtnClass(modalSize === s)}
               >
                 {s}
               </button>
@@ -217,11 +232,7 @@ export function MoleculesSection({ theme, onThemeToggle }: MoleculesSectionProps
               <button
                 key={v}
                 onClick={() => setToastVariant(v)}
-                className={`px-2 py-1 text-xs rounded-full border transition-colors ${
-                  toastVariant === v
-                    ? 'bg-[var(--color-white)] text-[var(--color-bg)] border-[var(--color-white)]'
-                    : 'bg-transparent text-[var(--color-grey-400)] border-[var(--glass-border)]'
-                }`}
+                className={controlBtnClass(toastVariant === v)}
               >
                 {v}
               </button>
@@ -260,14 +271,41 @@ toast.${toastVariant === 'default' ? '' : toastVariant + '('}{ title: 'Done!', d
 
       {/* NavLink */}
       <DemoBlock title="NavLink">
-        <div className="p-6 rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)] flex flex-wrap gap-6">
-          <NavLink href="#" variant="underline" isActive>Active</NavLink>
-          <NavLink href="#" variant="underline">Inactive</NavLink>
-          <NavLink href="#" variant="pill">Pill</NavLink>
-          <NavLink href="#" variant="pill" isActive>Active Pill</NavLink>
+        <div className="space-y-6">
+          {/* Controls */}
+          <div className="flex flex-wrap gap-2 items-center">
+            <span className="text-xs text-[var(--color-grey-400)] mr-2">Variant:</span>
+            {(['default', 'underline', 'pill'] as const).map((v) => (
+              <button
+                key={v}
+                onClick={() => setNavVariant(v)}
+                className={controlBtnClass(navVariant === v)}
+              >
+                {v}
+              </button>
+            ))}
+            <button
+              onClick={() => setNavActive(!navActive)}
+              className={`${controlBtnClass(navActive)} ml-4`}
+            >
+              isActive
+            </button>
+          </div>
+
+          {/* Preview */}
+          <div className="p-8 rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)] flex flex-wrap gap-6 items-center justify-center">
+            <NavLink href="#" variant={navVariant} isActive={navActive}>Active Link</NavLink>
+            <NavLink href="#" variant={navVariant}>Inactive Link</NavLink>
+            <NavLink href="#" variant={navVariant} isActive={navActive}>
+              <Icon name="external" size="sm" className="mr-1" />
+              With Icon
+            </NavLink>
+          </div>
+
+          <CodeSnippet code={`<NavLink href="/about" variant="${navVariant}"${navActive ? ' isActive' : ''}>
+  About
+</NavLink>`} />
         </div>
-        <CodeSnippet className="mt-4" code={`<NavLink href="/about" variant="underline" isActive>About</NavLink>
-<NavLink href="/docs" variant="pill">Docs</NavLink>`} />
       </DemoBlock>
 
       {/* CommandBox */}

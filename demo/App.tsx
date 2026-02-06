@@ -6,6 +6,7 @@ import { Footer } from '../src/organisms/Footer'
 import { Icon } from '../src/atoms/Icon'
 import { useTheme } from '../src/hooks/useTheme'
 import { cn } from '../src/utils/cn'
+import { FloatingShapes } from './FloatingShapes'
 import { TokensSection } from './sections/TokensSection'
 import { AtomsSection } from './sections/AtomsSection'
 import { MoleculesSection } from './sections/MoleculesSection'
@@ -81,15 +82,18 @@ export function App() {
       />
 
       {/* Hero */}
-      <Hero
-        badge={`v${version}`}
-        title="Flat. Minimal."
-        description={<>Atomic design system for Newth sites.<br />No shadows, no glows &mdash; just clean glass morphism.</>}
-        ctas={[
-          { label: 'Browse Components', href: '#atoms' },
-          { label: 'View Source', href: 'https://github.com/n3wth/ui', variant: 'secondary' },
-        ]}
-      />
+      <div className="relative">
+        <FloatingShapes />
+        <Hero
+          badge={`v${version}`}
+          title="Flat. Minimal."
+          description={<>Atomic design system for Newth sites.<br />No shadows, no glows &mdash; just clean glass morphism.</>}
+          ctas={[
+            { label: 'Browse Components', href: '#atoms' },
+            { label: 'View Source', href: 'https://github.com/n3wth/ui', variant: 'secondary' },
+          ]}
+        />
+      </div>
 
       {/* Main content with sidebar */}
       <div id="main-content" className="max-w-6xl mx-auto px-6 md:px-12 pb-24">
