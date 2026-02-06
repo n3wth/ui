@@ -1,37 +1,77 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { version } from '../package.json'
-import { Button } from '../src/atoms/Button'
-import { Badge } from '../src/atoms/Badge'
-import { Input } from '../src/atoms/Input'
-import { Icon } from '../src/atoms/Icon'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '../src/molecules/Card'
-import { NavLink } from '../src/molecules/NavLink'
-import { CommandBox } from '../src/molecules/CommandBox'
-import { ThemeToggle } from '../src/molecules/ThemeToggle'
 import { Nav } from '../src/organisms/Nav'
 import { Hero } from '../src/organisms/Hero'
 import { Footer } from '../src/organisms/Footer'
-import { Section, SectionHeader } from '../src/organisms/Section'
+import { Icon } from '../src/atoms/Icon'
 import { useTheme } from '../src/hooks/useTheme'
+import { cn } from '../src/utils/cn'
+import { TokensSection } from './sections/TokensSection'
+import { AtomsSection } from './sections/AtomsSection'
+import { MoleculesSection } from './sections/MoleculesSection'
+import { OrganismsSection } from './sections/OrganismsSection'
+import { HooksSection } from './sections/HooksSection'
+
+const sidebarItems = [
+  { id: 'tokens', label: 'Design Tokens', icon: 'sparkles' as const },
+  { id: 'atoms', label: 'Atoms', icon: 'grid' as const },
+  { id: 'molecules', label: 'Molecules', icon: 'code' as const },
+  { id: 'organisms', label: 'Organisms', icon: 'list' as const },
+  { id: 'hooks', label: 'Hooks', icon: 'terminal' as const },
+]
 
 export function App() {
   const { theme, toggleTheme } = useTheme()
-  const [inputValue, setInputValue] = useState('')
+  const [activeSection, setActiveSection] = useState('tokens')
+  const [sidebarOpen, setSidebarOpen] = useState(false)
+
+  // Track active section via intersection observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        }
+      },
+      { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
+    )
+
+    for (const item of sidebarItems) {
+      const el = document.getElementById(item.id)
+      if (el) observer.observe(el)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id)
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      setSidebarOpen(false)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-white)]">
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-sage)] focus:text-black focus:rounded">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-sage)] focus:text-black focus:rounded"
+      >
         Skip to main content
       </a>
+
       {/* Nav */}
       <Nav
         logo="@n3wth/ui"
         logoHref="#"
         items={[
-          { label: 'Get Started', href: '#get-started' },
+          { label: 'Tokens', href: '#tokens' },
           { label: 'Atoms', href: '#atoms' },
           { label: 'Molecules', href: '#molecules' },
-          { label: 'Organisms', href: '#organisms' },
+          { label: 'Hooks', href: '#hooks' },
           { label: 'GitHub', href: 'https://github.com/n3wth/ui', external: true },
         ]}
         theme={theme}
@@ -44,302 +84,80 @@ export function App() {
       <Hero
         badge={`v${version}`}
         title="Flat. Minimal."
-        description={<>Atomic design system for Newth sites.<br />No shadows, no glows - just clean glass morphism.</>}
+        description={<>Atomic design system for Newth sites.<br />No shadows, no glows &mdash; just clean glass morphism.</>}
         ctas={[
-          { label: 'Get Started', href: '#get-started' },
+          { label: 'Browse Components', href: '#atoms' },
           { label: 'View Source', href: 'https://github.com/n3wth/ui', variant: 'secondary' },
         ]}
       />
 
-      <main id="main-content">
-      {/* Get Started Section */}
-      <Section id="get-started">
-        <SectionHeader
-          title="Get Started"
-          description="Install and configure @n3wth/ui in your project"
-        />
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Installation */}
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-lg font-medium mb-3 text-[var(--color-grey-400)]">1. Install the package</h3>
-              <CommandBox command="npm install @n3wth/ui" />
-            </div>
-
-            <div>
-              <h3 className="text-lg font-medium mb-3 text-[var(--color-grey-400)]">2. Import components and styles</h3>
-              <div className="p-4 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)] font-mono text-sm">
-                <div className="text-[var(--color-sage)]">import</div>
-                <div className="pl-4 text-[var(--color-white)]">{`{ Button, Card, Nav }`}</div>
-                <div className="text-[var(--color-sage)]">from <span className="text-[var(--color-coral)]">'@n3wth/ui'</span></div>
-                <div className="mt-2 text-[var(--color-sage)]">import <span className="text-[var(--color-coral)]">'@n3wth/ui/styles'</span></div>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-medium mb-3 text-[var(--color-grey-400)]">3. Add Tailwind preset (optional)</h3>
-              <div className="p-4 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)] font-mono text-sm">
-                <div className="text-[var(--color-grey-400)]">// tailwind.config.js</div>
-                <div className="text-[var(--color-sage)]">export default {'{'}</div>
-                <div className="pl-4">presets: [<span className="text-[var(--color-coral)]">require('@n3wth/ui/tailwind')</span>]</div>
-                <div className="text-[var(--color-sage)]">{'}'}</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Reference */}
-          <div className="space-y-6">
-            <Card variant="glass">
-              <CardHeader>
-                <CardTitle>Components</CardTitle>
-                <CardDescription>What's included</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-3 text-sm">
-                  <div>
-                    <span className="text-[var(--color-sage)] font-medium">Atoms:</span>
-                    <span className="text-[var(--color-grey-400)]"> Button, Badge, Input, Icon, AnimatedText</span>
-                  </div>
-                  <div>
-                    <span className="text-[var(--color-coral)] font-medium">Molecules:</span>
-                    <span className="text-[var(--color-grey-400)]"> Card, NavLink, CommandBox, ThemeToggle, MobileDrawer</span>
-                  </div>
-                  <div>
-                    <span className="text-[var(--color-mint)] font-medium">Organisms:</span>
-                    <span className="text-[var(--color-grey-400)]"> Nav, Hero, Section, Footer</span>
-                  </div>
-                  <div>
-                    <span className="text-[var(--color-gold)] font-medium">Hooks:</span>
-                    <span className="text-[var(--color-grey-400)]"> useTheme, useMediaQuery, useKeyboardShortcuts</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card variant="glass">
-              <CardHeader>
-                <CardTitle>Requirements</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-sm text-[var(--color-grey-400)]">
-                  <li>React 18+ or React 19</li>
-                  <li>Tailwind CSS v4 (for preset)</li>
-                  <li>Modern browser with CSS custom properties</li>
-                </ul>
-              </CardContent>
-              <CardFooter>
-                <Button
-                  size="sm"
-                  variant="secondary"
-                  rightIcon={<Icon name="external" size="sm" />}
-                  onClick={() => window.open('https://github.com/n3wth/ui', '_blank')}
+      {/* Main content with sidebar */}
+      <div id="main-content" className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+        <div className="lg:grid lg:grid-cols-[220px_1fr] lg:gap-12">
+          {/* Sidebar - desktop */}
+          <aside className="hidden lg:block">
+            <nav className="sticky top-20 space-y-1">
+              {sidebarItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollTo(item.id)}
+                  className={cn(
+                    'w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-left',
+                    'transition-colors duration-150',
+                    activeSection === item.id
+                      ? 'bg-[var(--glass-bg)] text-[var(--color-white)] border border-[var(--glass-border)]'
+                      : 'text-[var(--color-grey-400)] hover:text-[var(--color-white)] hover:bg-[var(--glass-bg)] border border-transparent'
+                  )}
                 >
-                  View on GitHub
-                </Button>
-              </CardFooter>
-            </Card>
-          </div>
-        </div>
-      </Section>
-
-      {/* Atoms Section */}
-      <Section id="atoms">
-        <SectionHeader
-          title="Atoms"
-          description="The building blocks of the design system"
-        />
-
-        <div className="space-y-12">
-          {/* Buttons */}
-          <div>
-            <h3 className="text-lg font-medium mb-4 text-[var(--color-grey-400)]">Buttons</h3>
-            <div className="flex flex-wrap gap-4">
-              <Button variant="primary">Primary</Button>
-              <Button variant="secondary">Secondary</Button>
-              <Button variant="ghost">Ghost</Button>
-              <Button variant="glass">Glass</Button>
-              <Button variant="primary" isLoading>Loading</Button>
-              <Button variant="secondary" leftIcon={<Icon name="github" size="sm" />}>
-                With Icon
-              </Button>
-            </div>
-            <div className="flex flex-wrap gap-4 mt-4">
-              <Button size="sm">Small</Button>
-              <Button size="md">Medium</Button>
-              <Button size="lg">Large</Button>
-            </div>
-          </div>
-
-          {/* Badges */}
-          <div>
-            <h3 className="text-lg font-medium mb-4 text-[var(--color-grey-400)]">Badges</h3>
-            <div className="flex flex-wrap gap-3">
-              <Badge>Default</Badge>
-              <Badge variant="sage">Sage</Badge>
-              <Badge variant="coral">Coral</Badge>
-              <Badge variant="mint">Mint</Badge>
-              <Badge variant="gold">Gold</Badge>
-              <Badge variant="outline">Outline</Badge>
-            </div>
-          </div>
-
-          {/* Inputs */}
-          <div>
-            <h3 className="text-lg font-medium mb-4 text-[var(--color-grey-400)]">Inputs</h3>
-            <div className="flex flex-col gap-4 max-w-sm">
-              <Input
-                placeholder="Default input"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-              />
-              <Input
-                variant="glass"
-                placeholder="Glass input"
-                leftIcon={<Icon name="search" size="sm" />}
-              />
-              <Input
-                placeholder="With error"
-                error="This field is required"
-              />
-            </div>
-          </div>
-
-          {/* Icons */}
-          <div>
-            <h3 className="text-lg font-medium mb-4 text-[var(--color-grey-400)]">Icons (Iconoir)</h3>
-            <p className="text-sm text-[var(--color-grey-600)] mb-4">40+ icons from <a href="https://iconoir.com" target="_blank" rel="noopener noreferrer" className="text-[var(--color-sage)] hover:underline">Iconoir</a> - consistent, minimal, iOS-inspired.</p>
-            <div className="flex flex-wrap gap-3">
-              {([
-                'arrow-right', 'arrow-left', 'arrow-up', 'arrow-down',
-                'chevron-right', 'chevron-left', 'chevron-up', 'chevron-down',
-                'check', 'x', 'copy', 'search', 'menu',
-                'sun', 'moon', 'external', 'github', 'terminal', 'code', 'sparkles',
-                'plus', 'minus', 'settings', 'user', 'heart', 'star', 'mail',
-                'calendar', 'clock', 'bell', 'home', 'folder', 'file', 'trash',
-                'edit', 'eye', 'eye-off', 'lock', 'unlock', 'link', 'external-link',
-                'download', 'upload', 'refresh', 'filter', 'sort', 'grid', 'list',
-                'more-horizontal', 'more-vertical', 'info', 'warning', 'success', 'error',
-              ] as const).map((name) => (
-                <div key={name} className="flex flex-col items-center gap-2 p-3 rounded-lg bg-[var(--glass-bg)] border border-[var(--glass-border)] min-w-[72px]">
-                  <Icon name={name} size="md" />
-                  <span className="text-[10px] text-[var(--color-grey-400)]">{name}</span>
-                </div>
+                  <Icon name={item.icon} size="sm" />
+                  {item.label}
+                </button>
               ))}
-            </div>
+            </nav>
+          </aside>
+
+          {/* Mobile sidebar toggle */}
+          <div className="lg:hidden sticky top-16 z-30 -mx-4 sm:-mx-6 px-4 sm:px-6 py-3 bg-[var(--color-bg)]/80 backdrop-blur-lg border-b border-[var(--glass-border)]">
+            <button
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              className="flex items-center gap-2 text-sm text-[var(--color-grey-400)]"
+            >
+              <Icon name="menu" size="sm" />
+              <span>{sidebarItems.find((i) => i.id === activeSection)?.label || 'Navigate'}</span>
+              <Icon name={sidebarOpen ? 'chevron-up' : 'chevron-down'} size="xs" />
+            </button>
+            {sidebarOpen && (
+              <nav className="mt-2 p-2 rounded-xl bg-[var(--glass-bg)] border border-[var(--glass-border)] space-y-1">
+                {sidebarItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollTo(item.id)}
+                    className={cn(
+                      'w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm text-left',
+                      'transition-colors duration-150',
+                      activeSection === item.id
+                        ? 'bg-[var(--glass-bg)] text-[var(--color-white)]'
+                        : 'text-[var(--color-grey-400)]'
+                    )}
+                  >
+                    <Icon name={item.icon} size="sm" />
+                    {item.label}
+                  </button>
+                ))}
+              </nav>
+            )}
           </div>
+
+          {/* Content */}
+          <main className="min-w-0 space-y-20 pt-8 lg:pt-0">
+            <TokensSection />
+            <AtomsSection />
+            <MoleculesSection theme={theme} onThemeToggle={toggleTheme} />
+            <OrganismsSection />
+            <HooksSection />
+          </main>
         </div>
-      </Section>
-
-      {/* Molecules Section */}
-      <Section id="molecules" variant="alternate">
-        <SectionHeader
-          title="Molecules"
-          description="Combinations of atoms forming functional UI patterns"
-        />
-
-        <div className="space-y-12">
-          {/* Cards */}
-          <div>
-            <h3 className="text-lg font-medium mb-4 text-[var(--color-grey-400)]">Cards</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Default Card</CardTitle>
-                  <CardDescription>A simple card component</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-[var(--color-grey-400)]">
-                    Cards contain content and actions about a single subject.
-                  </p>
-                </CardContent>
-                <CardFooter>
-                  <Button size="sm" variant="secondary">Learn More</Button>
-                </CardFooter>
-              </Card>
-
-              <Card variant="glass">
-                <CardHeader>
-                  <CardTitle>Glass Card</CardTitle>
-                  <CardDescription>With backdrop blur effect</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-[var(--color-grey-400)]">
-                    Glass morphism variant with subtle transparency.
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card variant="interactive">
-                <CardHeader>
-                  <CardTitle>Interactive Card</CardTitle>
-                  <CardDescription>Hover to see the effect</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-[var(--color-grey-400)]">
-                    This card responds to hover interactions.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-
-          {/* NavLinks */}
-          <div>
-            <h3 className="text-lg font-medium mb-4 text-[var(--color-grey-400)]">NavLinks</h3>
-            <div className="flex gap-6">
-              <NavLink href="#" variant="underline" isActive>Active</NavLink>
-              <NavLink href="#" variant="underline">Inactive</NavLink>
-              <NavLink href="#" variant="pill">Pill Style</NavLink>
-              <NavLink href="#" variant="pill" isActive>Active Pill</NavLink>
-            </div>
-          </div>
-
-          {/* CommandBox */}
-          <div>
-            <h3 className="text-lg font-medium mb-4 text-[var(--color-grey-400)]">CommandBox</h3>
-            <div className="max-w-md">
-              <CommandBox command="npm install @n3wth/ui" />
-            </div>
-          </div>
-
-          {/* ThemeToggle */}
-          <div>
-            <h3 className="text-lg font-medium mb-4 text-[var(--color-grey-400)]">ThemeToggle</h3>
-            <div className="flex gap-4 items-center">
-              <ThemeToggle theme={theme} onToggle={toggleTheme} size="sm" />
-              <ThemeToggle theme={theme} onToggle={toggleTheme} size="md" />
-              <span className="text-sm text-[var(--color-grey-400)]">Current: {theme}</span>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* Organisms Section */}
-      <Section id="organisms">
-        <SectionHeader
-          title="Organisms"
-          description="Complex UI components composed of molecules and atoms"
-        />
-
-        <div className="space-y-8">
-          <p className="text-[var(--color-grey-400)]">
-            The Nav, Hero, and Footer components are demonstrated in this page layout.
-            Scroll up to see the Nav, or down to see the Footer.
-          </p>
-
-          <div className="p-6 rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)]">
-            <h4 className="font-medium mb-2">Included Organisms:</h4>
-            <ul className="list-disc list-inside text-[var(--color-grey-400)] space-y-1">
-              <li><strong>Nav</strong> - Fixed navigation with mobile menu</li>
-              <li><strong>Hero</strong> - Hero section with badge, title, description, CTAs</li>
-              <li><strong>Footer</strong> - Multi-column footer with sections</li>
-              <li><strong>Section</strong> - Content section wrapper with header</li>
-            </ul>
-          </div>
-        </div>
-      </Section>
-      </main>
+      </div>
 
       {/* Footer */}
       <Footer
@@ -349,9 +167,9 @@ export function App() {
           {
             title: 'Documentation',
             links: [
-              { label: 'Get Started', href: '#get-started' },
+              { label: 'Design Tokens', href: '#tokens' },
               { label: 'Components', href: '#atoms' },
-              { label: 'Hooks', href: '#molecules' },
+              { label: 'Hooks', href: '#hooks' },
             ],
           },
           {
