@@ -44,6 +44,9 @@ export type { CharacterProps, Expression, Accessory } from './atoms/Character'
 export { SpeechBubble } from './atoms/SpeechBubble'
 export type { SpeechBubbleProps, BubbleDirection, BubbleVariant, BubbleSize } from './atoms/SpeechBubble'
 
+export { Tooltip } from './atoms/Tooltip'
+export type { TooltipProps, TooltipPosition } from './atoms/Tooltip'
+
 // Molecules
 export {
   Card,
