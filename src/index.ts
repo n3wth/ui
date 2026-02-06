@@ -117,6 +117,20 @@ export type {
   ToastData,
 } from './molecules/Toast'
 
+export {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from './molecules/Dropdown'
+export type {
+  DropdownProps,
+  DropdownOption,
+  DropdownTriggerProps,
+  DropdownMenuProps,
+  DropdownItemProps,
+} from './molecules/Dropdown'
+
 // Organisms
 export { Nav } from './organisms/Nav'
 export type { NavProps, NavItem } from './organisms/Nav'
