@@ -82,6 +82,26 @@ export type { CompositeShapeProps } from './molecules/CompositeShape'
 export { presets } from './molecules/CompositeShape'
 export type { CompositePreset, ShapeLayer } from './molecules/CompositeShape'
 
+export {
+  Modal,
+  ModalHeader,
+  ModalTitle,
+  ModalDescription,
+  ModalBody,
+  ModalFooter,
+  ModalCloseButton,
+} from './molecules/Modal'
+export type {
+  ModalProps,
+  ModalSize,
+  ModalHeaderProps,
+  ModalTitleProps,
+  ModalDescriptionProps,
+  ModalBodyProps,
+  ModalFooterProps,
+  ModalCloseButtonProps,
+} from './molecules/Modal'
+
 // Organisms
 export { Nav } from './organisms/Nav'
 export type { NavProps, NavItem } from './organisms/Nav'
