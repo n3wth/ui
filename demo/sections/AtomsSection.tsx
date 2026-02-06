@@ -144,6 +144,34 @@ export function AtomsSection() {
         <CodeSnippet className="mt-4" code={`<Icon name="search" size="md" />
 <Icon name="github" size="lg" className="text-[var(--color-sage)]" />`} />
       </DemoBlock>
+
+      {/* CodeBlock */}
+      <DemoBlock title="CodeBlock">
+        <div className="space-y-4">
+          <CodeSnippet showLineNumbers code={`import { Nav, Hero, Button, useTheme } from '@n3wth/ui'
+import '@n3wth/ui/styles'
+
+function App() {
+  const { theme, toggleTheme } = useTheme()
+
+  return (
+    <Nav
+      logo="myapp"
+      items={[
+        { label: 'Home', href: '/' },
+        { label: 'About', href: '/about' },
+      ]}
+      theme={theme}
+      onThemeToggle={toggleTheme}
+      fixed
+      hideOnScroll
+    />
+  )
+}`} />
+          <CodeSnippet code={`// Quick start
+npm install @n3wth/ui`} />
+        </div>
+      </DemoBlock>
     </DemoSection>
   )
 }

@@ -26,9 +26,17 @@ export function HooksSection() {
             <Badge variant={theme === 'dark' ? 'default' : 'sage'}>{theme}</Badge>
           </div>
         </div>
-        <CodeSnippet className="mt-4" code={`const { theme, setTheme, toggleTheme } = useTheme()
-// theme: 'dark' | 'light'
-// Persists to localStorage, respects system preference`} />
+        <CodeSnippet className="mt-4" code={`import { useTheme } from '@n3wth/ui'
+
+function ThemeSwitch() {
+  const { theme, setTheme, toggleTheme } = useTheme()
+
+  return (
+    <button onClick={toggleTheme}>
+      {theme === 'dark' ? 'Switch to Light' : 'Switch to Dark'}
+    </button>
+  )
+}`} />
       </DemoBlock>
 
       {/* useMediaQuery */}
@@ -43,13 +51,22 @@ export function HooksSection() {
             Current breakpoint: <strong className="text-[var(--color-white)]">{breakpoint}</strong>
           </p>
         </div>
-        <CodeSnippet className="mt-4" code={`const isMobile = useIsMobile()      // < 768px
-const isTablet = useIsTablet()      // 768-1023px
-const isDesktop = useIsDesktop()    // >= 1024px
-const breakpoint = useBreakpoint()  // 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+        <CodeSnippet className="mt-4" code={`import { useIsMobile, useBreakpoint, useMediaQuery } from '@n3wth/ui'
 
-// Custom query
-const isWide = useMediaQuery('(min-width: 1440px)')`} />
+function ResponsiveLayout() {
+  const isMobile = useIsMobile()      // < 768px
+  const isTablet = useIsTablet()      // 768-1023px
+  const isDesktop = useIsDesktop()    // >= 1024px
+  const breakpoint = useBreakpoint()  // 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+  const isWide = useMediaQuery('(min-width: 1440px)')
+
+  return (
+    <div className={isMobile ? 'stack' : 'grid-cols-3'}>
+      {isWide && <Sidebar />}
+      <Main />
+    </div>
+  )
+}`} />
       </DemoBlock>
 
       {/* useReducedMotion */}
@@ -62,9 +79,20 @@ const isWide = useMediaQuery('(min-width: 1440px)')`} />
             </Badge>
           </div>
         </div>
-        <CodeSnippet className="mt-4" code={`const prefersReducedMotion = useReducedMotion()
-// true if user prefers reduced motion
-// Use to disable animations gracefully`} />
+        <CodeSnippet className="mt-4" code={`import { useReducedMotion } from '@n3wth/ui'
+
+function AnimatedCard() {
+  const prefersReducedMotion = useReducedMotion()
+
+  return (
+    <div
+      className={prefersReducedMotion ? 'opacity-100' : 'animate-fade-in'}
+      style={{ transition: prefersReducedMotion ? 'none' : 'all 0.3s ease' }}
+    >
+      Accessible animation
+    </div>
+  )
+}`} />
       </DemoBlock>
 
       {/* useCountUp */}
@@ -82,11 +110,17 @@ const isWide = useMediaQuery('(min-width: 1440px)')`} />
             </Button>
           </div>
         </div>
-        <CodeSnippet className="mt-4" code={`const { value, ref } = useCountUp({
-  end: 1000,
-  duration: 2,
-  startOnView: true,
-})`} />
+        <CodeSnippet className="mt-4" code={`import { useCountUp } from '@n3wth/ui'
+
+function StatsCounter() {
+  const { value, ref } = useCountUp({
+    end: 1000,
+    duration: 2,
+    startOnView: true,
+  })
+
+  return <span ref={ref}>{value}</span>
+}`} />
       </DemoBlock>
 
       {/* useKeyboardShortcuts */}
@@ -96,16 +130,23 @@ const isWide = useMediaQuery('(min-width: 1440px)')`} />
             Register keyboard shortcuts with modifier keys. Handles platform differences (Cmd vs Ctrl) automatically.
           </p>
         </div>
-        <CodeSnippet className="mt-4" code={`useKeyboardShortcuts([
-  {
-    key: 'k',
-    modifiers: ['meta'], // Cmd on Mac, Ctrl on Windows
-    handler: () => openSearch(),
-    description: 'Open search',
-  },
-])
+        <CodeSnippet className="mt-4" code={`import { useKeyboardShortcuts, getModifierKey } from '@n3wth/ui'
 
-const modKey = getModifierKey() // 'Cmd' | 'Ctrl'`} />
+function SearchDialog() {
+  const [open, setOpen] = useState(false)
+  const modKey = getModifierKey() // 'Cmd' | 'Ctrl'
+
+  useKeyboardShortcuts([
+    {
+      key: 'k',
+      modifiers: ['meta'],
+      handler: () => setOpen(true),
+      description: 'Open search',
+    },
+  ])
+
+  return <span>Press {modKey}+K to search</span>
+}`} />
       </DemoBlock>
 
       {/* Other hooks */}
@@ -132,6 +173,20 @@ const modKey = getModifierKey() // 'Cmd' | 'Ctrl'`} />
             <p className="text-xs text-[var(--color-grey-400)]">Attention-grabbing pulse animation for CTAs</p>
           </div>
         </div>
+        <CodeSnippet className="mt-4" code={`import { useScrollReveal, useStaggerList } from '@n3wth/ui'
+
+function FeatureGrid({ items }) {
+  const revealRef = useScrollReveal({ threshold: 0.2 })
+  const staggered = useStaggerList(items, { delay: 100 })
+
+  return (
+    <div ref={revealRef} className="grid grid-cols-3 gap-4">
+      {staggered.map((item, i) => (
+        <div key={i} style={item.style}>{item.content}</div>
+      ))}
+    </div>
+  )
+}`} />
       </DemoBlock>
     </DemoSection>
   )
