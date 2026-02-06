@@ -1,6 +1,6 @@
 {
   "name": "@n3wth/ui",
-  "version": "0.4.0",
+  "version": "0.5.1",
   "description": "Atomic design system for Newth sites - flat, minimal, iOS-inspired",
   "type": "module",
   "main": "./dist/index.js",
@@ -26,7 +26,8 @@
     "build": "tsc && vite build && node -e \"const fs=require('fs');const css=fs.readFileSync('src/styles.css','utf8').replace(/@import 'tailwindcss';\\n\\n/,'');fs.writeFileSync('dist/styles.css',css)\"",
     "lint": "eslint src",
     "prepublishOnly": "npm run build",
-    "release:patch": "npm version patch -m 'chore: bump version to %s' && git push && git push --tags && gh release create v$(node -p \"require('./package.json').version\") --generate-notes",
+    "release:patch": "npm version patch -m 'chore: bump version to %s' && npm run registry:build && git add . && git commit -m 'chore: update registry' && git push && git push --tags && gh release create v$(node -p \"require('./package.json').version\") --generate-notes",
+    "registry:build": "npx shadcn@latest build",
     "release:minor": "npm version minor -m 'chore: bump version to %s' && git push && git push --tags && gh release create v$(node -p \"require('./package.json').version\") --generate-notes",
     "release:major": "npm version major -m 'chore: bump version to %s' && git push && git push --tags && gh release create v$(node -p \"require('./package.json').version\") --generate-notes"
   },

@@ -1,0 +1,31 @@
+{
+  "theme": {
+    "colors": {
+      "bg": "#000000",
+      "bg-secondary": "#0a0a0a",
+      "white": "#ffffff",
+      "grey-100": "#f5f5f7",
+      "grey-200": "#e8e8ed",
+      "grey-300": "#c7c7cc",
+      "grey-400": "#86868b",
+      "grey-600": "#6e6e73",
+      "grey-800": "#1d1d1f",
+      "accent": "#ffffff",
+      "sage": "#30d158",
+      "coral": "#ff6961",
+      "mint": "#64d2ff",
+      "gold": "#ffd60a"
+    },
+    "borderRadius": {
+      "DEFAULT": "1rem",
+      "card": "1.25rem",
+      "pill": "9999px"
+    }
+  },
+  "packageManager": "npm",
+  "basePath": "src",
+  "componentsPath": "components",
+  "utilsPath": "utils/cn",
+  "npmPackage": "@n3wth/ui",
+  "importAlias": "@n3wth/ui"
+}
