@@ -82,6 +82,20 @@ export type { CompositeShapeProps } from './molecules/CompositeShape'
 export { presets } from './molecules/CompositeShape'
 export type { CompositePreset, ShapeLayer } from './molecules/CompositeShape'
 
+export {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from './molecules/Dropdown'
+export type {
+  DropdownProps,
+  DropdownOption,
+  DropdownTriggerProps,
+  DropdownMenuProps,
+  DropdownItemProps,
+} from './molecules/Dropdown'
+
 // Organisms
 export { Nav } from './organisms/Nav'
 export type { NavProps, NavItem } from './organisms/Nav'
