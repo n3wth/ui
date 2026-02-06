@@ -8,37 +8,40 @@ export interface NavLinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 }
 
 export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(
-  ({ variant = 'default', isActive = false, children, className, ...props }, ref) => {
+  ({ variant = 'default', isActive = false, children, className, style, ...props }, ref) => {
     const baseStyles = [
       'inline-flex items-center',
       'text-sm font-normal',
       'transition-[color,background-color,border-color,transform] duration-200 ease-out',
       'focus-ring',
+      'hover:text-[--color-white]',
     ]
 
     const variants = {
-      default: [
-        isActive ? 'text-[var(--color-white)]' : 'text-[var(--color-grey-400)]',
-        'hover:text-[var(--color-white)]',
-      ],
-      underline: [
-        'relative',
-        isActive ? 'text-[var(--color-white)]' : 'text-[var(--color-grey-400)]',
-        'hover:text-[var(--color-white)]',
-        'link-hover',
-      ],
+      default: [],
+      underline: ['relative', 'link-hover'],
       pill: [
         'px-3 py-1.5',
         'rounded-full',
         'border',
         isActive
-          ? 'bg-[var(--color-white)] border-[var(--color-white)] text-[var(--color-bg)]'
-          : 'bg-transparent border-transparent text-[var(--color-grey-400)] hover:bg-[var(--glass-bg)] hover:border-[var(--glass-border)] hover:text-[var(--color-white)]',
+          ? 'bg-[--color-white] border-[--color-white]'
+          : 'bg-transparent border-transparent hover:bg-[--glass-bg] hover:border-[--glass-border]',
       ],
     }
 
+    const getColor = () => {
+      if (variant === 'pill' && isActive) return 'var(--color-bg)'
+      return 'var(--color-white)'
+    }
+
     return (
-      <a ref={ref} className={cn(baseStyles, variants[variant], className)} {...props}>
+      <a
+        ref={ref}
+        className={cn(baseStyles, variants[variant], className)}
+        style={{ color: getColor(), ...style }}
+        {...props}
+      >
         {children}
       </a>
     )

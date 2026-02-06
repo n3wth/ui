@@ -44,6 +44,9 @@ export type { CharacterProps, Expression, Accessory } from './atoms/Character'
 export { SpeechBubble } from './atoms/SpeechBubble'
 export type { SpeechBubbleProps, BubbleDirection, BubbleVariant, BubbleSize } from './atoms/SpeechBubble'
 
+export { Tooltip } from './atoms/Tooltip'
+export type { TooltipProps, TooltipPosition } from './atoms/Tooltip'
+
 // Molecules
 export {
   Card,
@@ -81,6 +84,29 @@ export { CompositeShape } from './molecules/CompositeShape'
 export type { CompositeShapeProps } from './molecules/CompositeShape'
 export { presets } from './molecules/CompositeShape'
 export type { CompositePreset, ShapeLayer } from './molecules/CompositeShape'
+
+export {
+  Modal,
+  ModalHeader,
+  ModalTitle,
+  ModalDescription,
+  ModalBody,
+  ModalFooter,
+  ModalCloseButton,
+} from './molecules/Modal'
+export type {
+  ModalProps,
+  ModalSize,
+  ModalHeaderProps,
+  ModalTitleProps,
+  ModalDescriptionProps,
+  ModalBodyProps,
+  ModalFooterProps,
+  ModalCloseButtonProps,
+} from './molecules/Modal'
+
+export { Tabs, TabsList, TabsTab, TabsPanel } from './molecules/Tabs'
+export type { TabsProps, TabsListProps, TabsTabProps, TabsPanelProps } from './molecules/Tabs'
 
 export { Toast, ToastContainer } from './molecules/Toast'
 export type {
