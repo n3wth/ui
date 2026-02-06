@@ -1,4 +1,4 @@
-import { type HTMLAttributes, type ReactNode, useState, useCallback } from 'react'
+import { type HTMLAttributes, type ReactNode, useState, useCallback, useEffect, useRef } from 'react'
 import { cn } from '../../utils/cn'
 import { NavLink } from '../../molecules/NavLink'
 import { ThemeToggle } from '../../molecules/ThemeToggle'
@@ -19,6 +19,7 @@ export interface NavProps extends HTMLAttributes<HTMLElement> {
   onThemeToggle?: () => void
   showThemeToggle?: boolean
   fixed?: boolean
+  hideOnScroll?: boolean
 }
 
 export function Nav({
@@ -29,10 +30,14 @@ export function Nav({
   onThemeToggle,
   showThemeToggle = true,
   fixed = false,
+  hideOnScroll = false,
   className,
   ...props
 }: NavProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [navOffset, setNavOffset] = useState(0)
+  const lastScrollY = useRef(0)
+  const navRef = useRef<HTMLElement>(null)
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen((prev) => !prev)
@@ -42,80 +47,104 @@ export function Nav({
     setIsMenuOpen(false)
   }, [])
 
+  useEffect(() => {
+    if (!hideOnScroll) return
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      const delta = currentScrollY - lastScrollY.current
+      const navHeight = navRef.current?.offsetHeight || 80
+
+      // Calculate new offset (clamped between -navHeight and 0)
+      setNavOffset((prev) => {
+        const newOffset = prev - delta
+        return Math.max(-navHeight, Math.min(0, newOffset))
+      })
+
+      lastScrollY.current = currentScrollY
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [hideOnScroll])
+
   return (
     <>
       <nav
+        ref={navRef}
         className={cn(
           'glass-nav',
-          'px-6 md:px-12 py-3 md:py-4',
-          'flex items-center justify-between',
-          fixed && 'fixed top-0 left-0 right-0 z-50',
+          'px-4 md:px-8 py-4 md:py-6',
+          fixed && 'fixed left-0 right-0 z-50',
           className
         )}
+        style={hideOnScroll ? { top: navOffset } : undefined}
         {...props}
       >
-        {/* Logo */}
-        <a
-          href={logoHref}
-          className="text-base md:text-lg font-display font-semibold hover:opacity-70 transition-opacity"
-          style={{ color: 'var(--color-accent)' }}
-        >
-          {logo}
-        </a>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex md:items-center md:gap-6">
-          {items.map((item) => (
-            <NavLink
-              key={item.href}
-              href={item.href}
-              isActive={item.isActive}
-              variant="underline"
-              {...(item.external && { target: '_blank', rel: 'noopener noreferrer' })}
-            >
-              {item.label}
-            </NavLink>
-          ))}
-          {showThemeToggle && onThemeToggle && (
-            <ThemeToggle theme={theme} onToggle={onThemeToggle} size="sm" />
-          )}
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={toggleMenu}
-          className="md:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-opacity duration-200 hover:opacity-70"
-          style={{ color: 'var(--color-grey-200)' }}
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isMenuOpen}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="transition-transform duration-300"
-            aria-hidden="true"
+        <div className="mx-auto max-w-6xl flex items-center justify-between">
+          {/* Logo */}
+          <a
+            href={logoHref}
+            className="text-base md:text-lg font-display font-semibold hover:opacity-70 transition-opacity"
+            style={{ color: 'var(--color-accent)' }}
           >
-            {isMenuOpen ? (
-              <>
-                <path d="M18 6L6 18" />
-                <path d="M6 6l12 12" />
-              </>
-            ) : (
-              <>
-                <path d="M4 6h16" />
-                <path d="M4 12h16" />
-                <path d="M4 18h16" />
-              </>
+            {logo}
+          </a>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex md:items-center md:gap-6">
+            {items.map((item) => (
+              <NavLink
+                key={item.href}
+                href={item.href}
+                isActive={item.isActive}
+                variant="underline"
+                {...(item.external && { target: '_blank', rel: 'noopener noreferrer' })}
+              >
+                {item.label}
+              </NavLink>
+            ))}
+            {showThemeToggle && onThemeToggle && (
+              <ThemeToggle theme={theme} onToggle={onThemeToggle} size="sm" />
             )}
-          </svg>
-        </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMenu}
+            className="md:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-opacity duration-200 hover:opacity-70"
+            style={{ color: 'var(--color-grey-200)' }}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="transition-transform duration-300"
+              aria-hidden="true"
+            >
+              {isMenuOpen ? (
+                <>
+                  <path d="M18 6L6 18" />
+                  <path d="M6 6l12 12" />
+                </>
+              ) : (
+                <>
+                  <path d="M4 6h16" />
+                  <path d="M4 12h16" />
+                  <path d="M4 18h16" />
+                </>
+              )}
+            </svg>
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Drawer */}
