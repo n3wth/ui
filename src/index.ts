@@ -102,6 +102,9 @@ export type {
   ModalCloseButtonProps,
 } from './molecules/Modal'
 
+export { Tabs, TabsList, TabsTab, TabsPanel } from './molecules/Tabs'
+export type { TabsProps, TabsListProps, TabsTabProps, TabsPanelProps } from './molecules/Tabs'
+
 // Organisms
 export { Nav } from './organisms/Nav'
 export type { NavProps, NavItem } from './organisms/Nav'
