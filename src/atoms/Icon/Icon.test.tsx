@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { describe, it, expect, vi } from 'vitest'
 import { Icon } from './Icon'
 
@@ -30,7 +30,7 @@ describe('Icon', () => {
 
   it('returns null for unknown icon names', () => {
     const spy = vi.spyOn(console, 'warn').mockImplementation(() => {})
-    const { container } = render(<Icon name={'nonexistent' as any} />)
+    const { container } = render(<Icon name={'nonexistent' as unknown as string} />)
     expect(container.firstChild).toBeNull()
     spy.mockRestore()
   })

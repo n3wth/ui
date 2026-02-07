@@ -353,8 +353,14 @@ export const Dropdown = Object.assign(
       const [internalValues, setInternalValues] = useState<string[]>(defaultValues ?? [])
 
       const isControlled = multi ? values !== undefined : value !== undefined
-      const selectedValue = isControlled ? value : internalValue
-      const selectedMultiValues = isControlled ? (values ?? []) : internalValues
+      const selectedValue = useMemo(
+        () => (isControlled ? value : internalValue),
+        [isControlled, value, internalValue]
+      )
+      const selectedMultiValues = useMemo(
+        () => (isControlled ? (values ?? []) : internalValues),
+        [isControlled, values, internalValues]
+      )
       const selectedSet = useMemo(
         () => new Set(multi ? selectedMultiValues : selectedValue ? [selectedValue] : []),
         [multi, selectedMultiValues, selectedValue]

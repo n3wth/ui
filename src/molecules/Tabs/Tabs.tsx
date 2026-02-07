@@ -224,7 +224,7 @@ export const TabsTab = forwardRef<HTMLButtonElement, TabsTabProps>(
         const tabValues = Array.from(tabs.keys())
         const currentIndex = tabValues.indexOf(value)
 
-        let targetIndex: number | null = null
+        let targetIndex: number
 
         switch (e.key) {
           case 'ArrowRight':
