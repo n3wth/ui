@@ -24,7 +24,9 @@ describe('Toast', () => {
     const user = userEvent.setup()
     const onDismiss = vi.fn()
     render(<Toast title="Test" duration={0} onDismiss={onDismiss} />)
-    await user.click(screen.getByLabelText('Dismiss notification'))
+    await act(async () => {
+      await user.click(screen.getByLabelText('Dismiss notification'))
+    })
     // Wait for the exit animation timeout
     await vi.waitFor(() => expect(onDismiss).toHaveBeenCalledOnce())
   })

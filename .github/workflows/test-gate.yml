@@ -1,0 +1,39 @@
+name: Test Coverage Gate
+
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run tests with coverage
+        run: npm run test:coverage
+      
+      - name: Check coverage threshold (40%)
+        run: |
+          coverage=$(npm run test:coverage 2>&1 | grep -o "Coverage: [0-9]*" | awk '{print $2}')
+          if [ "$coverage" -lt 40 ]; then
+            echo "❌ Coverage below 40%: $coverage%"
+            exit 1
+          fi
+          echo "✓ Coverage OK: $coverage%"
+      
+      - name: Comment on PR
+        if: failure()
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '❌ Test coverage below 40%. Please add tests before merging.'
+            })
