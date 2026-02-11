@@ -135,19 +135,37 @@ Ensure `:root` CSS custom properties are defined, or import `@n3wth/ui/styles`.
 ### Misaligned content
 Use matching container constraints: `max-w-6xl mx-auto px-6 md:px-12`
 
-## Publishing
+## Deployment
+
+### npm Publishing (GitHub Actions)
 
 Publishing is automated via GitHub Actions. Do NOT use `npm publish` locally.
 
 1. Bump version: `npm version patch` (or minor/major)
 2. Push: `git push && git push --tags`
 3. Create release: `gh release create v$(node -p "require('./package.json').version") --generate-notes`
-4. The `publish.yml` workflow triggers on release creation and publishes to both npm and GitHub Packages
+4. The `.github/workflows/publish.yml` triggers on release creation and publishes to both npm and GitHub Packages
 
 Shortcut: `npm run release:patch` does all steps at once.
 
+### Demo Site (Vercel)
+
+The demo site at https://ui.newth.ai deploys automatically from the `main` branch via Vercel.
+
+- **Project:** Linked to `n3wth/ui` GitHub repo
+- **Build:** Standard Vite build (`npm run build`)
+- **Auto-deploy:** Every push to `main` triggers a new deployment
+- **Preview:** PRs get preview deployments automatically
+
+### Downstream Consumers
+
+After publishing a new version, update consumers:
+- `newthai` (portfolio site) - `npm install @n3wth/ui@latest`
+- `r3` (website) - `npm install @n3wth/ui@latest` in `website/`
+
 ## Version History
 
+- **v0.5.3** - Dependency updates
 - **v0.5.2** - Consistent width alignment (Nav, Footer, content all use max-w-6xl px-6 md:px-12)
 - **v0.5.0** - Nav hideOnScroll, alignment fixes, solid background
 - **v0.4.x** - Initial Nav component, NavLink variants
