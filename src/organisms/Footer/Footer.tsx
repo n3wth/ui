@@ -18,9 +18,9 @@ export interface FooterSite {
 
 const DEFAULT_SITES: FooterSite[] = [
   { name: 'n3wth', href: 'https://n3wth.com' },
-  { name: 'Skills', href: 'https://skills.n3wth.com' },
-  { name: 'UI', href: 'https://ui.n3wth.com' },
-  { name: 'Garden', href: 'https://garden.n3wth.com' },
+  { name: 'n3wth/skills', href: 'https://skills.n3wth.com' },
+  { name: 'n3wth/ui', href: 'https://ui.n3wth.com' },
+  { name: 'n3wth/garden', href: 'https://garden.n3wth.com' },
 ]
 
 const DEFAULT_LEGAL: FooterLink[] = [
