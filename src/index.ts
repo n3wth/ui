@@ -136,7 +136,7 @@ export { Nav } from './organisms/Nav'
 export type { NavProps, NavItem } from './organisms/Nav'
 
 export { Footer } from './organisms/Footer'
-export type { FooterProps, FooterSection, FooterLink } from './organisms/Footer'
+export type { FooterProps, FooterSection, FooterLink, FooterSite } from './organisms/Footer'
 
 export { Hero } from './organisms/Hero'
 export type { HeroProps, HeroCTA } from './organisms/Hero'
