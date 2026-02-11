@@ -1,6 +1,6 @@
 {
   "name": "@n3wth/ui",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Atomic design system for Newth sites - flat, minimal, iOS-inspired",
   "type": "module",
   "main": "./dist/index.js",
