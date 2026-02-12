@@ -6,6 +6,9 @@ import { Icon } from '../../src/atoms/Icon'
 import type { IconName } from '../../src/atoms/Icon'
 import { DemoSection, DemoBlock } from './DemoSection'
 import { CodeSnippet } from './CodeSnippet'
+import { Playground } from '../components/Playground'
+import { PropsTable } from '../components/PropsTable'
+import { buttonProps, badgeProps, inputProps, iconProps } from '../data/atomProps'
 
 const iconNames: IconName[] = [
   'arrow-right', 'arrow-left', 'arrow-up', 'arrow-down',
@@ -94,6 +97,36 @@ export function AtomsSection() {
           <CodeSnippet code={`<Button variant="${btnVariant}" size="${btnSize}"${btnLoading ? ' isLoading' : ''}>
   Button
 </Button>`} />
+
+          {/* Live Playground */}
+          <div className="mt-8">
+            <h4 className="text-xs font-medium text-[var(--color-grey-400)] uppercase tracking-wider mb-4">
+              Live Playground
+            </h4>
+            <Playground
+              code={`function Example() {
+  return (
+    <Button variant="primary" size="md">
+      Click me
+    </Button>
+  )
+}
+
+render(<Example />)`}
+              scope={{ Button, Icon }}
+              noInline
+            />
+          </div>
+
+          {/* Props Table */}
+          <div className="mt-8">
+            <h4 className="text-xs font-medium text-[var(--color-grey-400)] uppercase tracking-wider mb-4">
+              Props
+            </h4>
+            <div className="rounded-xl border border-[var(--glass-border)] bg-[var(--glass-bg)] overflow-hidden">
+              <PropsTable props={buttonProps} />
+            </div>
+          </div>
         </div>
       </DemoBlock>
 
