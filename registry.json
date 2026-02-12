@@ -108,6 +108,7 @@
       "type": "registry:ui",
       "description": "Fixed navigation bar with hide-on-scroll behavior and theme toggle",
       "registryDependencies": ["utils"],
+      "dependencies": ["iconoir-react@^7.11.0"],
       "files": [
         {
           "path": "src/organisms/Nav/Nav.tsx",
@@ -123,6 +124,10 @@
         },
         {
           "path": "src/molecules/MobileDrawer/MobileDrawer.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/atoms/Icon/Icon.tsx",
           "type": "registry:ui"
         }
       ]
