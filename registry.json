@@ -4,9 +4,22 @@
   "homepage": "https://ui.newth.ai",
   "items": [
     {
+      "name": "utils",
+      "type": "registry:lib",
+      "description": "Utility functions for className merging (clsx + tailwind-merge)",
+      "dependencies": ["clsx@^2.1.0", "tailwind-merge@^2.5.0"],
+      "files": [
+        {
+          "path": "src/utils/cn.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
-      "dependencies": ["lucide-react"],
+      "description": "iOS-inspired button with primary, secondary, ghost, and glass variants",
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "src/atoms/Button/Button.tsx",
@@ -15,8 +28,34 @@
       ]
     },
     {
+      "name": "badge",
+      "type": "registry:ui",
+      "description": "Small badge component with color variants",
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "src/atoms/Badge/Badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "description": "Form input with glass variant and icon support",
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "src/atoms/Input/Input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "card",
       "type": "registry:ui",
+      "description": "Card container with Header, Title, Description, Content, and Footer sub-components",
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "src/molecules/Card/Card.tsx",
@@ -25,11 +64,78 @@
       ]
     },
     {
+      "name": "modal",
+      "type": "registry:ui",
+      "description": "Accessible modal dialog with focus trap and animations",
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "src/molecules/Modal/Modal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "description": "Accessible tabs with underline and pill variants",
+      "registryDependencies": ["utils"],
+      "dependencies": ["gsap@^3.12.0"],
+      "files": [
+        {
+          "path": "src/molecules/Tabs/Tabs.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/hooks/useReducedMotion.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "hero",
       "type": "registry:ui",
+      "description": "Hero section with title, subtitle, and optional CTA buttons",
+      "registryDependencies": ["utils"],
       "files": [
         {
           "path": "src/organisms/Hero/Hero.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "nav",
+      "type": "registry:ui",
+      "description": "Fixed navigation bar with hide-on-scroll behavior and theme toggle",
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "src/organisms/Nav/Nav.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "section",
+      "type": "registry:ui",
+      "description": "Container section with consistent spacing and alignment",
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "src/organisms/Section/Section.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "footer",
+      "type": "registry:ui",
+      "description": "Footer section with links and social icons",
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "src/organisms/Footer/Footer.tsx",
           "type": "registry:ui"
         }
       ]

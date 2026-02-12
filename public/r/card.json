@@ -1,6 +1,10 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "card",
+  "description": "Card container with Header, Title, Description, Content, and Footer sub-components",
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "src/molecules/Card/Card.tsx",
