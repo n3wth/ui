@@ -80,7 +80,6 @@
       "type": "registry:ui",
       "description": "Accessible tabs with underline and pill variants",
       "registryDependencies": ["utils"],
-      "dependencies": ["gsap@^3.12.0"],
       "files": [
         {
           "path": "src/molecules/Tabs/Tabs.tsx",
@@ -112,6 +111,18 @@
       "files": [
         {
           "path": "src/organisms/Nav/Nav.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/molecules/NavLink/NavLink.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/molecules/ThemeToggle/ThemeToggle.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/molecules/MobileDrawer/MobileDrawer.tsx",
           "type": "registry:ui"
         }
       ]

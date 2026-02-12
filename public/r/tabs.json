@@ -2,9 +2,6 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tabs",
   "description": "Accessible tabs with underline and pill variants",
-  "dependencies": [
-    "gsap@^3.12.0"
-  ],
   "registryDependencies": [
     "utils"
   ],
