@@ -1,7 +1,11 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
+import { axe } from 'vitest-axe'
+import * as matchers from 'vitest-axe/matchers'
 import { Nav } from './Nav'
+
+expect.extend(matchers)
 
 const items = [
   { label: 'About', href: '/about' },
@@ -55,5 +59,11 @@ describe('Nav', () => {
     render(<Nav items={items} />)
     await user.click(screen.getByLabelText('Open menu'))
     expect(screen.getByLabelText('Close menu')).toBeInTheDocument()
+  })
+
+  it('has no accessibility violations', async () => {
+    const { container } = render(<Nav logo="Newth" logoHref="/" items={items} />)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 })

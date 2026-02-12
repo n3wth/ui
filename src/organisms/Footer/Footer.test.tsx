@@ -1,6 +1,10 @@
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
+import { axe } from 'vitest-axe'
+import * as matchers from 'vitest-axe/matchers'
 import { Footer } from './Footer'
+
+expect.extend(matchers)
 
 describe('Footer', () => {
   it('renders a footer element', () => {
@@ -9,12 +13,12 @@ describe('Footer', () => {
   })
 
   it('renders logo when provided', () => {
-    render(<Footer logo={<span data-testid="logo">Logo</span>} />)
+    render(<Footer logo={<span data-testid="logo">Logo</span>} sections={[{ title: 'Links', links: [{ label: 'Home', href: '/' }] }]} />)
     expect(screen.getByTestId('logo')).toBeInTheDocument()
   })
 
   it('renders description', () => {
-    render(<Footer description="A great UI library" />)
+    render(<Footer description="A great UI library" sections={[{ title: 'Links', links: [{ label: 'Home', href: '/' }] }]} />)
     expect(screen.getByText('A great UI library')).toBeInTheDocument()
   })
 
@@ -60,7 +64,7 @@ describe('Footer', () => {
       { label: 'GitHub', href: 'https://github.com', icon: <span>GH</span> },
       { label: 'Twitter', href: 'https://twitter.com', icon: <span>TW</span> },
     ]
-    render(<Footer socialLinks={socialLinks} />)
+    render(<Footer socialLinks={socialLinks} sections={[{ title: 'Links', links: [{ label: 'Home', href: '/' }] }]} />)
     expect(screen.getByLabelText('GitHub')).toBeInTheDocument()
     expect(screen.getByLabelText('Twitter')).toBeInTheDocument()
   })
@@ -69,7 +73,7 @@ describe('Footer', () => {
     const socialLinks = [
       { label: 'GitHub', href: 'https://github.com', icon: <span>GH</span> },
     ]
-    render(<Footer socialLinks={socialLinks} />)
+    render(<Footer socialLinks={socialLinks} sections={[{ title: 'Links', links: [{ label: 'Home', href: '/' }] }]} />)
     const link = screen.getByLabelText('GitHub')
     expect(link).toHaveAttribute('target', '_blank')
     expect(link).toHaveAttribute('rel', 'noopener noreferrer')
@@ -84,5 +88,23 @@ describe('Footer', () => {
     const { container } = render(<Footer />)
     // The bottom bar div with mt-16 should not exist
     expect(container.querySelector('.mt-16')).toBeNull()
+  })
+
+  it('has no accessibility violations', async () => {
+    const { container } = render(
+      <Footer
+        logo={<span>Logo</span>}
+        description="A great UI library"
+        copyright="2026 Newth"
+      />
+    )
+    const results = await axe(container, {
+      rules: {
+        // Footer renders multiple <nav> elements by design (sites nav + bottom links nav)
+        // In a full page context these are distinguishable; disable for isolated testing
+        'landmark-unique': { enabled: false },
+      },
+    })
+    expect(results).toHaveNoViolations()
   })
 })

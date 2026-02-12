@@ -1,7 +1,11 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { axe } from 'vitest-axe'
+import * as matchers from 'vitest-axe/matchers'
 import { Tabs, TabsList, TabsTab, TabsPanel } from './Tabs'
+
+expect.extend(matchers)
 
 function renderTabs(props: { defaultValue?: string; value?: string; onChange?: (v: string) => void } = {}) {
   return render(
@@ -107,5 +111,11 @@ describe('Tabs', () => {
     expect(() => render(<TabsTab value="x">X</TabsTab>)).toThrow(
       'Tabs compound components must be used within a <Tabs> parent'
     )
+  })
+
+  it('has no accessibility violations', async () => {
+    const { container } = renderTabs()
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 })

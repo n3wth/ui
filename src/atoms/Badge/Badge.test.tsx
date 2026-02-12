@@ -1,6 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
+import { axe } from 'vitest-axe'
+import * as matchers from 'vitest-axe/matchers'
 import { Badge } from './Badge'
+
+expect.extend(matchers)
 
 describe('Badge', () => {
   it('renders children text', () => {
@@ -43,5 +47,11 @@ describe('Badge', () => {
   it('merges custom className', () => {
     render(<Badge className="custom">Badge</Badge>)
     expect(screen.getByText('Badge')).toHaveClass('custom')
+  })
+
+  it('has no accessibility violations', async () => {
+    const { container } = render(<Badge>New</Badge>)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 })

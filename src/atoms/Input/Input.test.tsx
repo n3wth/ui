@@ -1,7 +1,11 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
+import { axe } from 'vitest-axe'
+import * as matchers from 'vitest-axe/matchers'
 import { Input } from './Input'
+
+expect.extend(matchers)
 
 describe('Input', () => {
   it('renders an input element', () => {
@@ -60,5 +64,11 @@ describe('Input', () => {
     const input = screen.getByRole('textbox')
     expect(input).toHaveAttribute('aria-describedby', 'field-error')
     expect(screen.getByRole('alert')).toHaveAttribute('id', 'field-error')
+  })
+
+  it('has no accessibility violations', async () => {
+    const { container } = render(<Input aria-label="Email" placeholder="Enter email" />)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 })

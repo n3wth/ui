@@ -1,7 +1,11 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { axe } from 'vitest-axe'
+import * as matchers from 'vitest-axe/matchers'
 import { Toast, ToastContainer } from './Toast'
+
+expect.extend(matchers)
 
 describe('Toast', () => {
   it('renders with role="alert"', () => {
@@ -67,6 +71,12 @@ describe('Toast', () => {
 
   it('has displayName', () => {
     expect(Toast.displayName).toBe('Toast')
+  })
+
+  it('has no accessibility violations', async () => {
+    const { container } = render(<Toast title="Success" description="Operation completed" duration={0} />)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 })
 

@@ -26,6 +26,17 @@ export const colors = {
       mint: '#64d2ff',
       gold: '#ffd60a',
     },
+    // Semantic colors
+    semantic: {
+      success: '#30d158',
+      successBg: 'rgba(48, 209, 88, 0.1)',
+      warning: '#ffd60a',
+      warningBg: 'rgba(255, 214, 10, 0.1)',
+      error: '#ff6961',
+      errorBg: 'rgba(255, 105, 97, 0.1)',
+      info: '#64d2ff',
+      infoBg: 'rgba(100, 210, 255, 0.1)',
+    },
     // Playful illustration colors
     playful: {
       pink: '#FF6B9D',
@@ -63,6 +74,17 @@ export const colors = {
       coral: '#d70015',
       mint: '#0071e3',
       gold: '#b25000',
+    },
+    // Semantic colors
+    semantic: {
+      success: '#248a3d',
+      successBg: 'rgba(36, 138, 61, 0.08)',
+      warning: '#b25000',
+      warningBg: 'rgba(178, 80, 0, 0.08)',
+      error: '#d70015',
+      errorBg: 'rgba(215, 0, 21, 0.08)',
+      info: '#0071e3',
+      infoBg: 'rgba(0, 113, 227, 0.08)',
     },
     // Playful illustration colors (slightly adjusted for light mode)
     playful: {
