@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 import { Nav } from './Nav'
+import { expectNoAxeViolations } from '../../test/a11y'
 
 const items = [
   { label: 'About', href: '/about' },
@@ -55,5 +56,49 @@ describe('Nav', () => {
     render(<Nav items={items} />)
     await user.click(screen.getByLabelText('Open menu'))
     expect(screen.getByLabelText('Close menu')).toBeInTheDocument()
+  })
+
+  describe('Accessibility', () => {
+    it('has no axe violations', async () => {
+      const { container } = render(<Nav logo="n3wth" items={items} />)
+      await expectNoAxeViolations(container)
+    })
+
+    it('has no axe violations with theme toggle', async () => {
+      const onToggle = vi.fn()
+      const { container } = render(
+        <Nav 
+          logo="n3wth"
+          items={items}
+          theme="dark" 
+          onThemeToggle={onToggle} 
+          showThemeToggle 
+        />
+      )
+      await expectNoAxeViolations(container)
+    })
+
+    it('mobile menu button has proper aria-label', () => {
+      render(<Nav items={items} />)
+      expect(screen.getByLabelText('Open menu')).toBeInTheDocument()
+    })
+
+    it('theme toggle has proper aria-label', () => {
+      const onToggle = vi.fn()
+      render(<Nav theme="dark" onThemeToggle={onToggle} showThemeToggle />)
+      const toggles = screen.getAllByLabelText('Switch to light mode')
+      expect(toggles.length).toBeGreaterThanOrEqual(1)
+    })
+
+    it('external links have proper attributes', () => {
+      render(<Nav items={items} />)
+      // Find the GitHub link (external)
+      const links = screen.getAllByRole('link')
+      const externalLink = links.find(link => 
+        link.getAttribute('href') === 'https://github.com'
+      )
+      expect(externalLink).toHaveAttribute('target', '_blank')
+      expect(externalLink).toHaveAttribute('rel', 'noopener noreferrer')
+    })
   })
 })
