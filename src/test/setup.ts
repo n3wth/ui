@@ -37,3 +37,6 @@ Object.defineProperty(navigator, 'clipboard', {
     readText: async () => '',
   },
 })
+
+// Mock scrollIntoView for jsdom
+Element.prototype.scrollIntoView = () => {}

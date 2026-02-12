@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
 import { Badge } from './Badge'
+import { expectNoAxeViolations } from '../../test/a11y'
 
 describe('Badge', () => {
   it('renders children text', () => {
@@ -43,5 +44,24 @@ describe('Badge', () => {
   it('merges custom className', () => {
     render(<Badge className="custom">Badge</Badge>)
     expect(screen.getByText('Badge')).toHaveClass('custom')
+  })
+
+  describe('Accessibility', () => {
+    it('has no axe violations', async () => {
+      const { container } = render(<Badge>Test Badge</Badge>)
+      await expectNoAxeViolations(container)
+    })
+
+    it('has no axe violations with different variants', async () => {
+      const { container } = render(
+        <div>
+          <Badge variant="sage">Sage</Badge>
+          <Badge variant="coral">Coral</Badge>
+          <Badge variant="mint">Mint</Badge>
+          <Badge variant="gold">Gold</Badge>
+        </div>
+      )
+      await expectNoAxeViolations(container)
+    })
   })
 })

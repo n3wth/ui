@@ -754,6 +754,7 @@ export const Dropdown = Object.assign(
             aria-haspopup="listbox"
             aria-controls={isOpen ? listboxId : undefined}
             aria-activedescendant={activeDescendant}
+            aria-label={displayValue || placeholder || 'Select option'}
             disabled={disabled}
             className={cn(
               'w-full inline-flex items-center justify-between gap-2',
