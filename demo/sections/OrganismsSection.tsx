@@ -1,7 +1,11 @@
 import { DemoSection, DemoBlock } from './DemoSection'
 import { CodeSnippet } from './CodeSnippet'
 
-export function OrganismsSection() {
+interface OrganismsSectionProps {
+  splitThemeView?: boolean
+}
+
+export function OrganismsSection({ splitThemeView = false }: OrganismsSectionProps) {
   return (
     <DemoSection id="organisms" title="Organisms" description="Complex UI components composed of molecules and atoms for page-level structure.">
       <DemoBlock title="Nav">

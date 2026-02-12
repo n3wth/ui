@@ -9,7 +9,11 @@ interface ThemePreviewProps {
 
 export function ThemePreview({ children, splitView = false, className }: ThemePreviewProps) {
   if (!splitView) {
-    return <>{children}</>
+    return (
+      <div className={cn('p-8 rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)] flex items-center justify-center gap-4', className)}>
+        {children}
+      </div>
+    )
   }
 
   return (
@@ -26,6 +30,8 @@ export function ThemePreview({ children, splitView = false, className }: ThemePr
             '--color-white': '#ffffff',
             '--color-grey-400': '#86868b',
             '--color-accent': '#ffffff',
+            '--glass-bg': 'rgba(255, 255, 255, 0.05)',
+            '--glass-border': 'rgba(255, 255, 255, 0.1)',
           } as React.CSSProperties}
         >
           {children}
@@ -44,6 +50,8 @@ export function ThemePreview({ children, splitView = false, className }: ThemePr
             '--color-white': '#000000',
             '--color-grey-400': '#86868b',
             '--color-accent': '#000000',
+            '--glass-bg': 'rgba(0, 0, 0, 0.05)',
+            '--glass-border': 'rgba(0, 0, 0, 0.1)',
           } as React.CSSProperties}
         >
           {children}

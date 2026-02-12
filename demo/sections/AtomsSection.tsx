@@ -8,6 +8,7 @@ import { DemoSection, DemoBlock } from './DemoSection'
 import { CodeSnippet } from './CodeSnippet'
 import { Playground } from '../components/Playground'
 import { PropsTable } from '../components/PropsTable'
+import { ThemePreview } from '../components/ThemePreview'
 import { buttonProps, badgeProps, inputProps, iconProps } from '../data/atomProps'
 
 const iconNames: IconName[] = [
@@ -29,7 +30,11 @@ const controlBtnClass = (active: boolean) =>
       : 'bg-transparent text-[var(--color-grey-400)] border-[var(--glass-border)] hover:border-[var(--glass-highlight)]'
   }`
 
-export function AtomsSection() {
+interface AtomsSectionProps {
+  splitThemeView?: boolean
+}
+
+export function AtomsSection({ splitThemeView = false }: AtomsSectionProps) {
   const [inputValue, setInputValue] = useState('')
   const [btnVariant, setBtnVariant] = useState<'primary' | 'secondary' | 'ghost' | 'glass'>('primary')
   const [btnSize, setBtnSize] = useState<'sm' | 'md' | 'lg'>('md')
@@ -82,7 +87,7 @@ export function AtomsSection() {
           </div>
 
           {/* Preview */}
-          <div className="p-8 rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)] flex items-center justify-center gap-4">
+          <ThemePreview splitView={splitThemeView}>
             <Button variant={btnVariant} size={btnSize} isLoading={btnLoading}>
               Button
             </Button>
@@ -92,7 +97,7 @@ export function AtomsSection() {
             <Button variant={btnVariant} size={btnSize} disabled>
               Disabled
             </Button>
-          </div>
+          </ThemePreview>
 
           <CodeSnippet code={`<Button variant="${btnVariant}" size="${btnSize}"${btnLoading ? ' isLoading' : ''}>
   Button
