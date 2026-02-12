@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 import { Input } from './Input'
+import { expectNoAxeViolations } from '../../test/a11y'
 
 describe('Input', () => {
   it('renders an input element', () => {
@@ -60,5 +61,44 @@ describe('Input', () => {
     const input = screen.getByRole('textbox')
     expect(input).toHaveAttribute('aria-describedby', 'field-error')
     expect(screen.getByRole('alert')).toHaveAttribute('id', 'field-error')
+  })
+
+  describe('Accessibility', () => {
+    it('has no axe violations', async () => {
+      const { container } = render(
+        <Input 
+          id="test-input"
+          aria-label="Test input field" 
+          placeholder="Enter text" 
+        />
+      )
+      await expectNoAxeViolations(container)
+    })
+
+    it('has no axe violations with error', async () => {
+      const { container } = render(
+        <Input 
+          id="error-input" 
+          aria-label="Error input"
+          error="This field is required" 
+        />
+      )
+      await expectNoAxeViolations(container)
+    })
+
+    it('has no axe violations with label', async () => {
+      const { container } = render(
+        <div>
+          <label htmlFor="labeled-input">Email address</label>
+          <Input id="labeled-input" type="email" />
+        </div>
+      )
+      await expectNoAxeViolations(container)
+    })
+
+    it('has focus-ring class for keyboard navigation', () => {
+      render(<Input aria-label="Focus test" />)
+      expect(screen.getByRole('textbox')).toHaveClass('focus-ring')
+    })
   })
 })

@@ -83,13 +83,16 @@ export function Nav({
       >
         <div className="mx-auto max-w-6xl px-6 md:px-12 flex items-center justify-between">
           {/* Logo */}
-          <a
-            href={logoHref}
-            className="text-base md:text-lg font-display font-semibold hover:opacity-70 transition-opacity"
-            style={{ color: 'var(--color-accent)' }}
-          >
-            {logo}
-          </a>
+          {logo && (
+            <a
+              href={logoHref}
+              className="text-base md:text-lg font-display font-semibold hover:opacity-70 transition-opacity"
+              style={{ color: 'var(--color-accent)' }}
+              aria-label={typeof logo === 'string' ? undefined : 'Home'}
+            >
+              {logo}
+            </a>
+          )}
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center md:gap-6">

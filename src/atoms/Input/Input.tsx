@@ -85,7 +85,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               'w-full h-full bg-transparent',
               'text-[var(--color-white)]',
               'placeholder:text-[var(--color-grey-600)]',
-              'focus:outline-none focus-visible:outline-none',
+              'focus-ring',
               inputSizes[inputSize],
               leftIcon && iconPadding[inputSize].left,
               rightIcon && iconPadding[inputSize].right

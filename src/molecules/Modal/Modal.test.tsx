@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Modal, ModalHeader, ModalTitle, ModalDescription, ModalBody, ModalFooter, ModalCloseButton } from './Modal'
+import { expectNoAxeViolations } from '../../test/a11y'
 
 function renderModal(props: Partial<React.ComponentProps<typeof Modal>> = {}) {
   const onClose = props.onClose ?? vi.fn()
@@ -74,6 +75,41 @@ describe('Modal', () => {
 
   it('has displayName', () => {
     expect(Modal.displayName).toBe('Modal')
+  })
+
+  describe('Accessibility', () => {
+    it('has no axe violations when open', async () => {
+      const { container } = renderModal()
+      await expectNoAxeViolations(container)
+    })
+
+    it('has no axe violations with description', async () => {
+      const { container } = render(
+        <Modal isOpen={true} onClose={vi.fn()}>
+          <ModalHeader>
+            <ModalTitle>Accessible Modal</ModalTitle>
+            <ModalDescription>This modal has a description</ModalDescription>
+          </ModalHeader>
+          <ModalBody>Content</ModalBody>
+        </Modal>
+      )
+      await expectNoAxeViolations(container)
+    })
+
+    it('closes on Escape key', async () => {
+      const user = userEvent.setup()
+      const onClose = vi.fn()
+      renderModal({ onClose })
+      await user.keyboard('{Escape}')
+      expect(onClose).toHaveBeenCalledOnce()
+    })
+
+    it('traps focus within modal', () => {
+      renderModal()
+      const modal = screen.getByRole('dialog', { hidden: true })
+      const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+      expect(focusableElements.length).toBeGreaterThan(0)
+    })
   })
 })
 

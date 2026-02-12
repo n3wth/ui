@@ -1,4 +1,9 @@
 import '@testing-library/jest-dom/vitest'
+import * as matchers from 'vitest-axe/matchers'
+import { expect } from 'vitest'
+
+// Extend Vitest matchers with axe-core assertions
+expect.extend(matchers)
 
 // Mock matchMedia for hooks that use it
 Object.defineProperty(window, 'matchMedia', {

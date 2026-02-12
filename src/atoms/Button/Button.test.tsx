@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
 import { Button } from './Button'
+import { expectNoAxeViolations } from '../../test/a11y'
 
 describe('Button', () => {
   it('renders children', () => {
@@ -73,5 +74,43 @@ describe('Button', () => {
     const ref = vi.fn()
     render(<Button ref={ref}>Ref</Button>)
     expect(ref).toHaveBeenCalledWith(expect.any(HTMLButtonElement))
+  })
+
+  describe('Accessibility', () => {
+    it('has no axe violations', async () => {
+      const { container } = render(<Button>Accessible Button</Button>)
+      await expectNoAxeViolations(container)
+    })
+
+    it('has no axe violations when disabled', async () => {
+      const { container } = render(<Button disabled>Disabled Button</Button>)
+      await expectNoAxeViolations(container)
+    })
+
+    it('has no axe violations when loading', async () => {
+      const { container } = render(<Button isLoading>Loading Button</Button>)
+      await expectNoAxeViolations(container)
+    })
+
+    it('has no axe violations with icons', async () => {
+      const { container } = render(
+        <Button leftIcon={<span aria-hidden="true">←</span>}>
+          With Icon
+        </Button>
+      )
+      await expectNoAxeViolations(container)
+    })
+
+    it('has focus-ring class for keyboard navigation', () => {
+      render(<Button>Focus Test</Button>)
+      expect(screen.getByRole('button')).toHaveClass('focus-ring')
+    })
+
+    it('meets touch target size when touchTarget is true', () => {
+      render(<Button touchTarget>Touch Button</Button>)
+      const button = screen.getByRole('button')
+      expect(button).toHaveClass('min-w-[44px]')
+      expect(button).toHaveClass('min-h-[44px]')
+    })
   })
 })
