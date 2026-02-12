@@ -1,6 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import { describe, it, expect } from 'vitest'
+import { axe } from 'vitest-axe'
+import * as matchers from 'vitest-axe/matchers'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './Card'
+
+expect.extend(matchers)
 
 describe('Card', () => {
   it('renders children', () => {
@@ -35,6 +39,21 @@ describe('Card', () => {
   it('merges custom className', () => {
     const { container } = render(<Card className="my-card">Content</Card>)
     expect(container.firstChild).toHaveClass('my-card')
+  })
+
+  it('has no accessibility violations', async () => {
+    const { container } = render(
+      <Card>
+        <CardHeader>
+          <CardTitle>Title</CardTitle>
+          <CardDescription>Description</CardDescription>
+        </CardHeader>
+        <CardContent>Content</CardContent>
+        <CardFooter>Footer</CardFooter>
+      </Card>
+    )
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 })
 

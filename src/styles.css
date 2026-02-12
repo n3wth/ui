@@ -101,6 +101,16 @@
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-highlight: rgba(255, 255, 255, 0.15);
+
+  /* Semantic colors */
+  --color-success: #30d158;
+  --color-success-bg: rgba(48, 209, 88, 0.1);
+  --color-warning: #ffd60a;
+  --color-warning-bg: rgba(255, 214, 10, 0.1);
+  --color-error: #ff6961;
+  --color-error-bg: rgba(255, 105, 97, 0.1);
+  --color-info: #64d2ff;
+  --color-info-bg: rgba(100, 210, 255, 0.1);
 }
 
 /* ============================================================
@@ -135,6 +145,15 @@
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
   --glass-highlight: rgba(255, 255, 255, 0.15);
+
+  --color-success: #30d158;
+  --color-success-bg: rgba(48, 209, 88, 0.1);
+  --color-warning: #ffd60a;
+  --color-warning-bg: rgba(255, 214, 10, 0.1);
+  --color-error: #ff6961;
+  --color-error-bg: rgba(255, 105, 97, 0.1);
+  --color-info: #64d2ff;
+  --color-info-bg: rgba(100, 210, 255, 0.1);
 }
 
 /* ============================================================
@@ -164,6 +183,15 @@
   --glass-bg: rgba(0, 0, 0, 0.03);
   --glass-border: rgba(0, 0, 0, 0.08);
   --glass-highlight: rgba(0, 0, 0, 0.12);
+
+  --color-success: #248a3d;
+  --color-success-bg: rgba(36, 138, 61, 0.08);
+  --color-warning: #b25000;
+  --color-warning-bg: rgba(178, 80, 0, 0.08);
+  --color-error: #d70015;
+  --color-error-bg: rgba(215, 0, 21, 0.08);
+  --color-info: #0071e3;
+  --color-info-bg: rgba(0, 113, 227, 0.08);
 }
 
 /* ============================================================

@@ -31,3 +31,16 @@ export { CompositeShape } from './CompositeShape'
 export type { CompositeShapeProps } from './CompositeShape'
 export { presets } from './CompositeShape'
 export type { CompositePreset, ShapeLayer } from './CompositeShape'
+
+export {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from './Accordion'
+export type {
+  AccordionProps,
+  AccordionItemProps,
+  AccordionTriggerProps,
+  AccordionContentProps,
+} from './Accordion'

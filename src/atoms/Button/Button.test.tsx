@@ -1,7 +1,11 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, it, expect, vi } from 'vitest'
+import { axe } from 'vitest-axe'
+import * as matchers from 'vitest-axe/matchers'
 import { Button } from './Button'
+
+expect.extend(matchers)
 
 describe('Button', () => {
   it('renders children', () => {
@@ -73,5 +77,11 @@ describe('Button', () => {
     const ref = vi.fn()
     render(<Button ref={ref}>Ref</Button>)
     expect(ref).toHaveBeenCalledWith(expect.any(HTMLButtonElement))
+  })
+
+  it('has no accessibility violations', async () => {
+    const { container } = render(<Button>Click me</Button>)
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 })

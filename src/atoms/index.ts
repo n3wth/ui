@@ -30,3 +30,21 @@ export type { CharacterProps, Expression, Accessory } from './Character'
 
 export { SpeechBubble } from './SpeechBubble'
 export type { SpeechBubbleProps, BubbleDirection, BubbleVariant, BubbleSize } from './SpeechBubble'
+
+export { Switch } from './Switch'
+export type { SwitchProps } from './Switch'
+
+export { Avatar } from './Avatar'
+export type { AvatarProps } from './Avatar'
+
+export { Separator } from './Separator'
+export type { SeparatorProps } from './Separator'
+
+export { Progress } from './Progress'
+export type { ProgressProps } from './Progress'
+
+export { Label } from './Label'
+export type { LabelProps } from './Label'
+
+export { Textarea } from './Textarea'
+export type { TextareaProps } from './Textarea'

@@ -1,7 +1,11 @@
 import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { axe } from 'vitest-axe'
+import * as matchers from 'vitest-axe/matchers'
 import { Modal, ModalHeader, ModalTitle, ModalDescription, ModalBody, ModalFooter, ModalCloseButton } from './Modal'
+
+expect.extend(matchers)
 
 function renderModal(props: Partial<React.ComponentProps<typeof Modal>> = {}) {
   const onClose = props.onClose ?? vi.fn()
@@ -74,6 +78,27 @@ describe('Modal', () => {
 
   it('has displayName', () => {
     expect(Modal.displayName).toBe('Modal')
+  })
+
+  it('has no accessibility violations', async () => {
+    const { container } = render(
+      <div>
+        <Modal isOpen={true} onClose={vi.fn()} ariaLabel="Test modal">
+          <ModalHeader>
+            <ModalTitle>Test Modal</ModalTitle>
+            <ModalDescription>A test description</ModalDescription>
+            <ModalCloseButton />
+          </ModalHeader>
+          <ModalBody>Modal body content</ModalBody>
+          <ModalFooter>
+            <button>Cancel</button>
+            <button>Confirm</button>
+          </ModalFooter>
+        </Modal>
+      </div>
+    )
+    const results = await axe(container)
+    expect(results).toHaveNoViolations()
   })
 })
 

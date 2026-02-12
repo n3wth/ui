@@ -47,6 +47,24 @@ export type { SpeechBubbleProps, BubbleDirection, BubbleVariant, BubbleSize } fr
 export { Tooltip } from './atoms/Tooltip'
 export type { TooltipProps, TooltipPosition } from './atoms/Tooltip'
 
+export { Switch } from './atoms/Switch'
+export type { SwitchProps } from './atoms/Switch'
+
+export { Avatar } from './atoms/Avatar'
+export type { AvatarProps } from './atoms/Avatar'
+
+export { Separator } from './atoms/Separator'
+export type { SeparatorProps } from './atoms/Separator'
+
+export { Progress } from './atoms/Progress'
+export type { ProgressProps } from './atoms/Progress'
+
+export { Label } from './atoms/Label'
+export type { LabelProps } from './atoms/Label'
+
+export { Textarea } from './atoms/Textarea'
+export type { TextareaProps } from './atoms/Textarea'
+
 // Molecules
 export {
   Card,
@@ -130,6 +148,19 @@ export type {
   DropdownMenuProps,
   DropdownItemProps,
 } from './molecules/Dropdown'
+
+export {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from './molecules/Accordion'
+export type {
+  AccordionProps,
+  AccordionItemProps,
+  AccordionTriggerProps,
+  AccordionContentProps,
+} from './molecules/Accordion'
 
 // Organisms
 export { Nav } from './organisms/Nav'
