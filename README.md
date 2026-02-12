@@ -61,8 +61,10 @@ Built on **Tailwind CSS 4**.
 | Category | Components |
 | :--- | :--- |
 | **Atoms** | `Button`, `Badge`, `Input`, `Icon`, `AnimatedText`, `NoiseOverlay`, `ScrollIndicator` |
-| **Molecules** | `Card`, `CommandBox`, `ThemeToggle`, `MobileDrawer`, `NavLink`, `CompositeShape` |
+| **Molecules** | `Card`, `CommandBox`, `ThemeToggle`, `MobileDrawer`, `NavLink`, `CompositeShape`, `Dropdown`, `Modal` |
 | **Organisms** | `Nav`, `Hero`, `Section`, `Footer` |
+
+**Accessibility**: All components meet WCAG 2.2 Level AA standards. See [ACCESSIBILITY.md](./ACCESSIBILITY.md).
 
 ---
 
