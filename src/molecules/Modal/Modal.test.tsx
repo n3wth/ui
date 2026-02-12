@@ -104,11 +104,30 @@ describe('Modal', () => {
       expect(onClose).toHaveBeenCalledOnce()
     })
 
-    it('traps focus within modal', () => {
+    it('traps focus within modal', async () => {
+      const user = userEvent.setup()
       renderModal()
+      // Modal dialog is inside an aria-hidden backdrop, so we need { hidden: true }
       const modal = screen.getByRole('dialog', { hidden: true })
       const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
       expect(focusableElements.length).toBeGreaterThan(0)
+
+      // Test that focus stays within modal
+      const firstButton = focusableElements[0] as HTMLElement
+      const lastButton = focusableElements[focusableElements.length - 1] as HTMLElement
+      
+      firstButton.focus()
+      expect(document.activeElement).toBe(firstButton)
+      
+      // Tab to last element
+      for (let i = 0; i < focusableElements.length - 1; i++) {
+        await user.keyboard('{Tab}')
+      }
+      expect(document.activeElement).toBe(lastButton)
+      
+      // Tab from last should cycle to first (focus trap)
+      await user.keyboard('{Tab}')
+      expect(document.activeElement).toBe(firstButton)
     })
   })
 })

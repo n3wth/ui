@@ -6,6 +6,7 @@
  */
 
 import { axe } from 'vitest-axe'
+import { expect } from 'vitest'
 
 export { axe }
 

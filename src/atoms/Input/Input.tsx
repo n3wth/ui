@@ -85,6 +85,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               'w-full h-full bg-transparent',
               'text-[var(--color-white)]',
               'placeholder:text-[var(--color-grey-600)]',
+              // Use focus-ring class for standardized focus indicators (WCAG 2.4.7 Focus Visible)
               'focus-ring',
               inputSizes[inputSize],
               leftIcon && iconPadding[inputSize].left,
