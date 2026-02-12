@@ -51,8 +51,15 @@ jobs:
           echo "Current size: $CURRENT_SIZE bytes"
           echo "Increase: $INCREASE%"
           
-          # Fail if increase is more than 10%
-          if (( $(echo "$INCREASE > 10" | bc -l) )); then
+          # Check if increase is positive and more than 10%
+          if [ $(echo "$INCREASE > 0" | bc -l) -eq 1 ] && [ $(echo "$INCREASE > 10" | bc -l) -eq 1 ]; then
             echo "::error::Bundle size increased by more than 10% ($INCREASE%)"
             exit 1
+          fi
+          
+          # Report success
+          if [ $(echo "$INCREASE < 0" | bc -l) -eq 1 ]; then
+            echo "✓ Bundle size decreased by ${INCREASE#-}%"
+          else
+            echo "✓ Bundle size increase within acceptable range ($INCREASE%)"
           fi
