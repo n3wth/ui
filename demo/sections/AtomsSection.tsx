@@ -163,17 +163,49 @@ render(<Example />)`}
           </div>
 
           {/* Preview */}
-          <div className="p-8 rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)] flex flex-wrap gap-3 items-center justify-center">
+          <ThemePreview splitView={splitThemeView}>
             <Badge variant={badgeVariant} size={badgeSize}>
               {badgeVariant === 'default' ? 'Default' : badgeVariant.charAt(0).toUpperCase() + badgeVariant.slice(1)}
             </Badge>
             <Badge variant={badgeVariant} size={badgeSize}>Status</Badge>
             <Badge variant={badgeVariant} size={badgeSize}>v1.0</Badge>
-          </div>
+          </ThemePreview>
 
           <CodeSnippet code={`<Badge variant="${badgeVariant}" size="${badgeSize}">
   ${badgeVariant.charAt(0).toUpperCase() + badgeVariant.slice(1)}
 </Badge>`} />
+
+          {/* Live Playground */}
+          <div className="mt-8">
+            <h4 className="text-xs font-medium text-[var(--color-grey-400)] uppercase tracking-wider mb-4">
+              Live Playground
+            </h4>
+            <Playground
+              code={`function Example() {
+  return (
+    <>
+      <Badge variant="sage">Sage</Badge>
+      <Badge variant="coral">Coral</Badge>
+      <Badge variant="mint">Mint</Badge>
+    </>
+  )
+}
+
+render(<Example />)`}
+              scope={{ Badge }}
+              noInline
+            />
+          </div>
+
+          {/* Props Table */}
+          <div className="mt-8">
+            <h4 className="text-xs font-medium text-[var(--color-grey-400)] uppercase tracking-wider mb-4">
+              Props
+            </h4>
+            <div className="rounded-xl border border-[var(--glass-border)] bg-[var(--glass-bg)] overflow-hidden">
+              <PropsTable props={badgeProps} />
+            </div>
+          </div>
         </div>
       </DemoBlock>
 
@@ -217,7 +249,7 @@ render(<Example />)`}
           </div>
 
           {/* Preview */}
-          <div className="p-8 rounded-2xl border border-[var(--glass-border)] bg-[var(--glass-bg)] flex items-center justify-center">
+          <ThemePreview splitView={splitThemeView}>
             <div className="w-full max-w-sm">
               <Input
                 variant={inputVariant}
@@ -229,13 +261,48 @@ render(<Example />)`}
                 error={inputError ? 'This field is required' : undefined}
               />
             </div>
-          </div>
+          </ThemePreview>
 
           <CodeSnippet code={`<Input
   variant="${inputVariant}"
   inputSize="${inputSize}"
   placeholder="Type something..."${inputIcon ? '\n  leftIcon={<Icon name="search" size="sm" />}' : ''}${inputError ? '\n  error="This field is required"' : ''}
 />`} />
+
+          {/* Live Playground */}
+          <div className="mt-8">
+            <h4 className="text-xs font-medium text-[var(--color-grey-400)] uppercase tracking-wider mb-4">
+              Live Playground
+            </h4>
+            <Playground
+              code={`function Example() {
+  const [value, setValue] = React.useState('')
+  
+  return (
+    <Input
+      placeholder="Search..."
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      leftIcon={<Icon name="search" size="sm" />}
+    />
+  )
+}
+
+render(<Example />)`}
+              scope={{ Input, Icon }}
+              noInline
+            />
+          </div>
+
+          {/* Props Table */}
+          <div className="mt-8">
+            <h4 className="text-xs font-medium text-[var(--color-grey-400)] uppercase tracking-wider mb-4">
+              Props
+            </h4>
+            <div className="rounded-xl border border-[var(--glass-border)] bg-[var(--glass-bg)] overflow-hidden">
+              <PropsTable props={inputProps} />
+            </div>
+          </div>
         </div>
       </DemoBlock>
 
@@ -292,6 +359,38 @@ render(<Example />)`}
 
           <CodeSnippet code={`<Icon name="search" size="${iconSize}"${iconColor ? ` style={{ color: '${iconColor}' }}` : ''} />
 <Icon name="github" size="${iconSize}"${iconColor ? ` style={{ color: '${iconColor}' }}` : ''} />`} />
+
+          {/* Live Playground */}
+          <div className="mt-8">
+            <h4 className="text-xs font-medium text-[var(--color-grey-400)] uppercase tracking-wider mb-4">
+              Live Playground
+            </h4>
+            <Playground
+              code={`function Example() {
+  return (
+    <>
+      <Icon name="star" size="lg" />
+      <Icon name="heart" size="lg" style={{ color: 'var(--color-coral)' }} />
+      <Icon name="sparkles" size="lg" style={{ color: 'var(--color-gold)' }} />
+    </>
+  )
+}
+
+render(<Example />)`}
+              scope={{ Icon }}
+              noInline
+            />
+          </div>
+
+          {/* Props Table */}
+          <div className="mt-8">
+            <h4 className="text-xs font-medium text-[var(--color-grey-400)] uppercase tracking-wider mb-4">
+              Props
+            </h4>
+            <div className="rounded-xl border border-[var(--glass-border)] bg-[var(--glass-bg)] overflow-hidden">
+              <PropsTable props={iconProps} />
+            </div>
+          </div>
         </div>
       </DemoBlock>
 
