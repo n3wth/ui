@@ -1,0 +1,7 @@
+[
+  {
+    "name": "Main Bundle (JS) - Gzipped",
+    "path": "dist/index.js",
+    "limit": "50 kB"
+  }
+]
