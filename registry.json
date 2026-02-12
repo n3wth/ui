@@ -18,7 +18,7 @@
     {
       "name": "button",
       "type": "registry:ui",
-      "description": "iOS-inspired button with primary, secondary, ghost, and glass variants",
+      "description": "iOS-inspired button with primary, secondary, ghost, and glass variants. Accepts ReactNode for leftIcon/rightIcon props.",
       "registryDependencies": ["utils"],
       "files": [
         {

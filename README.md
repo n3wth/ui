@@ -71,7 +71,7 @@ npx shadcn@latest add @n3wth/tabs
 
 When using components via the registry, you need to set up:
 
-1. **Tailwind CSS 4** with the `@n3wth/ui` preset:
+1. **Tailwind CSS** (v4.0+) with the `@n3wth/ui` preset:
 
 ```ts
 // tailwind.config.ts
@@ -93,6 +93,7 @@ export default {
 @import '@n3wth/ui/styles';
 
 /* Required: scan @n3wth/ui for Tailwind classes */
+/* Note: Path is relative to your CSS file location */
 @source "../node_modules/@n3wth/ui/dist";
 ```
 
