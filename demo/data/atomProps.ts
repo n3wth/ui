@@ -77,7 +77,7 @@ export const inputProps: PropDefinition[] = [
     description: 'Visual style variant of the input',
   },
   {
-    name: 'size',
+    name: 'inputSize',
     type: "'sm' | 'md' | 'lg'",
     defaultValue: "'md'",
     description: 'Size of the input',
@@ -94,18 +94,13 @@ export const inputProps: PropDefinition[] = [
   },
   {
     name: 'error',
-    type: 'boolean',
-    description: 'Shows error state styling',
+    type: 'boolean | string',
+    description: 'Shows error state styling or error message',
   },
   {
-    name: 'label',
+    name: 'labelId',
     type: 'string',
-    description: 'Label text for the input',
-  },
-  {
-    name: 'helperText',
-    type: 'string',
-    description: 'Helper text displayed below input',
+    description: 'Associated label id for accessibility',
   },
 ]
 
