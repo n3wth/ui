@@ -1,6 +1,10 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "hero",
+  "description": "Hero section with title, subtitle, and optional CTA buttons",
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "src/organisms/Hero/Hero.tsx",

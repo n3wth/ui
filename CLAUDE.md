@@ -146,7 +146,18 @@ Publishing is automated via GitHub Actions. Do NOT use `npm publish` locally.
 3. Create release: `gh release create v$(node -p "require('./package.json').version") --generate-notes`
 4. The `.github/workflows/publish.yml` triggers on release creation and publishes to both npm and GitHub Packages
 
-Shortcut: `npm run release:patch` does all steps at once.
+Shortcut: `npm run release:patch` does all steps at once (including registry build).
+
+### Shadcn Registry
+
+The registry is automatically built and deployed:
+- **Build command**: `npm run registry:build` (runs `npx shadcn@latest build`)
+- **Output**: `public/r/*.json` files containing component definitions
+- **Deployment**: Included in demo build via `publicDir` config, deployed to Vercel
+- **Registry URL**: `https://ui.newth.ai/r/{name}.json`
+- **Usage**: Consumers configure `@n3wth` namespace in their `components.json`
+
+Available registry components: `utils`, `button`, `badge`, `input`, `card`, `modal`, `tabs`, `hero`, `nav`, `section`, `footer`
 
 ### Demo Site (Vercel)
 

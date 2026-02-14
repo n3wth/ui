@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "description": "Small badge component with color variants",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "src/atoms/Badge/Badge.tsx",
+      "content": "import { type HTMLAttributes, type ReactNode } from 'react'\nimport { cn } from '../../utils/cn'\n\nexport interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {\n  variant?: 'default' | 'sage' | 'coral' | 'mint' | 'gold' | 'outline'\n  size?: 'sm' | 'md'\n  children: ReactNode\n}\n\nexport function Badge({\n  variant = 'default',\n  size = 'sm',\n  children,\n  className,\n  ...props\n}: BadgeProps) {\n  const baseStyles = [\n    'inline-flex items-center justify-center',\n    'font-medium',\n    'rounded-full',\n    'whitespace-nowrap',\n    'transition-colors duration-200',\n    'backdrop-blur-sm',\n  ]\n\n  const variants = {\n    default: [\n      'bg-[var(--glass-bg)]',\n      'text-[var(--color-grey-400)]',\n      'border border-[var(--glass-border)]',\n    ],\n    sage: [\n      'bg-[var(--color-sage)]/10',\n      'text-[var(--color-sage)]',\n      'border border-[var(--color-sage)]/20',\n    ],\n    coral: [\n      'bg-[var(--color-coral)]/10',\n      'text-[var(--color-coral)]',\n      'border border-[var(--color-coral)]/20',\n    ],\n    mint: [\n      'bg-[var(--color-mint)]/10',\n      'text-[var(--color-mint)]',\n      'border border-[var(--color-mint)]/20',\n    ],\n    gold: [\n      'bg-[var(--color-gold)]/10',\n      'text-[var(--color-gold)]',\n      'border border-[var(--color-gold)]/20',\n    ],\n    outline: [\n      'bg-transparent',\n      'text-[var(--color-grey-400)]',\n      'border border-[var(--glass-border)]',\n    ],\n  }\n\n  const sizes = {\n    sm: 'px-2 py-0.5 text-[10px] tracking-wide uppercase',\n    md: 'px-3 py-1 text-xs',\n  }\n\n  return (\n    <span className={cn(baseStyles, variants[variant], sizes[size], className)} {...props}>\n      {children}\n    </span>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
