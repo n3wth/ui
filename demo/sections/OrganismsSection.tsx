@@ -1,5 +1,6 @@
 import { DemoSection, DemoBlock } from './DemoSection'
 import { CodeSnippet } from './CodeSnippet'
+import { PropsTable } from './PropsTable'
 
 export function OrganismsSection() {
   return (
@@ -18,6 +19,19 @@ export function OrganismsSection() {
   theme={theme}
   onThemeToggle={toggleTheme}
 />`} />
+
+        <PropsTable
+          props={[
+            { name: 'logo', type: 'ReactNode', description: 'The brand logo or text.' },
+            { name: 'logoHref', type: 'string', defaultValue: "'/'", description: 'Link for the logo.' },
+            { name: 'items', type: 'NavItem[]', defaultValue: '[]', description: 'Navigation links. Each item has label, href, isActive, external.' },
+            { name: 'theme', type: "'dark' | 'light'", defaultValue: "'dark'", description: 'Current theme state.' },
+            { name: 'onThemeToggle', type: '() => void', description: 'Callback function for theme switching.' },
+            { name: 'showThemeToggle', type: 'boolean', defaultValue: 'true', description: 'Whether to show the theme toggle button.' },
+            { name: 'fixed', type: 'boolean', defaultValue: 'false', description: 'If true, nav is fixed to the top.' },
+            { name: 'hideOnScroll', type: 'boolean', defaultValue: 'false', description: 'If true, nav hides when scrolling down.' },
+          ]}
+        />
       </DemoBlock>
 
       <DemoBlock title="Hero">
@@ -33,6 +47,16 @@ export function OrganismsSection() {
     { label: 'GitHub', href: 'https://github.com/n3wth/ui', variant: 'secondary' },
   ]}
 />`} />
+
+        <PropsTable
+          props={[
+            { name: 'title', type: 'string | ReactNode', description: 'Main headline.' },
+            { name: 'description', type: 'string', description: 'Subtext below the title.' },
+            { name: 'badge', type: 'string', description: 'Small badge text shown above the title.' },
+            { name: 'ctas', type: 'CtaProps[]', description: 'Array of Call to Action buttons.' },
+            { name: 'className', type: 'string', description: 'Additional CSS classes.' },
+          ]}
+        />
       </DemoBlock>
 
       <DemoBlock title="Section">
@@ -46,6 +70,15 @@ export function OrganismsSection() {
   />
   {/* content */}
 </Section>`} />
+
+        <PropsTable
+          props={[
+            { name: 'id', type: 'string', description: 'HTML ID for scroll targeting.' },
+            { name: 'variant', type: "'default' | 'alternate'", defaultValue: "'default'", description: 'Background style.' },
+            { name: 'children', type: 'ReactNode', description: 'Section content.' },
+            { name: 'className', type: 'string', description: 'Additional CSS classes.' },
+          ]}
+        />
       </DemoBlock>
 
       <DemoBlock title="Footer">
@@ -67,6 +100,16 @@ export function OrganismsSection() {
   theme={theme}
   onThemeToggle={toggleTheme}
 />`} />
+
+        <PropsTable
+          props={[
+            { name: 'logo', type: 'ReactNode', description: 'Brand logo for the footer.' },
+            { name: 'description', type: 'string', description: 'Small blurb below the logo.' },
+            { name: 'sections', type: 'FooterSection[]', description: 'Columns of links.' },
+            { name: 'theme', type: "'dark' | 'light'", description: 'Current theme state.' },
+            { name: 'onThemeToggle', type: '() => void', description: 'Theme toggle callback.' },
+          ]}
+        />
       </DemoBlock>
     </DemoSection>
   )
