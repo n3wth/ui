@@ -1,0 +1,65 @@
+name: Bundle Size Check
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  size:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build
+        run: npm run build
+      
+      - name: Check bundle size
+        run: npx size-limit
+      
+      - name: Check size increase
+        if: github.event_name == 'pull_request'
+        run: |
+          # Get current size
+          CURRENT_SIZE=$(npx size-limit --json | jq '.[0].size')
+          
+          # Get base branch size
+          git checkout ${{ github.event.pull_request.base.sha }}
+          npm ci
+          npm run build
+          BASE_SIZE=$(npx size-limit --json | jq '.[0].size')
+          
+          # Calculate increase percentage
+          INCREASE=$(echo "scale=2; (($CURRENT_SIZE - $BASE_SIZE) / $BASE_SIZE) * 100" | bc)
+          
+          echo "Base size: $BASE_SIZE bytes"
+          echo "Current size: $CURRENT_SIZE bytes"
+          echo "Increase: $INCREASE%"
+          
+          # Check if increase is positive and more than 10%
+          if [ $(echo "$INCREASE > 0" | bc -l) -eq 1 ] && [ $(echo "$INCREASE > 10" | bc -l) -eq 1 ]; then
+            echo "::error::Bundle size increased by more than 10% ($INCREASE%)"
+            exit 1
+          fi
+          
+          # Report success
+          if [ $(echo "$INCREASE < 0" | bc -l) -eq 1 ]; then
+            echo "✓ Bundle size decreased by ${INCREASE#-}%"
+          else
+            echo "✓ Bundle size increase within acceptable range ($INCREASE%)"
+          fi
