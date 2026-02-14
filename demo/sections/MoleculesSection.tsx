@@ -24,6 +24,7 @@ import { CodeSnippet } from './CodeSnippet'
 interface MoleculesSectionProps {
   theme: Theme
   onThemeToggle: () => void
+  splitThemeView?: boolean
 }
 
 const controlBtnClass = (active: boolean) =>

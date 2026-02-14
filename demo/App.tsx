@@ -25,6 +25,7 @@ export function App() {
   const { theme, toggleTheme } = useTheme()
   const [activeSection, setActiveSection] = useState('tokens')
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [splitThemeView, setSplitThemeView] = useState(false)
 
   // Track active section via intersection observer
   useEffect(() => {
@@ -80,6 +81,17 @@ export function App() {
         fixed
         hideOnScroll
       />
+
+      {/* Theme preview toggle - fixed position below nav */}
+      <div className="fixed top-20 right-6 z-40 hidden lg:block">
+        <button
+          onClick={() => setSplitThemeView(!splitThemeView)}
+          className="px-3 py-1.5 text-xs rounded-full border transition-all bg-[var(--glass-bg)] border-[var(--glass-border)] text-[var(--color-grey-400)] hover:text-[var(--color-white)] hover:border-[var(--glass-highlight)]"
+        >
+          <Icon name={splitThemeView ? 'grid' : 'eye'} size="xs" className="inline mr-1.5" />
+          {splitThemeView ? 'Single View' : 'Split Themes'}
+        </button>
+      </div>
 
       {/* Hero */}
       <div className="relative">
@@ -155,9 +167,9 @@ export function App() {
           {/* Content */}
           <main className="min-w-0 space-y-20 pt-8 lg:pt-0">
             <TokensSection />
-            <AtomsSection />
-            <MoleculesSection theme={theme} onThemeToggle={toggleTheme} />
-            <OrganismsSection />
+            <AtomsSection splitThemeView={splitThemeView} />
+            <MoleculesSection theme={theme} onThemeToggle={toggleTheme} splitThemeView={splitThemeView} />
+            <OrganismsSection splitThemeView={splitThemeView} />
             <HooksSection />
           </main>
         </div>
