@@ -4,9 +4,21 @@
   "homepage": "https://ui.newth.ai",
   "items": [
     {
+      "name": "cn",
+      "type": "registry:lib",
+      "files": [
+        {
+          "path": "src/utils/cn.ts",
+          "type": "registry:lib",
+          "target": "lib/utils.ts"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "dependencies": ["lucide-react"],
+      "registryDependencies": ["cn"],
       "files": [
         {
           "path": "src/atoms/Button/Button.tsx",
@@ -17,6 +29,7 @@
     {
       "name": "card",
       "type": "registry:ui",
+      "registryDependencies": ["cn"],
       "files": [
         {
           "path": "src/molecules/Card/Card.tsx",
@@ -27,6 +40,7 @@
     {
       "name": "hero",
       "type": "registry:ui",
+      "registryDependencies": ["cn"],
       "files": [
         {
           "path": "src/organisms/Hero/Hero.tsx",
