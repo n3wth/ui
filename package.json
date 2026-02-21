@@ -37,6 +37,7 @@
   "dependencies": {
     "clsx": "^2.1.1",
     "iconoir-react": "^7.11.0",
+    "posthog-js": "^1.352.0",
     "tailwind-merge": "^3.4.0"
   },
   "peerDependencies": {
