@@ -5,7 +5,7 @@ import { App } from './App'
 import './demo.css'
 
 posthog.init('phc_q39ZGuvXLQuwCgCkHZYAeaUlWm5bIhx2XKMCtTdhJ7o', {
-  api_host: 'https://telemetry.n3wth.com',
+  api_host: 'https://p.n3wth.com',
   ui_host: 'https://us.posthog.com',
   person_profiles: 'identified_only',
   capture_pageview: true,
