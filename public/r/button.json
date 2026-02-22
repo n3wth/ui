@@ -4,6 +4,9 @@
   "dependencies": [
     "lucide-react"
   ],
+  "registryDependencies": [
+    "cn"
+  ],
   "files": [
     {
       "path": "src/atoms/Button/Button.tsx",
