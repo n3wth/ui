@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Routes, Route, Navigate } from 'react-router'
 import { version } from '../package.json'
 import { Nav } from '../src/organisms/Nav'
 import { Hero } from '../src/organisms/Hero'
@@ -12,6 +13,7 @@ import { AtomsSection } from './sections/AtomsSection'
 import { MoleculesSection } from './sections/MoleculesSection'
 import { OrganismsSection } from './sections/OrganismsSection'
 import { HooksSection } from './sections/HooksSection'
+import { DocsLayout } from './DocsLayout'
 
 const sidebarItems = [
   { id: 'tokens', label: 'Design Tokens', icon: 'sparkles' as const },
@@ -21,7 +23,7 @@ const sidebarItems = [
   { id: 'hooks', label: 'Hooks', icon: 'terminal' as const },
 ]
 
-export function App() {
+function Showcase() {
   const { theme, toggleTheme } = useTheme()
   const [activeSection, setActiveSection] = useState('tokens')
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -67,12 +69,10 @@ export function App() {
       {/* Nav */}
       <Nav
         logo="@n3wth/ui"
-        logoHref="#"
+        logoHref="/"
         items={[
-          { label: 'Tokens', href: '#tokens' },
-          { label: 'Atoms', href: '#atoms' },
-          { label: 'Molecules', href: '#molecules' },
-          { label: 'Hooks', href: '#hooks' },
+          { label: 'Components', href: '/', isActive: true },
+          { label: 'Docs', href: '/docs/getting-started' },
           { label: 'GitHub', href: 'https://github.com/n3wth/ui', external: true },
         ]}
         theme={theme}
@@ -196,5 +196,15 @@ export function App() {
         onThemeToggle={toggleTheme}
       />
     </div>
+  )
+}
+
+export function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<Showcase />} />
+      <Route path="/docs/:slug" element={<DocsLayout />} />
+      <Route path="/docs" element={<Navigate to="/docs/getting-started" replace />} />
+    </Routes>
   )
 }

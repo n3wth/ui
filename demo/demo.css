@@ -1,3 +1,236 @@
 @import '../src/styles.css';
 @source "../src/**/*.tsx";
 @source "../demo/**/*.tsx";
+
+/* Prose styles for markdown docs */
+.prose {
+  max-width: 72ch;
+  line-height: 1.75;
+  color: var(--color-grey-200);
+}
+
+.prose > * + * {
+  margin-top: 1.25em;
+}
+
+/* Headings */
+.prose h1 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-top: 0;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.prose h2 {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--color-white);
+  margin-top: 2.5em;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.prose h3 {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-white);
+  margin-top: 2em;
+  margin-bottom: 0.5rem;
+}
+
+.prose h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-grey-300);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5rem;
+}
+
+/* Paragraphs */
+.prose p {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+/* Strong / emphasis */
+.prose strong {
+  color: var(--color-white);
+  font-weight: 600;
+}
+
+.prose em {
+  font-style: italic;
+}
+
+/* Links */
+.prose a {
+  color: var(--color-mint);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+
+.prose a:hover {
+  border-bottom-color: var(--color-mint);
+}
+
+/* Lists */
+.prose ul,
+.prose ol {
+  padding-left: 1.5em;
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+}
+
+.prose li {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+.prose li::marker {
+  color: var(--color-grey-600);
+}
+
+/* Inline code */
+.prose code:not(pre code) {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 6px;
+  padding: 0.15em 0.4em;
+  color: var(--color-grey-100);
+}
+
+/* Code blocks */
+.prose pre {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+  color: var(--color-grey-100);
+}
+
+/* Tables */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.prose th {
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-white);
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--glass-highlight);
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.prose td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--glass-border);
+  vertical-align: top;
+}
+
+.prose td code {
+  font-size: 0.8em;
+  white-space: nowrap;
+}
+
+.prose tr:last-child td {
+  border-bottom: none;
+}
+
+/* Blockquotes */
+.prose blockquote {
+  border-left: 3px solid var(--color-sage);
+  padding-left: 1rem;
+  margin-left: 0;
+  color: var(--color-grey-300);
+  font-style: italic;
+}
+
+/* Horizontal rules */
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--glass-border);
+  margin: 2em 0;
+}
+
+/* Images */
+.prose img {
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+/* rehype-highlight syntax colors */
+.prose .hljs-keyword,
+.prose .hljs-selector-tag,
+.prose .hljs-built_in {
+  color: var(--color-mint);
+}
+
+.prose .hljs-string,
+.prose .hljs-attr {
+  color: var(--color-sage);
+}
+
+.prose .hljs-comment {
+  color: var(--color-grey-600);
+}
+
+.prose .hljs-number,
+.prose .hljs-literal {
+  color: var(--color-gold);
+}
+
+.prose .hljs-title,
+.prose .hljs-section,
+.prose .hljs-type {
+  color: var(--color-coral);
+}
+
+.prose .hljs-name,
+.prose .hljs-tag {
+  color: var(--color-coral);
+}
+
+.prose .hljs-attribute {
+  color: var(--color-mint);
+}
+
+.prose .hljs-variable,
+.prose .hljs-template-variable {
+  color: var(--color-white);
+}
+
+.prose .hljs-punctuation {
+  color: var(--color-grey-400);
+}
