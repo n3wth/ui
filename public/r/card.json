@@ -1,6 +1,9 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "card",
+  "registryDependencies": [
+    "cn"
+  ],
   "files": [
     {
       "path": "src/molecules/Card/Card.tsx",
