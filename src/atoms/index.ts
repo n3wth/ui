@@ -48,3 +48,22 @@ export type { LabelProps } from './Label'
 
 export { Textarea } from './Textarea'
 export type { TextareaProps } from './Textarea'
+
+export { Logo } from './Logo'
+export type { LogoProps } from './Logo'
+
+export {
+  Marks,
+  MarkIdentity,
+  MarkFork,
+  MarkNodes,
+  MarkShield,
+  MarkCube,
+} from './Marks'
+export type { MarkProps } from './Marks'
+
+export { DitherField } from './DitherField'
+export type { DitherFieldProps } from './DitherField'
+
+export { Reveal } from './Reveal'
+export type { RevealProps } from './Reveal'

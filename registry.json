@@ -6,7 +6,6 @@
     {
       "name": "button",
       "type": "registry:ui",
-      "dependencies": ["lucide-react"],
       "files": [
         {
           "path": "src/atoms/Button/Button.tsx",
@@ -30,6 +29,56 @@
       "files": [
         {
           "path": "src/organisms/Hero/Hero.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "logo",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/atoms/Logo/Logo.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "marks",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/atoms/Marks/Marks.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dither-field",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/atoms/DitherField/DitherField.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "reveal",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/atoms/Reveal/Reveal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "frame",
+      "type": "registry:ui",
+      "files": [
+        {
+          "path": "src/molecules/Frame/Frame.tsx",
           "type": "registry:ui"
         }
       ]

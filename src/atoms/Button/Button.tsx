@@ -41,39 +41,40 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const baseStyles = [
       'inline-flex items-center justify-center gap-2',
-      'font-medium',
+      // Pill, uppercase tracked sans label per wireframe system
+      'font-medium uppercase tracking-[0.14em]',
       'border',
       'rounded-full',
-      'transition-[transform,background-color,border-color,color,opacity] duration-200 ease-out',
+      'transition-[background-color,border-color,color,opacity] duration-200 ease-out',
       'focus-ring',
       'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
       // Active state for touch feedback
-      'active:scale-[0.96]',
+      'active:opacity-80',
     ]
 
     const variants = {
+      // Solid = ink fill / bg text
       primary: [
-        'bg-[var(--color-white)] text-[var(--color-bg)]',
-        'border-[var(--color-white)]',
-        'hover:scale-[1.02]',
-        'glow-white',
+        'bg-[var(--ink)] text-[var(--accent-ink)]',
+        'border-[var(--ink)]',
+        'hover:bg-[var(--accent-dim)] hover:border-[var(--accent-dim)]',
       ],
+      // Outline rail
       secondary: [
-        'bg-transparent text-[var(--color-white)]',
-        'border-[var(--glass-border)]',
-        'hover:border-[var(--glass-highlight)] hover:bg-[var(--glass-bg)]',
+        'bg-transparent text-[var(--ink-dim)]',
+        'border-[var(--rail-strong)]',
+        'hover:text-[var(--ink)] hover:border-[var(--accent-rail)]',
       ],
+      // Ghost: hover border -> accent-rail, text -> ink
       ghost: [
-        'bg-transparent text-[var(--color-grey-400)]',
+        'bg-transparent text-[var(--ink-dim)]',
         'border-transparent',
-        'hover:text-[var(--color-white)] hover:bg-[var(--glass-bg)]',
+        'hover:text-[var(--ink)] hover:border-[var(--accent-rail)]',
       ],
       glass: [
-        'bg-[var(--glass-bg)] text-[var(--color-white)]',
-        'border-[var(--glass-border)]',
-        'backdrop-blur-lg',
-        'hover:bg-[rgba(255,255,255,0.1)] hover:border-[var(--glass-highlight)]',
-        'hover:scale-[1.02]',
+        'bg-[var(--bg-soft)] text-[var(--ink)]',
+        'border-[var(--rail)]',
+        'hover:border-[var(--accent-rail)]',
       ],
     }
 

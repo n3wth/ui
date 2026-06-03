@@ -44,3 +44,6 @@ export type {
   AccordionTriggerProps,
   AccordionContentProps,
 } from './Accordion'
+
+export { Frame, CornerTicks, SectionHeader as FrameSectionHeader } from './Frame'
+export type { FrameProps, CornerTicksProps, SectionHeaderProps } from './Frame'

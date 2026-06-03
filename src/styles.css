@@ -71,46 +71,68 @@
    ============================================================ */
 
 @theme {
-  /* Typography */
-  --font-display: 'Mona Sans', system-ui, sans-serif;
+  /* Typography — Geist for display + body, Geist Mono for code only */
+  --font-display: 'Geist Sans', system-ui, sans-serif;
   --font-sans: 'Geist Sans', system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
 
-  /* Dark palette (default) */
-  --color-bg: #000000;
-  --color-bg-secondary: #0a0a0a;
-  --color-white: #ffffff;
-  --color-grey-100: #f5f5f7;
-  --color-grey-200: #e8e8ed;
-  --color-grey-300: #c7c7cc;
-  --color-grey-400: #86868b;
-  --color-grey-600: #6e6e73;
-  --color-grey-800: #1d1d1f;
+  /* ----------------------------------------------------------
+     Wireframe / blueprint tokens (canonical, white-led mono)
+     ---------------------------------------------------------- */
+  --bg: #08090b;
+  --bg-soft: #0d0e10;
+  --bg-raise: #131316;
+  --ink: #f2f3f5;
+  --ink-dim: #9aa0a8;
+  --ink-faint: #62666d;
+  --ink-ghost: #2c2f34;
+  --accent: #ffffff;
+  --accent-dim: #d4d6da;
+  --accent-ink: #08090b;
+  --accent-rail: rgba(255, 255, 255, 0.32);
+  --rail: rgba(255, 255, 255, 0.09);
+  --rail-strong: rgba(255, 255, 255, 0.17);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Accent */
+  /* ----------------------------------------------------------
+     Legacy var bridge — existing components read these names.
+     Remapped onto the monochrome wireframe palette so the whole
+     library inherits the new look with no per-component edits.
+     ---------------------------------------------------------- */
+  --color-bg: #08090b;
+  --color-bg-secondary: #0d0e10;
+  --color-white: #f2f3f5;
+  --color-grey-100: #f2f3f5;
+  --color-grey-200: #d4d6da;
+  --color-grey-300: #9aa0a8;
+  --color-grey-400: #9aa0a8;
+  --color-grey-600: #62666d;
+  --color-grey-800: #131316;
+
+  /* Accent — white-led monochrome */
   --color-accent: #ffffff;
   --color-accent-soft: rgba(255, 255, 255, 0.15);
 
-  /* Category colors */
-  --color-sage: #30d158;
-  --color-coral: #ff6961;
-  --color-mint: #64d2ff;
-  --color-gold: #ffd60a;
+  /* Category colors — monochrome by default (opt into color themes elsewhere) */
+  --color-sage: #f2f3f5;
+  --color-coral: #f2f3f5;
+  --color-mint: #f2f3f5;
+  --color-gold: #f2f3f5;
 
-  /* Glass effect */
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-highlight: rgba(255, 255, 255, 0.15);
+  /* Glass / surfaces -> hairline rails */
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --glass-highlight: rgba(255, 255, 255, 0.17);
 
-  /* Semantic colors */
-  --color-success: #30d158;
-  --color-success-bg: rgba(48, 209, 88, 0.1);
-  --color-warning: #ffd60a;
-  --color-warning-bg: rgba(255, 214, 10, 0.1);
-  --color-error: #ff6961;
-  --color-error-bg: rgba(255, 105, 97, 0.1);
-  --color-info: #64d2ff;
-  --color-info-bg: rgba(100, 210, 255, 0.1);
+  /* Semantic colors — kept neutral in the default mono theme */
+  --color-success: #f2f3f5;
+  --color-success-bg: rgba(255, 255, 255, 0.08);
+  --color-warning: #f2f3f5;
+  --color-warning-bg: rgba(255, 255, 255, 0.08);
+  --color-error: #f2f3f5;
+  --color-error-bg: rgba(255, 255, 255, 0.08);
+  --color-info: #f2f3f5;
+  --color-info-bg: rgba(255, 255, 255, 0.08);
 }
 
 /* ============================================================
@@ -120,40 +142,57 @@
 :root,
 [data-theme='dark'] {
   color-scheme: dark;
-  --font-display: 'Mona Sans', system-ui, sans-serif;
+  --font-display: 'Geist Sans', system-ui, sans-serif;
   --font-sans: 'Geist Sans', system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
 
-  --color-bg: #000000;
-  --color-bg-secondary: #0a0a0a;
-  --color-white: #ffffff;
-  --color-grey-100: #f5f5f7;
-  --color-grey-200: #e8e8ed;
-  --color-grey-300: #c7c7cc;
-  --color-grey-400: #86868b;
-  --color-grey-600: #6e6e73;
-  --color-grey-800: #1d1d1f;
+  /* Wireframe canonical tokens */
+  --bg: #08090b;
+  --bg-soft: #0d0e10;
+  --bg-raise: #131316;
+  --ink: #f2f3f5;
+  --ink-dim: #9aa0a8;
+  --ink-faint: #62666d;
+  --ink-ghost: #2c2f34;
+  --accent: #ffffff;
+  --accent-dim: #d4d6da;
+  --accent-ink: #08090b;
+  --accent-rail: rgba(255, 255, 255, 0.32);
+  --rail: rgba(255, 255, 255, 0.09);
+  --rail-strong: rgba(255, 255, 255, 0.17);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Legacy bridge -> monochrome */
+  --color-bg: #08090b;
+  --color-bg-secondary: #0d0e10;
+  --color-white: #f2f3f5;
+  --color-grey-100: #f2f3f5;
+  --color-grey-200: #d4d6da;
+  --color-grey-300: #9aa0a8;
+  --color-grey-400: #9aa0a8;
+  --color-grey-600: #62666d;
+  --color-grey-800: #131316;
 
   --color-accent: #ffffff;
   --color-accent-soft: rgba(255, 255, 255, 0.15);
 
-  --color-sage: #30d158;
-  --color-coral: #ff6961;
-  --color-mint: #64d2ff;
-  --color-gold: #ffd60a;
+  --color-sage: #f2f3f5;
+  --color-coral: #f2f3f5;
+  --color-mint: #f2f3f5;
+  --color-gold: #f2f3f5;
 
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-highlight: rgba(255, 255, 255, 0.15);
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --glass-highlight: rgba(255, 255, 255, 0.17);
 
-  --color-success: #30d158;
-  --color-success-bg: rgba(48, 209, 88, 0.1);
-  --color-warning: #ffd60a;
-  --color-warning-bg: rgba(255, 214, 10, 0.1);
-  --color-error: #ff6961;
-  --color-error-bg: rgba(255, 105, 97, 0.1);
-  --color-info: #64d2ff;
-  --color-info-bg: rgba(100, 210, 255, 0.1);
+  --color-success: #f2f3f5;
+  --color-success-bg: rgba(255, 255, 255, 0.08);
+  --color-warning: #f2f3f5;
+  --color-warning-bg: rgba(255, 255, 255, 0.08);
+  --color-error: #f2f3f5;
+  --color-error-bg: rgba(255, 255, 255, 0.08);
+  --color-info: #f2f3f5;
+  --color-info-bg: rgba(255, 255, 255, 0.08);
 }
 
 /* ============================================================
@@ -162,6 +201,23 @@
 
 [data-theme='light'] {
   color-scheme: light;
+
+  /* Wireframe canonical tokens (inverted for light surfaces) */
+  --bg: #ffffff;
+  --bg-soft: #f5f5f7;
+  --bg-raise: #ececef;
+  --ink: #1d1d1f;
+  --ink-dim: #636366;
+  --ink-faint: #8e8e93;
+  --ink-ghost: #d4d6da;
+  --accent: #1d1d1f;
+  --accent-dim: #3a3a3c;
+  --accent-ink: #ffffff;
+  --accent-rail: rgba(0, 0, 0, 0.32);
+  --rail: rgba(0, 0, 0, 0.09);
+  --rail-strong: rgba(0, 0, 0, 0.17);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
   --color-bg: #ffffff;
   --color-bg-secondary: #f5f5f7;
   --color-white: #1d1d1f;
@@ -175,23 +231,23 @@
   --color-accent: #1d1d1f;
   --color-accent-soft: rgba(0, 0, 0, 0.1);
 
-  --color-sage: #248a3d;
-  --color-coral: #d70015;
-  --color-mint: #0071e3;
-  --color-gold: #b25000;
+  --color-sage: #1d1d1f;
+  --color-coral: #1d1d1f;
+  --color-mint: #1d1d1f;
+  --color-gold: #1d1d1f;
 
   --glass-bg: rgba(0, 0, 0, 0.03);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --glass-highlight: rgba(0, 0, 0, 0.12);
+  --glass-border: rgba(0, 0, 0, 0.09);
+  --glass-highlight: rgba(0, 0, 0, 0.17);
 
-  --color-success: #248a3d;
-  --color-success-bg: rgba(36, 138, 61, 0.08);
-  --color-warning: #b25000;
-  --color-warning-bg: rgba(178, 80, 0, 0.08);
-  --color-error: #d70015;
-  --color-error-bg: rgba(215, 0, 21, 0.08);
-  --color-info: #0071e3;
-  --color-info-bg: rgba(0, 113, 227, 0.08);
+  --color-success: #1d1d1f;
+  --color-success-bg: rgba(0, 0, 0, 0.06);
+  --color-warning: #1d1d1f;
+  --color-warning-bg: rgba(0, 0, 0, 0.06);
+  --color-error: #1d1d1f;
+  --color-error-bg: rgba(0, 0, 0, 0.06);
+  --color-info: #1d1d1f;
+  --color-info-bg: rgba(0, 0, 0, 0.06);
 }
 
 /* ============================================================
@@ -226,20 +282,58 @@ body {
    Typography Utilities
    ============================================================ */
 
-/* Uppercase label */
-.label {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-grey-400);
+/* Wireframe display heading */
+.wf-display {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8.6vw, 7rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+  color: var(--ink);
 }
 
-/* Number index - tabular figures */
+/* Wireframe H2 */
+.wf-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.8vw, 3.1rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+/* Wireframe H3 */
+.wf-h3 {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Wireframe body */
+.wf-body {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--ink-dim);
+}
+
+/* Uppercase tracked label — sans, tabular nums (NOT mono) */
+.label,
+.wf-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-dim);
+}
+
+/* Number index - tabular figures (sans) */
 .index-num {
   font-family: var(--font-sans);
-  font-size: 10px;
-  color: var(--color-grey-600);
+  font-size: 0.6875rem;
+  color: var(--ink-faint);
   font-variant-numeric: tabular-nums;
 }
 

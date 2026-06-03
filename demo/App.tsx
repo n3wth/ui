@@ -13,6 +13,7 @@ import { AtomsSection } from './sections/AtomsSection'
 import { MoleculesSection } from './sections/MoleculesSection'
 import { OrganismsSection } from './sections/OrganismsSection'
 import { HooksSection } from './sections/HooksSection'
+ import { WireframeSection } from './sections/WireframeSection'
 import { DocsLayout } from './DocsLayout'
 
 const sidebarItems = [
@@ -21,6 +22,7 @@ const sidebarItems = [
   { id: 'molecules', label: 'Molecules', icon: 'code' as const },
   { id: 'organisms', label: 'Organisms', icon: 'list' as const },
   { id: 'hooks', label: 'Hooks', icon: 'terminal' as const },
+  { id: 'wireframe', label: 'Wireframe', icon: 'grid' as const },
 ]
 
 function Showcase() {
@@ -86,8 +88,8 @@ function Showcase() {
         <FloatingShapes />
         <Hero
           badge={`v${version}`}
-          title="Flat. Minimal."
-          description={<>Atomic design system for Newth sites.<br />No shadows, no glows &mdash; just clean glass morphism.</>}
+          title="Wireframe. Monochrome."
+          description={<>Atomic design system for Newth sites.<br />Dark blueprint aesthetic &mdash; white-led, flat, hairline rails.</>}
           ctas={[
             { label: 'Browse Components', href: '#atoms' },
             { label: 'View Source', href: 'https://github.com/n3wth/ui', variant: 'secondary' },
@@ -159,6 +161,7 @@ function Showcase() {
             <MoleculesSection theme={theme} onThemeToggle={toggleTheme} />
             <OrganismsSection />
             <HooksSection />
+            <WireframeSection />
           </main>
         </div>
       </div>

@@ -3,11 +3,29 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['Mona Sans', 'system-ui', 'sans-serif'],
+        // Geist for display + body; Geist Mono is for literal code/machine output only.
+        display: ['Geist Sans', 'system-ui', 'sans-serif'],
         sans: ['Geist Sans', 'system-ui', 'sans-serif'],
         mono: ['Geist Mono', 'ui-monospace', 'SF Mono', 'Menlo', 'Monaco', 'monospace'],
       },
       colors: {
+        // Wireframe canonical tokens (white-led monochrome)
+        ink: {
+          DEFAULT: 'var(--ink)',
+          dim: 'var(--ink-dim)',
+          faint: 'var(--ink-faint)',
+          ghost: 'var(--ink-ghost)',
+        },
+        rail: {
+          DEFAULT: 'var(--rail)',
+          strong: 'var(--rail-strong)',
+        },
+        'bg-soft': 'var(--bg-soft)',
+        'bg-raise': 'var(--bg-raise)',
+        'accent-dim': 'var(--accent-dim)',
+        'accent-ink': 'var(--accent-ink)',
+        'accent-rail': 'var(--accent-rail)',
+        // Legacy bridge tokens (remapped to monochrome in theme CSS)
         bg: 'var(--color-bg)',
         'bg-secondary': 'var(--color-bg-secondary)',
         white: 'var(--color-white)',
@@ -38,7 +56,12 @@ module.exports = {
       },
       transitionTimingFunction: {
         'out-expo': 'cubic-bezier(0.16, 1, 0.3, 1)',
+        // Wireframe system easing (matches --ease token)
+        'wire': 'cubic-bezier(0.16, 1, 0.3, 1)',
         'spring': 'cubic-bezier(0.4, 0, 0.2, 1)',
+      },
+      letterSpacing: {
+        label: '0.16em',
       },
       animation: {
         'fade-up': 'fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards',
@@ -85,6 +108,12 @@ module.exports = {
         'fluid-3xl': 'clamp(1.875rem, 6vw, 2.5rem)',
         'fluid-4xl': 'clamp(2.25rem, 8vw, 3.5rem)',
         'fluid-5xl': 'clamp(3rem, 10vw, 4.5rem)',
+        // Wireframe type scale
+        'wf-display': ['clamp(3rem, 8.6vw, 7rem)', { lineHeight: '0.92', letterSpacing: '-0.045em', fontWeight: '600' }],
+        'wf-h2': ['clamp(1.85rem, 3.8vw, 3.1rem)', { letterSpacing: '-0.03em', fontWeight: '600' }],
+        'wf-h3': ['1.0625rem', { fontWeight: '600' }],
+        'wf-body': ['0.9375rem', { lineHeight: '1.65' }],
+        'wf-label': ['0.75rem', { letterSpacing: '0.16em', fontWeight: '500' }],
       },
     },
   },

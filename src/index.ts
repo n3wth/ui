@@ -222,3 +222,26 @@ export type { UseTextRevealOptions } from './hooks/useTextReveal'
 
 export { useButtonPulse } from './hooks/useButtonPulse'
 export type { UseButtonPulseOptions } from './hooks/useButtonPulse'
+
+// Wireframe primitives
+export { Logo } from './atoms/Logo'
+export type { LogoProps } from './atoms/Logo'
+
+export {
+  Marks,
+  MarkIdentity,
+  MarkFork,
+  MarkNodes,
+  MarkShield,
+  MarkCube,
+} from './atoms/Marks'
+export type { MarkProps } from './atoms/Marks'
+
+export { DitherField } from './atoms/DitherField'
+export type { DitherFieldProps } from './atoms/DitherField'
+
+export { Reveal } from './atoms/Reveal'
+export type { RevealProps } from './atoms/Reveal'
+
+export { Frame, CornerTicks, SectionHeader as FrameSectionHeader } from './molecules/Frame'
+export type { FrameProps, CornerTicksProps, SectionHeaderProps as FrameSectionHeaderProps } from './molecules/Frame'

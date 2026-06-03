@@ -15,13 +15,13 @@ describe('Button', () => {
 
   it('applies variant classes', () => {
     const { rerender } = render(<Button variant="primary">Btn</Button>)
-    expect(screen.getByRole('button')).toHaveClass('bg-[var(--color-white)]')
+    expect(screen.getByRole('button')).toHaveClass('bg-[var(--ink)]')
 
     rerender(<Button variant="ghost">Btn</Button>)
     expect(screen.getByRole('button')).toHaveClass('bg-transparent')
 
     rerender(<Button variant="glass">Btn</Button>)
-    expect(screen.getByRole('button')).toHaveClass('backdrop-blur-lg')
+    expect(screen.getByRole('button')).toHaveClass('bg-[var(--bg-soft)]')
   })
 
   it('applies size classes', () => {

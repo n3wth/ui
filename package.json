@@ -1,7 +1,7 @@
 {
   "name": "@n3wth/ui",
-  "version": "0.6.1",
-  "description": "Atomic design system for Newth sites - flat, minimal, iOS-inspired",
+  "version": "0.7.0",
+  "description": "Wireframe monochrome design system for Newth sites — flat, blueprint, white-led",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

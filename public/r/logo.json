@@ -1,0 +1,12 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo",
+  "files": [
+    {
+      "path": "src/atoms/Logo/Logo.tsx",
+      "content": "import type { SVGProps } from 'react'\n\nexport interface LogoProps extends Omit<SVGProps<SVGSVGElement>, 'viewBox'> {\n  /** Pixel size (width & height). */\n  size?: number\n}\n\n/**\n * Logo — the rounded agentic cursor glyph. The classic agent pointer,\n * softened with round joins. Monochrome, inherits `currentColor`.\n */\nexport function Logo({ size = 22, ...props }: LogoProps) {\n  return (\n    <svg\n      width={size}\n      height={size}\n      viewBox=\"0 0 32 32\"\n      fill=\"none\"\n      aria-hidden\n      {...props}\n    >\n      <path\n        d=\"M7.4 5.1 26.8 14.2c1.5.7 1.4 2.9-.2 3.4l-7.6 2.2a2.4 2.4 0 0 0-1.6 1.5l-2.7 7.5c-.6 1.6-2.9 1.5-3.3-.2L5.3 7.2C4.9 5.6 6 4.4 7.4 5.1Z\"\n        fill=\"currentColor\"\n        stroke=\"currentColor\"\n        strokeWidth=\"1.4\"\n        strokeLinejoin=\"round\"\n      />\n    </svg>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
