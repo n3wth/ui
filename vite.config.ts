@@ -17,7 +17,6 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       formats: ['es'],
-      fileName: 'index'
     },
     rollupOptions: {
       external: [
@@ -34,8 +33,13 @@ export default defineConfig({
           'react-dom': 'ReactDOM',
           gsap: 'gsap',
         },
-        // Preserve module structure for better tree-shaking
-        preserveModules: false, // Keep as single bundle for simpler consumption
+        // Preserve per-component module structure so consumers tree-shake
+        // unused components (and their deps, e.g. gsap) instead of pulling
+        // the whole barrel. preserveModulesRoot keeps the dist layout flat
+        // (dist/atoms/... not dist/src/atoms/...) so the exports map resolves.
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+        entryFileNames: '[name].js',
         // Ensure proper ESM output
         format: 'es',
         // Add banner for proper module resolution
