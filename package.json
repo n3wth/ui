@@ -12,7 +12,8 @@
       "types": "./dist/index.d.ts"
     },
     "./styles": "./dist/styles.css",
-    "./tailwind": "./tailwind.preset.js"
+    "./tailwind": "./tailwind.preset.js",
+    "./theme": "./dist/theme.css"
   },
   "files": [
     "dist",
@@ -23,7 +24,7 @@
     "dev": "vite build --watch",
     "demo": "vite --config vite.demo.config.ts",
     "demo:build": "vite build --config vite.demo.config.ts",
-    "build": "tsc && vite build && node -e \"const fs=require('fs');const css=fs.readFileSync('src/styles.css','utf8').replace(/@import 'tailwindcss';\\n\\n/,'');fs.writeFileSync('dist/styles.css',css)\"",
+    "build": "tsc && vite build && node -e \"const fs=require('fs');const css=fs.readFileSync('src/styles.css','utf8').replace(/@import 'tailwindcss';\\n\\n/,'');fs.writeFileSync('dist/styles.css',css)\" && node -e \"require('fs').copyFileSync('src/theme.css','dist/theme.css')\"",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint src",
