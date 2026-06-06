@@ -102,7 +102,9 @@
   --color-grey-200: #e8e8ed;
   --color-grey-300: #c7c7cc;
   --color-grey-400: #86868b;
+  --color-grey-500: #78787d;
   --color-grey-600: #6e6e73;
+  --color-grey-700: #48484a;
   --color-grey-800: #1d1d1f;
 
   /* Accent */
@@ -183,7 +185,9 @@
   --color-grey-200: #e8e8ed;
   --color-grey-300: #c7c7cc;
   --color-grey-400: #86868b;
+  --color-grey-500: #78787d;
   --color-grey-600: #6e6e73;
+  --color-grey-700: #48484a;
   --color-grey-800: #1d1d1f;
 
   --color-accent: #ffffff;
@@ -221,7 +225,9 @@
   --color-grey-200: #3a3a3c;
   --color-grey-300: #48484a;
   --color-grey-400: #636366;
+  --color-grey-500: #757579;
   --color-grey-600: #8e8e93;
+  --color-grey-700: #aeaeb2;
   --color-grey-800: #e5e5ea;
 
   --color-accent: #1d1d1f;
