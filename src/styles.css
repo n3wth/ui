@@ -76,8 +76,26 @@
   --font-sans: 'Geist Sans', system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
 
-  /* Dark palette (default) */
-  --color-bg: #000000;
+  /* ----------------------------------------------------------------
+     n3wth canonical palette — single source of truth for n3wth.com,
+     agents.n3wth.com, garden.n3wth.com. Near-black surfaces, white
+     ink, hairline rails. Values match what ships in production.
+     ---------------------------------------------------------------- */
+  --color-bg: #08090b;
+  --color-bg-soft: #0d0e10;
+  --color-bg-raise: #131316;
+  --color-ink: #f2f3f5;
+  --color-ink-dim: #9aa0a8;
+  --color-ink-faint: #62666d;
+  --color-ink-label: #787c83;
+  --color-ink-ghost: #2c2f34;
+  --color-rail: rgba(255, 255, 255, 0.09);
+  --color-rail-strong: rgba(255, 255, 255, 0.17);
+  --color-accent-rail: rgba(255, 255, 255, 0.32);
+  --color-accent-dim: #d4d6da;
+  --color-accent-ink: #08090b;
+
+  /* Legacy Apple-style scale (kept for existing @n3wth/ui components) */
   --color-bg-secondary: #0a0a0a;
   --color-white: #ffffff;
   --color-grey-100: #f5f5f7;
@@ -124,7 +142,41 @@
   --font-sans: 'Geist Sans', system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
 
-  --color-bg: #000000;
+  /* n3wth canonical palette (matches production) */
+  --color-bg: #08090b;
+  --color-bg-soft: #0d0e10;
+  --color-bg-raise: #131316;
+  --color-ink: #f2f3f5;
+  --color-ink-dim: #9aa0a8;
+  --color-ink-faint: #62666d;
+  --color-ink-label: #787c83;
+  --color-ink-ghost: #2c2f34;
+  --color-rail: rgba(255, 255, 255, 0.09);
+  --color-rail-strong: rgba(255, 255, 255, 0.17);
+  --color-accent-rail: rgba(255, 255, 255, 0.32);
+  --color-accent-dim: #d4d6da;
+  --color-accent-ink: #08090b;
+
+  /* Bare-name aliases — n3wth.com / agents / garden components consume
+     these (--bg, --ink, --accent...). Defined once here so the three
+     sites stop redefining the palette locally. */
+  --bg: var(--color-bg);
+  --bg-soft: var(--color-bg-soft);
+  --bg-raise: var(--color-bg-raise);
+  --ink: var(--color-ink);
+  --ink-dim: var(--color-ink-dim);
+  --ink-faint: var(--color-ink-faint);
+  --ink-label: var(--color-ink-label);
+  --ink-ghost: var(--color-ink-ghost);
+  --rail: var(--color-rail);
+  --rail-strong: var(--color-rail-strong);
+  --accent-rail: var(--color-accent-rail);
+  --accent: var(--color-accent);
+  --accent-dim: var(--color-accent-dim);
+  --accent-ink: var(--color-accent-ink);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Legacy Apple-style scale (kept for existing @n3wth/ui components) */
   --color-bg-secondary: #0a0a0a;
   --color-white: #ffffff;
   --color-grey-100: #f5f5f7;
