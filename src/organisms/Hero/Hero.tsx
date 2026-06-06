@@ -36,15 +36,15 @@ export function Hero({
   }
 
   const titleSizes = {
-    default: 'text-4xl sm:text-5xl md:text-6xl',
-    large: 'text-5xl sm:text-6xl md:text-7xl lg:text-8xl',
+    default: 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl',
+    large: 'text-3xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl',
   }
 
   return (
     <section
       className={cn(
         'relative',
-        'px-6 py-24 md:py-32 lg:py-40',
+        'px-4 sm:px-6 py-12 sm:py-20 md:py-24 lg:py-32 xl:py-40',
         className
       )}
       {...props}
@@ -52,7 +52,7 @@ export function Hero({
       <div
         className={cn(
           'mx-auto max-w-4xl',
-          'flex flex-col gap-6',
+          'flex flex-col gap-4 sm:gap-6 md:gap-8',
           alignments[align]
         )}
       >
@@ -67,7 +67,8 @@ export function Hero({
             'font-display font-semibold tracking-tight',
             titleSizes[size],
             gradient ? 'hero-gradient-text' : 'text-[var(--color-white)]',
-            'animate-in'
+            'animate-in',
+            'leading-tight sm:leading-snug'
           )}
           style={{ animationDelay: '0.1s', textAlign: align === 'center' ? 'center' : 'left', width: '100%', display: 'block' }}
         >
@@ -77,10 +78,11 @@ export function Hero({
         {description && (
           <p
             className={cn(
-              'text-lg md:text-xl',
+              'text-base sm:text-lg md:text-xl',
               'text-[var(--color-grey-400)]',
-              'max-w-2xl leading-relaxed',
-              'animate-in'
+              'max-w-2xl leading-relaxed sm:leading-relaxed',
+              'animate-in',
+              'px-0 sm:px-0'
             )}
             style={{ animationDelay: '0.2s' }}
           >
@@ -91,8 +93,8 @@ export function Hero({
         {ctas.length > 0 && (
           <div
             className={cn(
-              'flex flex-wrap gap-4 mt-4',
-              align === 'center' ? 'justify-center' : 'justify-start',
+              'flex flex-col sm:flex-wrap gap-3 sm:gap-4 mt-2 sm:mt-4 w-full sm:w-auto',
+              align === 'center' ? 'sm:justify-center' : 'sm:justify-start',
               'animate-in'
             )}
             style={{ animationDelay: '0.3s' }}
@@ -103,6 +105,7 @@ export function Hero({
                 variant={cta.variant || (index === 0 ? 'primary' : 'secondary')}
                 size="lg"
                 asChild
+                className="w-full sm:w-auto"
               >
                 <a href={cta.href}>{cta.label}</a>
               </Button>

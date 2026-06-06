@@ -120,6 +120,9 @@ function usePositioning(
   useEffect(() => {
     if (!isOpen || !triggerRef.current) return
 
+    let animationFrameId: number
+    let resizeObserver: ResizeObserver | null = null
+
     function update() {
       const trigger = triggerRef.current
       if (!trigger) return
@@ -133,12 +136,29 @@ function usePositioning(
       })
     }
 
+    // Initial position
     update()
-    window.addEventListener('scroll', update, true)
-    window.addEventListener('resize', update)
+
+    // ResizeObserver for reliable updates when the trigger resizes
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(() => {
+        cancelAnimationFrame(animationFrameId)
+        animationFrameId = requestAnimationFrame(update)
+      })
+      resizeObserver.observe(triggerRef.current)
+    }
+
+    // Passive, rAF-throttled scroll listener for smoother updates
+    const handleScroll = () => {
+      cancelAnimationFrame(animationFrameId)
+      animationFrameId = requestAnimationFrame(update)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true, capture: false })
+
     return () => {
-      window.removeEventListener('scroll', update, true)
-      window.removeEventListener('resize', update)
+      cancelAnimationFrame(animationFrameId)
+      window.removeEventListener('scroll', handleScroll)
+      if (resizeObserver) resizeObserver.disconnect()
     }
   }, [isOpen, triggerRef])
 
