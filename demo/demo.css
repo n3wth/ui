@@ -2,6 +2,16 @@
 @source "../src/**/*.tsx";
 @source "../demo/**/*.tsx";
 
+/* Canonical wireframe typography (src/theme.css): Geist for display AND
+   body. theme.css intentionally ships no fonts — each app declares its
+   own. The demo declares Geist here, overriding the library's legacy
+   Mona Sans display default (kept in styles.css for consumers). */
+:root,
+[data-theme='dark'],
+[data-theme='light'] {
+  --font-display: 'Geist Sans', system-ui, sans-serif;
+}
+
 /* Prose styles for markdown docs */
 .prose {
   max-width: 72ch;
@@ -67,20 +77,22 @@
   font-weight: 600;
 }
 
+/* Flat system: no italics for emphasis — emphasis carries via ink weight */
 .prose em {
-  font-style: italic;
+  font-style: normal;
+  color: var(--color-white);
 }
 
 /* Links */
 .prose a {
-  color: var(--color-mint);
+  color: var(--color-accent);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.15s;
 }
 
 .prose a:hover {
-  border-bottom-color: var(--color-mint);
+  border-bottom-color: var(--color-accent);
 }
 
 /* Lists */
@@ -170,11 +182,10 @@
 
 /* Blockquotes */
 .prose blockquote {
-  border-left: 3px solid var(--color-sage);
+  border-left: 3px solid var(--color-accent);
   padding-left: 1rem;
   margin-left: 0;
   color: var(--color-grey-300);
-  font-style: italic;
 }
 
 /* Horizontal rules */
