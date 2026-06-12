@@ -170,3 +170,19 @@ After publishing a new version, update consumers:
 - **v0.5.0** - Nav hideOnScroll, alignment fixes, solid background
 - **v0.4.x** - Initial Nav component, NavLink variants
 - **v0.3.x** - Hero, Section, Footer organisms
+
+## Design system
+
+Source of truth: `@n3wth/ui/theme` (repo n3wth/ui, src/theme.css). Import tokens, never mirror values:
+`@import 'tailwindcss';` then `@import '@n3wth/ui/theme';`
+
+Canonical tokens: bg #08090b | bg-soft #0d0e10 | bg-raise #131316 | ink #f2f3f5 | ink-dim #9aa0a8 | ink-faint #62666d | ink-label #787c83 | ink-ghost #2c2f34 | rail rgba(255,255,255,0.09) | rail-strong rgba(255,255,255,0.17) | accent #ffffff | accent-dim #d4d6da | accent-ink #08090b | ease cubic-bezier(0.16,1,0.3,1)
+
+Rules:
+- Geist for display AND body, Geist Mono for code. No other typefaces.
+- Flat: no gradients, no glows, no box-shadows. Elevation = bg-raise + rail-strong border.
+- No italics for emphasis — weight or color instead.
+- Use tokens/utilities (bg-bg, text-ink, border-rail), never hardcoded palette hexes in components.
+- Before any UI change ships: run the build, then grep the built CSS for stray hexes, linear-gradient, or box-shadow you introduced.
+
+THIS REPO IS THE SOURCE OF TRUTH. Tokens live in src/theme.css (published as @n3wth/ui/theme) and must stay in sync with the @theme block in src/styles.css. Change tokens here only; consumer sites pick changes up via version bump. Demo chrome consumes tokens — never redefine values in demo CSS. A WIP redesign/wireframe-system branch may land and supersede demo chrome styling.
