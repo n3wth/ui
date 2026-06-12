@@ -8,17 +8,17 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
     },
     "./styles": "./dist/styles.css",
-    "./tailwind": "./tailwind.preset.js",
+    "./tailwind": "./tailwind.preset.cjs",
     "./theme": "./dist/theme.css"
   },
   "files": [
     "dist",
-    "tailwind.preset.js",
-    "public"
+    "tailwind.preset.cjs",
+    "public/fonts"
   ],
   "scripts": {
     "dev": "vite build --watch",
@@ -95,7 +95,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/n3wth/ui"
+    "url": "git+https://github.com/n3wth/ui.git"
   },
   "sideEffects": [
     "**/*.css"
