@@ -106,7 +106,7 @@ export function CodeSnippet({ code, showLineNumbers = false, className }: CodeSn
           'p-1.5 rounded-lg',
           'text-[var(--color-grey-400)]',
           'hover:text-[var(--color-white)] hover:bg-[var(--glass-bg)]',
-          'opacity-0 group-hover:opacity-100',
+          'opacity-0 group-hover:opacity-100 focus-visible:opacity-100',
           'transition-all duration-200',
           'focus-ring',
         )}
