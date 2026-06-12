@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ui.newth.ai/sitemap.xml
+Sitemap: https://ui.n3wth.com/sitemap.xml
