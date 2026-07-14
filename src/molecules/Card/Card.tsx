@@ -1,4 +1,5 @@
 import { type HTMLAttributes, type ReactNode } from 'react'
+import { Card as AstryxCard } from '@astryxdesign/core/Card'
 import { cn } from '../../utils/cn'
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
@@ -7,6 +8,23 @@ export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode
 }
 
+// Astryx's numeric spacing scale lines up 1:1 with the previous Tailwind
+// padding classes (step * 4px): none->0, sm->p-3 (12px), md->p-5 (20px),
+// lg->p-8 (32px).
+const paddingStep = {
+  none: 0,
+  sm: 3,
+  md: 5,
+  lg: 8,
+} as const
+
+/**
+ * Bordered container, now rendered on Astryx's `Card` primitive for
+ * background/border/radius/padding. The `glass` and `interactive` variants
+ * layer the original glass-morphism flourishes (backdrop blur, hover
+ * highlight, gradient border, shine sweep) on top via className, since
+ * Astryx's variant palette doesn't include them.
+ */
 export function Card({
   variant = 'default',
   padding = 'md',
@@ -14,46 +32,25 @@ export function Card({
   className,
   ...props
 }: CardProps) {
-  const baseStyles = [
-    'rounded-2xl',
-    'border',
-    'transition-[background-color,border-color] duration-300 ease-out',
-  ]
-
-  const variants = {
-    default: [
-      'bg-transparent',
-      'border-[var(--glass-border)]',
-    ],
-    glass: [
-      'bg-[var(--glass-bg)]',
-      'backdrop-blur-lg',
-      'border-[var(--glass-border)]',
-    ],
-    interactive: [
-      'bg-transparent',
-      'border-[var(--glass-border)]',
-      'hover:border-[var(--glass-highlight)]',
-      'hover:bg-[var(--glass-bg)]',
+  const overlayClassName = {
+    default: '',
+    glass: 'bg-[var(--glass-bg)] backdrop-blur-lg',
+    interactive: cn(
       'cursor-pointer',
-      'gradient-border shine-sweep',
-    ],
-  }
-
-  const paddings = {
-    none: '',
-    sm: 'p-3',
-    md: 'p-5',
-    lg: 'p-8',
-  }
+      'hover:border-[var(--glass-highlight)] hover:bg-[var(--glass-bg)]',
+      'gradient-border shine-sweep'
+    ),
+  }[variant]
 
   return (
-    <div
-      className={cn(baseStyles, variants[variant], paddings[padding], className)}
+    <AstryxCard
+      variant="default"
+      padding={paddingStep[padding]}
+      className={cn(overlayClassName, className)}
       {...props}
     >
       {children}
-    </div>
+    </AstryxCard>
   )
 }
 

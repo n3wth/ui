@@ -26,6 +26,13 @@ export default defineConfig({
         'react',
         'react-dom',
         'react/jsx-runtime',
+        // Astryx's dist imports the dev JSX runtime. React 19 strips it from
+        // production bundles, so this stays external for the consuming app's
+        // bundler to resolve — apps building for production need their own
+        // resolve alias to a jsx-dev-runtime shim (see demo/jsx-dev-runtime-shim.js
+        // in this repo, or src/lib/jsx-dev-runtime-shim.js in garden.n3wth.com,
+        // for the pattern).
+        'react/jsx-dev-runtime',
         // Mark gsap as external since it's an optional peer dependency
         'gsap',
         'gsap/ScrollTrigger',

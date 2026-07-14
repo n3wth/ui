@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
 import posthog from 'posthog-js'
+import { N3wthProvider } from '../src/theme/N3wthProvider'
 import { App } from './App'
 import './demo.css'
 
@@ -16,8 +17,10 @@ posthog.init('phc_q39ZGuvXLQuwCgCkHZYAeaUlWm5bIhx2XKMCtTdhJ7o', {
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <N3wthProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </N3wthProvider>
   </StrictMode>
 )

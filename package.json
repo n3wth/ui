@@ -24,7 +24,7 @@
     "dev": "vite build --watch",
     "demo": "vite --config vite.demo.config.ts",
     "demo:build": "vite build --config vite.demo.config.ts",
-    "build": "tsc && vite build && node -e \"const fs=require('fs');const css=fs.readFileSync('src/styles.css','utf8').replace(/@import 'tailwindcss';\\n\\n/,'');fs.writeFileSync('dist/styles.css',css)\" && node -e \"require('fs').copyFileSync('src/theme.css','dist/theme.css')\"",
+    "build": "tsc && vite build && node -e \"const fs=require('fs');const css=fs.readFileSync('src/styles.css','utf8').replace(/@import 'tailwindcss';\\n/,'').replace(/@import '@astryxdesign\\/core\\/astryx.css';\\n\\n/,'');const astryx=fs.readFileSync('node_modules/@astryxdesign/core/dist/astryx.css','utf8');fs.writeFileSync('dist/styles.css',css+'\\n/* Astryx component styles (@astryxdesign/core) — used by Separator, Skeleton, Card */\\n'+astryx)\" && node -e \"require('fs').copyFileSync('src/theme.css','dist/theme.css')\"",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -37,6 +37,7 @@
     "release:major": "npm version major -m 'chore: bump version to %s' && git push && git push --tags && gh release create v$(node -p \"require('./package.json').version\") --generate-notes"
   },
   "dependencies": {
+    "@astryxdesign/core": "^0.1.5",
     "clsx": "^2.1.1",
     "iconoir-react": "^7.11.0",
     "tailwind-merge": "^3.4.0"

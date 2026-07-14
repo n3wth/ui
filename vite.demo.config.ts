@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
 import { resolve } from 'path'
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [
     mdx({
       remarkPlugins: [remarkGfm],
@@ -23,11 +23,17 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src')
+      '@': resolve(__dirname, './src'),
+      // Astryx's dist imports react/jsx-dev-runtime, which React 19 strips
+      // from production bundles. Build-only alias to a shim that forwards to
+      // the real jsx-runtime; `vite dev` keeps using React's dev runtime.
+      ...(command === 'build'
+        ? { 'react/jsx-dev-runtime': resolve(__dirname, 'demo/jsx-dev-runtime-shim.js') }
+        : {}),
     }
   },
   server: {
     port: 3333,
     open: true
   }
-})
+}))
