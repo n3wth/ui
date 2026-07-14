@@ -21,19 +21,19 @@ describe('Separator', () => {
   it('applies horizontal styles by default', () => {
     render(<Separator />)
     const sep = screen.getByRole('separator')
-    expect(sep).toHaveClass('h-px', 'w-full')
+    expect(sep).toHaveAttribute('data-orientation', 'horizontal')
   })
 
   it('applies vertical styles when orientation is vertical', () => {
     render(<Separator orientation="vertical" />)
     const sep = screen.getByRole('separator')
-    expect(sep).toHaveClass('w-px', 'h-full')
+    expect(sep).toHaveAttribute('data-orientation', 'vertical')
     expect(sep).toHaveAttribute('aria-orientation', 'vertical')
   })
 
-  it('uses glass-border background', () => {
+  it('renders on the Astryx Divider primitive', () => {
     render(<Separator />)
-    expect(screen.getByRole('separator')).toHaveClass('bg-[var(--glass-border)]')
+    expect(screen.getByRole('separator')).toHaveClass('astryx-divider')
   })
 
   it('merges custom className', () => {

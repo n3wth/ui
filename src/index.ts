@@ -4,6 +4,12 @@ export * from './tokens'
 // Utility
 export { cn } from './utils/cn'
 
+// Astryx theme — mount once at the app root so Astryx-backed components
+// (Separator, Skeleton, Card) pick up n3wth's tokens.
+export { N3wthProvider } from './theme/N3wthProvider'
+export type { N3wthProviderProps } from './theme/N3wthProvider'
+export { n3wthTheme } from './theme/n3wthTheme'
+
 // Atoms
 export { Button } from './atoms/Button'
 export type { ButtonProps, ButtonSize } from './atoms/Button'

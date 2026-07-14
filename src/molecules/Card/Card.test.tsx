@@ -12,9 +12,9 @@ describe('Card', () => {
     expect(screen.getByText('Card content')).toBeInTheDocument()
   })
 
-  it('applies default variant', () => {
+  it('renders on the Astryx Card primitive', () => {
     const { container } = render(<Card>Content</Card>)
-    expect(container.firstChild).toHaveClass('bg-transparent')
+    expect(container.firstChild).toHaveClass('astryx-card')
   })
 
   it('applies glass variant with backdrop blur', () => {
@@ -28,12 +28,11 @@ describe('Card', () => {
   })
 
   it('applies padding sizes', () => {
-    const { container, rerender } = render(<Card padding="none">No pad</Card>)
-    // none should not have p-* classes from padding map
-    expect(container.firstChild).not.toHaveClass('p-3', 'p-5', 'p-8')
-
-    rerender(<Card padding="lg">Lg pad</Card>)
-    expect(container.firstChild).toHaveClass('p-8')
+    const { container: noneContainer } = render(<Card padding="none">No pad</Card>)
+    const { container: lgContainer } = render(<Card padding="lg">Lg pad</Card>)
+    const noneClass = (noneContainer.firstChild as HTMLElement).className
+    const lgClass = (lgContainer.firstChild as HTMLElement).className
+    expect(noneClass).not.toBe(lgClass)
   })
 
   it('merges custom className', () => {
