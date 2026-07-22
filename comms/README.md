@@ -7,6 +7,11 @@ this folder shares its canonical palette (`../src/theme.css`) but has no
 runtime dependency on it — everything here is static assets and templates
 consumed directly by an agent, not imported code.
 
+`email/template.html` centers its content table two ways (belt-and-suspenders,
+matches how mainstream ESPs do it): `align="center"` on the wrapping `<td>`
+*and* `margin:0 auto` on the inner 600px table. Relying on just one broke in
+practice — a real Hermes-sent test email rendered left-aligned.
+
 ## Layout
 
 - `tokens.md` — literal hex values (email/docs can't use CSS variables)
