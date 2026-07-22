@@ -1,0 +1,20 @@
+/* design-sync-only Tailwind entry.
+
+   @n3wth/ui's own `npm run build` strips `@import 'tailwindcss'` from the
+   published dist/styles.css (consumers regenerate utilities in their own
+   Tailwind v4 app via `@import '@n3wth/ui/theme'`). That leaves the shipped
+   stylesheet without any generated utility CSS, so design-sync's converted
+   bundle would render every plain-Tailwind className unstyled.
+
+   This entry stands in for a consumer's Tailwind build: it pulls in the real
+   src/styles.css (tailwindcss + astryx + @font-face + @theme tokens, Mona Sans
+   display default intact) and scans ONLY the library source for classes.
+   Deliberately NO demo font override and NO .prose styles — those are
+   demo-app concerns, not the design system's.
+
+   @source is src-only on purpose: authored preview .tsx files style their own
+   wrapper markup with inline styles, never Tailwind classNames, so cssEntry
+   compiles once and stays valid across a parallel preview-authoring wave. */
+
+@import '../src/styles.css';
+@source "../src/**/*.tsx";
