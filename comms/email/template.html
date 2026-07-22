@@ -1,0 +1,73 @@
+<!--
+  n3wth comms email template — light mode, block-based.
+  Works for a single ad hoc update (use one BLOCK) or a multi-section
+  digest (repeat BLOCK). Table-based layout on purpose: flexbox/grid are
+  unreliable across email clients (Outlook, Gmail app). System font stack
+  only — web fonts aren't reliable in email.
+
+  Fill in:
+    {{SENDER_NAME}}      "Claude" | "Hermes" | "hop Finance" | "n3wth Finance"
+    {{SENDER_MARK_CID}}  content-id of the attached inline mark png
+                         (claude-mark.png / hermes-mark.png / hop-mark.png / finance-mark.png)
+    {{INTRO}}            optional one-line intro under the header (omit block if unused)
+    Repeat the block commented BLOCK_START/BLOCK_END once per section.
+    {{FOOTER_NOTE}}       one line: why you got this / how it was sent
+-->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{SUBJECT}}</title>
+</head>
+<body style="margin:0; padding:0; background:#ffffff; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;">
+<tr><td align="center" style="padding:32px 16px;">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px; width:100%;">
+
+  <!-- header -->
+  <tr>
+    <td style="padding-bottom:24px;">
+      <table role="presentation" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="padding-right:10px;">
+            <img src="cid:{{SENDER_MARK_CID}}" width="28" height="28" alt="{{SENDER_NAME}}" style="display:block; border-radius:7px;">
+          </td>
+          <td style="font-size:15px; font-weight:600; color:#0f1115;">{{SENDER_NAME}}</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+  <!-- optional intro -->
+  <tr>
+    <td style="padding-bottom:24px; font-size:22px; line-height:1.3; font-weight:700; color:#0f1115;">
+      {{INTRO}}
+    </td>
+  </tr>
+
+  <!-- BLOCK_START (repeat this <tr> once per content block) -->
+  <tr>
+    <td style="padding:20px 0; border-top:1px solid #e5e7eb;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+        <tr><td style="font-size:16px; font-weight:600; color:#0f1115; padding-bottom:8px;">{{BLOCK_HEADING}}</td></tr>
+        <tr><td style="font-size:14px; line-height:1.6; color:#0f1115;">{{BLOCK_BODY}}</td></tr>
+        <!-- optional CTA, omit row if unused -->
+        <tr><td style="padding-top:12px;"><a href="{{CTA_URL}}" style="font-size:14px; font-weight:600; color:#1a56db; text-decoration:none;">{{CTA_LABEL}} &rarr;</a></td></tr>
+      </table>
+    </td>
+  </tr>
+  <!-- BLOCK_END -->
+
+  <!-- footer -->
+  <tr>
+    <td style="padding-top:24px; border-top:1px solid #e5e7eb; font-size:12px; color:#5b6069;">
+      {{FOOTER_NOTE}}
+    </td>
+  </tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>
