@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router'
 import { version } from '../package.json'
-import { Nav } from '../src/organisms/Nav'
+import { SiteNav } from './SiteNav'
 import { Hero } from '../src/organisms/Hero'
 import { Footer } from '../src/organisms/Footer'
 import { Icon } from '../src/atoms/Icon'
@@ -67,19 +67,7 @@ function Showcase() {
       </a>
 
       {/* Nav */}
-      <Nav
-        logo="@n3wth/ui"
-        logoHref="/"
-        items={[
-          { label: 'Components', href: '/', isActive: true },
-          { label: 'Docs', href: '/docs/getting-started' },
-          { label: 'GitHub', href: 'https://github.com/n3wth/ui', external: true },
-        ]}
-        theme={theme}
-        onThemeToggle={toggleTheme}
-        fixed
-        hideOnScroll
-      />
+      <SiteNav theme={theme} onThemeToggle={toggleTheme} />
 
       {/* Hero */}
       <div className="relative">

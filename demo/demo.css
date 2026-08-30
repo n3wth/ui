@@ -245,3 +245,60 @@
 .prose .hljs-punctuation {
   color: var(--color-grey-400);
 }
+
+/* ---------- Nav-island (SiteNav.tsx) ----------
+   Same shape as n3wth.com's floating pill nav: links dim at rest,
+   brighten on hover/active; icons share the same resting shade. */
+.nav-pill-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.006em;
+  color: var(--color-grey-400);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+.nav-pill-link:hover {
+  color: var(--color-white);
+  background: var(--glass-bg);
+}
+.nav-pill-link-active {
+  color: var(--color-white);
+  background: var(--glass-bg);
+}
+
+.nav-pill-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-grey-400);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.nav-pill-icon:hover {
+  color: var(--color-white);
+}
+
+.mobile-nav-pill-link {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-white);
+}
+.mobile-nav-pill-link:active {
+  background: var(--glass-bg);
+}

@@ -1,6 +1,6 @@
 import { useState, useEffect, type ComponentType } from 'react'
 import { NavLink, useParams } from 'react-router'
-import { Nav } from '../src/organisms/Nav'
+import { SiteNav } from './SiteNav'
 import { Footer } from '../src/organisms/Footer'
 import { Icon } from '../src/atoms/Icon'
 import { useTheme } from '../src/hooks/useTheme'
@@ -55,19 +55,7 @@ export function DocsLayout() {
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-white)]">
-      <Nav
-        logo="@n3wth/ui"
-        logoHref="/"
-        items={[
-          { label: 'Components', href: '/' },
-          { label: 'Docs', href: '/docs/getting-started', isActive: true },
-          { label: 'GitHub', href: 'https://github.com/n3wth/ui', external: true },
-        ]}
-        theme={theme}
-        onThemeToggle={toggleTheme}
-        fixed
-        hideOnScroll
-      />
+      <SiteNav theme={theme} onThemeToggle={toggleTheme} />
 
       <div className="pt-24 max-w-6xl mx-auto px-6 md:px-12 pb-24">
         <div className="lg:grid lg:grid-cols-[220px_1fr] lg:gap-12">
