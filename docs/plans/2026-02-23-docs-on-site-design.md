@@ -5,7 +5,7 @@
 
 ## Goal
 
-Render the markdown documentation files from `docs/` as pages on the demo site (ui.newth.ai), with proper routing, sidebar navigation, and styled prose that matches the design system.
+Render the markdown documentation files from `docs/` as pages on the demo site (ui.n3wth.com), with proper routing, sidebar navigation, and styled prose that matches the design system.
 
 ## Approach
 

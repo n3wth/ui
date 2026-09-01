@@ -3,7 +3,7 @@
 Atomic design system for n3wth projects. Flat, minimal, iOS-inspired.  
 No shadows, no glows—just clean glassmorphism and precision typography.
 
-**[Live Demo](https://ui.newth.ai)** / **[npm package](https://www.npmjs.com/package/@n3wth/ui)** / **[Registry](https://github.com/n3wth/ui/blob/main/registry.json)**
+**[Live Demo](https://ui.n3wth.com)** / **[npm package](https://www.npmjs.com/package/@n3wth/ui)** / **[Registry](https://github.com/n3wth/ui/blob/main/registry.json)**
 
 ---
 
@@ -127,4 +127,4 @@ npm run release:patch
 
 ## 📜 License
 
-MIT © [Oliver Newth](https://newth.ai)
+MIT © [Oliver Newth](https://n3wth.com)

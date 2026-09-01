@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "n3wth-ui",
-  "homepage": "https://ui.newth.ai",
+  "homepage": "https://ui.n3wth.com",
   "items": [
     {
       "name": "button",

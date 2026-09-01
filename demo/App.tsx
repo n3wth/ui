@@ -163,6 +163,7 @@ function Showcase() {
         ]}
         currentSite="n3wth/ui"
         legalLinks={[
+          { label: 'Email', href: 'mailto:hey@n3wth.com' },
           { label: 'Privacy', href: 'https://n3wth.com/privacy' },
         ]}
         copyright={`\u00A9 ${new Date().getFullYear()} n3wth`}
