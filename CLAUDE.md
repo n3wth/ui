@@ -163,6 +163,26 @@ After publishing a new version, update consumers:
 - `newthai` (portfolio site) - `npm install @n3wth/ui@latest`
 - `r3` (website) - `npm install @n3wth/ui@latest` in `website/`
 
+## Open Graph Card
+
+Shared OG image template for n3wth sites. Works with Next.js `opengraph-image.tsx`:
+
+```tsx
+// app/opengraph-image.tsx
+import { ImageResponse } from 'next/og'
+import { OGCard } from '@n3wth/ui/og'
+
+export const runtime = 'edge'
+export const size = { width: 1200, height: 630 }
+export const contentType = 'image/png'
+
+export default function Image() {
+  return new ImageResponse(<OGCard title="My Site" />, size)
+}
+```
+
+Black background, white type, n3wth mark. 1200x630, Twitter `summary_large_image` compatible.
+
 ## Version History
 
 - **v0.5.3** - Dependency updates

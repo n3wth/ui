@@ -76,7 +76,29 @@ Built on **Tailwind CSS 4**.
 
 ---
 
-## 🛠️ Development
+## Open Graph Card
+
+Shared OG image template for n3wth sites. Use with Next.js `opengraph-image.tsx`:
+
+```tsx
+// app/opengraph-image.tsx
+import { ImageResponse } from 'next/og'
+import { OGCard } from '@n3wth/ui/og'
+
+export const runtime = 'edge'
+export const size = { width: 1200, height: 630 }
+export const contentType = 'image/png'
+
+export default function Image() {
+  return new ImageResponse(<OGCard title="My Site" />, size)
+}
+```
+
+Black background, white type, n3wth mark. 1200x630, Twitter `summary_large_image` compatible.
+
+---
+
+## Development
 
 ```bash
 # Clone and install
