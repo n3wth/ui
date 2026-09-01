@@ -55,10 +55,18 @@ export function SiteNav({ theme, onThemeToggle }: SiteNavProps) {
         >
           <a
             href="/"
-            className="text-[15px] font-semibold tracking-[-0.01em] whitespace-nowrap"
+            className="flex items-center gap-2 text-[15px] font-semibold tracking-[-0.01em] whitespace-nowrap"
             style={{ fontFamily: 'var(--font-display)', color: 'var(--color-white)' }}
           >
-            @n3wth<span style={{ color: 'var(--color-grey-500)' }}>/</span>ui
+            <svg
+              viewBox="0 0 32 32"
+              fill="currentColor"
+              className="w-5 h-5"
+              aria-hidden="true"
+            >
+              <path d="M9.4 6.6 25.2 14a1.5 1.5 0 0 1-.15 2.78l-6.1 1.78a2 2 0 0 0-1.32 1.24l-2.2 6.1c-.5 1.36-2.42 1.27-2.78-.15L8.0 8.2A1.6 1.6 0 0 1 9.4 6.6Z" />
+            </svg>
+            <span>n3wth<span style={{ color: 'var(--color-grey-500)' }}>/</span>ui</span>
           </a>
 
           <nav aria-label="Main navigation" className="hidden md:flex items-center gap-0.5 ml-3">
@@ -107,10 +115,18 @@ export function SiteNav({ theme, onThemeToggle }: SiteNavProps) {
         >
           <div className="flex items-center justify-between h-16 px-4">
             <span
-              className="text-[15px] font-semibold tracking-[-0.01em]"
+              className="flex items-center gap-2 text-[15px] font-semibold tracking-[-0.01em]"
               style={{ fontFamily: 'var(--font-display)', color: 'var(--color-white)' }}
             >
-              @n3wth<span style={{ color: 'var(--color-grey-500)' }}>/</span>ui
+              <svg
+                viewBox="0 0 32 32"
+                fill="currentColor"
+                className="w-5 h-5"
+                aria-hidden="true"
+              >
+                <path d="M9.4 6.6 25.2 14a1.5 1.5 0 0 1-.15 2.78l-6.1 1.78a2 2 0 0 0-1.32 1.24l-2.2 6.1c-.5 1.36-2.42 1.27-2.78-.15L8.0 8.2A1.6 1.6 0 0 1 9.4 6.6Z" />
+              </svg>
+              <span>n3wth<span style={{ color: 'var(--color-grey-500)' }}>/</span>ui</span>
             </span>
             <button
               type="button"

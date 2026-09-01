@@ -126,24 +126,19 @@ export function DocsLayout() {
       </div>
 
       <Footer
-        logo={<span className="font-display text-lg font-semibold">@n3wth/ui</span>}
-        description="A flat, minimal design system for modern web applications."
-        sections={[
-          {
-            title: 'Documentation',
-            links: docPages.map((p) => ({ label: p.title, href: `/docs/${p.slug}` })),
-          },
-          {
-            title: 'Resources',
-            links: [
-              { label: 'GitHub', href: 'https://github.com/n3wth/ui' },
-              { label: 'npm', href: 'https://www.npmjs.com/package/@n3wth/ui' },
-              { label: 'newth.ai', href: 'https://newth.ai' },
-            ],
-          },
+        sites={[
+          { name: 'hop.flights', href: 'https://hop.flights' },
+          { name: 'r3', href: 'https://r3.n3wth.com' },
+          { name: 'kit', href: 'https://kit.n3wth.com' },
+          { name: 'garden', href: 'https://garden.n3wth.com' },
+          { name: 'skills', href: 'https://skills.n3wth.com' },
+          { name: 'n3wth.com', href: 'https://n3wth.com' },
         ]}
-        theme={theme}
-        onThemeToggle={toggleTheme}
+        currentSite="n3wth/ui"
+        legalLinks={[
+          { label: 'Privacy', href: 'https://n3wth.com/privacy' },
+        ]}
+        copyright={`\u00A9 ${new Date().getFullYear()} n3wth`}
       />
     </div>
   )
