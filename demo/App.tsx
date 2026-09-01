@@ -74,11 +74,11 @@ function Showcase() {
         <FloatingShapes />
         <Hero
           badge={`v${version}`}
-          title="Flat. Minimal."
-          description={<>Atomic design system for Newth sites.<br />No shadows, no glows &mdash; just clean glass morphism.</>}
+          title="Flat, minimal components"
+          description={<>An atomic design system for Newth sites.<br />No shadows, no glows.</>}
           ctas={[
-            { label: 'Browse Components', href: '#atoms' },
-            { label: 'View Source', href: 'https://github.com/n3wth/ui', variant: 'secondary' },
+            { label: 'Browse components', href: '#atoms' },
+            { label: 'View source', href: 'https://github.com/n3wth/ui', variant: 'secondary' },
           ]}
         />
       </div>
