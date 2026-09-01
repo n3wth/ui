@@ -11,14 +11,13 @@ const containerStyle: CSSProperties = {
   justifyContent: 'center',
   width: '100%',
   height: '100%',
-  backgroundColor: '#000000',
-  padding: '80px',
+  backgroundColor: '#08090b',
 }
 
 const logoStyle: CSSProperties = {
-  width: '120px',
-  height: '120px',
-  marginBottom: '48px',
+  width: '80px',
+  height: '80px',
+  marginBottom: '40px',
 }
 
 const titleStyle: CSSProperties = {

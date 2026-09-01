@@ -31,8 +31,7 @@ const element = {
       justifyContent: 'center',
       width: '100%',
       height: '100%',
-      backgroundColor: '#000000',
-      padding: '80px',
+      backgroundColor: '#08090b',
     },
     children: [
       {
@@ -40,9 +39,9 @@ const element = {
         props: {
           xmlns: 'http://www.w3.org/2000/svg',
           viewBox: '0 0 32 32',
-          width: 120,
-          height: 120,
-          style: { marginBottom: '48px' },
+          width: 80,
+          height: 80,
+          style: { marginBottom: '40px' },
           children: {
             type: 'path',
             props: {
