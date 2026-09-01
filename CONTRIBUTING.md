@@ -1,6 +1,6 @@
 # Contributing to n3wth/ui
 
-This repository is optimized for AI-driven development. If you are an AI assistant (Gemini, Claude, or v0) being asked to use this library, please follow these guidelines:
+This repository is optimized for AI-driven development. If you are an AI assistant being asked to use this library, please follow these guidelines:
 
 ## AI Instructions
 1.  **Read the Rules**: Always consult \`.cursorrules\` for the latest design principles and technical constraints.

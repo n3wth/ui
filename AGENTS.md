@@ -1,4 +1,4 @@
-# @n3wth/ui - Claude Code Instructions
+# @n3wth/ui - Agent Instructions
 
 ## Overview
 
