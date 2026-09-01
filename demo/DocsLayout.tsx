@@ -3,7 +3,6 @@ import { NavLink, useParams } from 'react-router'
 import { SiteNav } from './SiteNav'
 import { Footer } from '../src/organisms/Footer'
 import { Icon } from '../src/atoms/Icon'
-import { useTheme } from '../src/hooks/useTheme'
 import { cn } from '../src/utils/cn'
 
 const docModules = import.meta.glob<{ default: ComponentType }>([
@@ -42,7 +41,6 @@ export const docPages: DocPage[] = Object.entries(docModules)
   })
 
 export function DocsLayout() {
-  const { theme, toggleTheme } = useTheme()
   const { slug } = useParams()
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
@@ -55,7 +53,7 @@ export function DocsLayout() {
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-white)]">
-      <SiteNav theme={theme} onThemeToggle={toggleTheme} />
+      <SiteNav />
 
       <div className="pt-24 max-w-6xl mx-auto px-6 md:px-12 pb-24">
         <div className="lg:grid lg:grid-cols-[220px_1fr] lg:gap-12">

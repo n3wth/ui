@@ -67,7 +67,7 @@ function Showcase() {
       </a>
 
       {/* Nav */}
-      <SiteNav theme={theme} onThemeToggle={toggleTheme} />
+      <SiteNav />
 
       {/* Hero */}
       <div className="relative">
