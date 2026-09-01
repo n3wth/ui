@@ -1,0 +1,58 @@
+# @n3wth/ui
+
+> Atomic design system for React applications. Flat, minimal, iOS-inspired components built on Tailwind CSS 4 and Astryx primitives.
+
+## Overview
+
+@n3wth/ui is an open-source React component library following atomic design principles. It provides a flat, minimal aesthetic with no shadows or heavy effects—just clean glassmorphism and precise typography.
+
+- **npm**: https://www.npmjs.com/package/@n3wth/ui
+- **GitHub**: https://github.com/n3wth/ui
+- **Documentation**: https://ui.n3wth.com
+
+## Installation
+
+```bash
+npm install @n3wth/ui
+```
+
+```tsx
+import { Button, Card, Hero } from '@n3wth/ui'
+import '@n3wth/ui/styles'
+```
+
+## Components
+
+### Atoms
+Button, Badge, Input, Textarea, Label, Icon, Avatar, AnimatedText, Character, CodeBlock, HamburgerIcon, NoiseOverlay, Progress, ScrollIndicator, Separator, Shape, Skeleton, SpeechBubble, Switch, Tooltip
+
+### Molecules
+Card, Accordion, CommandBox, CompositeShape, Dropdown, ErrorBoundary, MobileDrawer, Modal, NavLink, Tabs, ThemeToggle, Toast
+
+### Organisms
+Nav, Hero, Section, Footer
+
+### Hooks
+useTheme, useMediaQuery, useKeyboardShortcuts, useScrollReveal, useReducedMotion, useToast, useCountUp, useButtonPulse, usePageTransition, useStaggerList, useTextReveal
+
+## Design Tokens
+
+- **Typography**: `font-display` (Mona Sans), `font-sans` (Geist Sans)
+- **Glass effects**: `.glass-card`, `.glass-pill`, `.glass-nav`
+- **Colors**: Semantic tokens including `bg`, `bg-secondary`, `sage`, `coral`, `gold`, `mint`
+
+## Built With
+
+- React 18/19
+- TypeScript
+- Tailwind CSS 4
+- Astryx primitives (@astryxdesign/core)
+
+## Related Resources
+
+- Astryx Design System: https://kit.n3wth.com
+- Comparison guide: https://garden.n3wth.com/astryx-vs-shadcn-vs-angular-material
+
+## License
+
+MIT © Oliver Newth

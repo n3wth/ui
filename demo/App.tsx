@@ -170,6 +170,8 @@ function Showcase() {
               { label: 'GitHub', href: 'https://github.com/n3wth/ui' },
               { label: 'npm', href: 'https://www.npmjs.com/package/@n3wth/ui' },
               { label: 'newth.ai', href: 'https://newth.ai' },
+              { label: 'Astryx Design System', href: 'https://kit.n3wth.com' },
+              { label: 'Astryx vs shadcn', href: 'https://garden.n3wth.com/astryx-vs-shadcn-vs-angular-material' },
             ],
           },
           {
