@@ -228,3 +228,7 @@ export type { UseTextRevealOptions } from './hooks/useTextReveal'
 
 export { useButtonPulse } from './hooks/useButtonPulse'
 export type { UseButtonPulseOptions } from './hooks/useButtonPulse'
+
+// Open Graph
+export { OGCard } from './og'
+export type { OGCardProps } from './og'
