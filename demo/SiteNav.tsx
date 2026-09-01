@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { NavLink } from 'react-router'
 import { Icon } from '../src/atoms/Icon'
-import { ThemeToggle } from '../src/molecules/ThemeToggle'
 
 /**
  * Floating nav-island, matching n3wth.com and garden.n3wth.com exactly:
@@ -18,12 +17,7 @@ const navItems = [
   { label: 'Docs', href: '/docs/getting-started' },
 ]
 
-export interface SiteNavProps {
-  theme: 'dark' | 'light'
-  onThemeToggle: () => void
-}
-
-export function SiteNav({ theme, onThemeToggle }: SiteNavProps) {
+export function SiteNav() {
   const [open, setOpen] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
@@ -87,7 +81,6 @@ export function SiteNav({ theme, onThemeToggle }: SiteNavProps) {
           </nav>
 
           <span className="ml-auto inline-flex items-center gap-1.5">
-            <ThemeToggle theme={theme} onToggle={onThemeToggle} size="sm" />
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
