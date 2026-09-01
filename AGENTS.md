@@ -1,4 +1,4 @@
-# @n3wth/ui - Claude Code Instructions
+# @n3wth/ui - Agent Instructions
 
 ## Overview
 
@@ -150,7 +150,7 @@ Shortcut: `npm run release:patch` does all steps at once.
 
 ### Demo Site (Vercel)
 
-The demo site at https://ui.newth.ai deploys automatically from the `main` branch via Vercel.
+The demo site at https://ui.n3wth.com deploys automatically from the `main` branch via Vercel.
 
 - **Project:** Linked to `n3wth/ui` GitHub repo
 - **Build:** Standard Vite build (`npm run build`)
