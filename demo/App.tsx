@@ -14,6 +14,7 @@ import { MoleculesSection } from './sections/MoleculesSection'
 import { OrganismsSection } from './sections/OrganismsSection'
 import { HooksSection } from './sections/HooksSection'
 import { DocsLayout } from './DocsLayout'
+import { SEO, JsonLdWebSite, JsonLdSoftwareApplication } from './SEO'
 
 const sidebarItems = [
   { id: 'tokens', label: 'Design Tokens', icon: 'sparkles' as const },
@@ -59,9 +60,19 @@ function Showcase() {
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-white)]">
+      <SEO
+        title="@n3wth/ui — Flat, Minimal Design System for React"
+        description="Atomic design system for React applications. Flat, minimal, iOS-inspired components with no shadows or glows — just clean glass morphism. Built on Tailwind CSS 4."
+        path="/"
+        ogImage="/og/home.png"
+      />
+      <JsonLdWebSite />
+      <JsonLdSoftwareApplication version={version} />
+
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-accent)] focus:text-[var(--color-bg)] focus:rounded"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-20 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-accent)] focus:text-[var(--color-bg)] focus:rounded-lg focus:outline-none"
+        aria-label="Skip to main content"
       >
         Skip to main content
       </a>
