@@ -246,8 +246,26 @@
 }
 
 /* ---------- Nav-island (SiteNav.tsx) ----------
-   Same shape as n3wth.com's floating pill nav: links dim at rest,
-   brighten on hover/active; icons share the same resting shade. */
+   Frosted-glass pill matching n3wth family chrome.
+   Real Gaussian blur, translucent fill, hairline border. */
+.site-nav-pill {
+  isolation: isolate;
+  background: color-mix(in srgb, var(--color-bg) 72%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid var(--glass-border);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .site-nav-pill {
+    background: var(--color-bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* Nav links: dim at rest, brighten on hover/active;
+   icons share the same resting shade. */
 .nav-pill-link {
   position: relative;
   display: inline-flex;
