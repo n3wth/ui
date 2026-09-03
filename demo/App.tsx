@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router'
 import { version } from '../package.json'
+import { useGoogleAnalytics } from './useGoogleAnalytics'
 import { SiteNav } from './SiteNav'
 import { Hero } from '../src/organisms/Hero'
 import { Footer } from '../src/organisms/Footer'
@@ -184,6 +185,8 @@ function Showcase() {
 }
 
 export function App() {
+  useGoogleAnalytics()
+
   return (
     <Routes>
       <Route path="/" element={<Showcase />} />
