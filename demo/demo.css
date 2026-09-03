@@ -2,14 +2,13 @@
 @source "../src/**/*.tsx";
 @source "../demo/**/*.tsx";
 
-/* Canonical wireframe typography (src/theme.css): Geist for display AND
-   body. theme.css intentionally ships no fonts — each app declares its
-   own. The demo declares Geist here, overriding the library's legacy
-   Mona Sans display default (kept in styles.css for consumers). */
+/* Canonical wireframe typography: Satoshi for display, Geist Sans for body.
+   theme.css intentionally ships no fonts — each app declares its own.
+   The demo uses Satoshi for display headings, Geist Sans for body/UI. */
 :root,
 [data-theme='dark'],
 [data-theme='light'] {
-  --font-display: 'Geist Sans', system-ui, sans-serif;
+  --font-display: 'Satoshi', system-ui, sans-serif;
 }
 
 /* Prose styles for markdown docs */

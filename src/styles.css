@@ -2,24 +2,38 @@
 @import '@astryxdesign/core/astryx.css';
 
 /* ============================================================
-   Mona Sans (Display/Titles) - Variable Font
+   Satoshi (Display/Titles) - Variable Font
    ============================================================ */
 
 @font-face {
-  font-family: 'Mona Sans';
-  src: url('/fonts/MonaSans-Variable.woff2') format('woff2-variations');
-  font-weight: 200 900;
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Variable.woff2') format('woff2-variations');
+  font-weight: 300 900;
   font-style: normal;
-  font-stretch: 75% 125%;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Mona Sans';
-  src: url('/fonts/MonaSans-Variable-Italic.woff2') format('woff2-variations');
-  font-weight: 200 900;
-  font-style: italic;
-  font-stretch: 75% 125%;
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/fonts/Satoshi-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -73,7 +87,7 @@
 
 @theme {
   /* Typography */
-  --font-display: 'Mona Sans', system-ui, sans-serif;
+  --font-display: 'Satoshi', system-ui, sans-serif;
   --font-sans: 'Geist Sans', system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
 
@@ -141,7 +155,7 @@
 :root,
 [data-theme='dark'] {
   color-scheme: dark;
-  --font-display: 'Mona Sans', system-ui, sans-serif;
+  --font-display: 'Satoshi', system-ui, sans-serif;
   --font-sans: 'Geist Sans', system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Monaco, monospace;
 
