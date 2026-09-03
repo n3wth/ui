@@ -23,12 +23,7 @@ export function SiteNav() {
       style={{ top: 'calc(0.75rem + env(safe-area-inset-top))' }}
     >
       <div
-        className="pointer-events-auto flex h-12 w-full items-center gap-1 pl-4 pr-2 md:w-auto md:pl-5 rounded-full"
-        style={{
-          background: 'color-mix(in srgb, var(--color-bg) 82%, transparent)',
-          backdropFilter: 'blur(20px) saturate(1.5)',
-          border: '1px solid var(--glass-border)',
-        }}
+        className="site-nav-pill pointer-events-auto flex h-12 w-full items-center gap-1 pl-4 pr-2 md:w-auto md:pl-5 rounded-full"
       >
         <a
           href="/"
