@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>@n3wth/ui - Flat, Minimal Design System for React</title>
-  <meta name="description" content="An atomic design system for React. Flat, minimal components with no shadows or glows. Includes Button, Card, Nav, and more." />
+  <title>@n3wth/ui — Flat, Minimal Design System for React</title>
+  <meta name="description" content="Atomic design system for React applications. Flat, minimal, iOS-inspired components with no shadows or glows — just clean glass morphism. Built on Tailwind CSS 4." />
   <meta name="author" content="Oliver Newth" />
 
   <!-- Canonical -->
@@ -15,51 +15,80 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="@n3wth/ui - Flat, Minimal Design System" />
-  <meta property="og:description" content="An atomic design system for React. Flat, minimal components with no shadows or glows." />
+  <meta property="og:title" content="@n3wth/ui — Flat, Minimal Design System for React" />
+  <meta property="og:description" content="Atomic design system for React applications. Flat, minimal, iOS-inspired components — just clean glass morphism. Built on Tailwind CSS 4." />
   <meta property="og:url" content="https://ui.n3wth.com/" />
-  <meta property="og:image" content="https://ui.n3wth.com/og-image.png" />
+  <meta property="og:image" content="https://ui.n3wth.com/og/home.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="@n3wth/ui — flat, minimal design system for React" />
+  <meta property="og:site_name" content="@n3wth/ui" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@olivernewth" />
   <meta name="twitter:creator" content="@olivernewth" />
-  <meta name="twitter:image" content="https://ui.n3wth.com/og-image.png" />
+  <meta name="twitter:title" content="@n3wth/ui — Flat, Minimal Design System for React" />
+  <meta name="twitter:description" content="Atomic design system for React applications. Flat, minimal, iOS-inspired components — just clean glass morphism." />
+  <meta name="twitter:image" content="https://ui.n3wth.com/og/home.png" />
 
   <!-- Theme -->
   <meta name="theme-color" content="#08090b" />
 
-  <!-- Structured Data -->
+  <!-- Structured Data: WebSite -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareSourceCode",
+    "@type": "WebSite",
     "name": "@n3wth/ui",
-    "description": "Atomic design system for React applications. Flat, minimal, iOS-inspired components built on Astryx primitives.",
     "url": "https://ui.n3wth.com",
-    "codeRepository": "https://github.com/n3wth/ui",
-    "programmingLanguage": ["TypeScript", "React"],
+    "description": "Atomic design system for React applications. Flat, minimal, iOS-inspired components built on Tailwind CSS 4.",
+    "author": {
+      "@type": "Person",
+      "name": "Oliver Newth",
+      "url": "https://n3wth.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "n3wth",
+      "url": "https://n3wth.com"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "@n3wth/ui",
+    "description": "Atomic design system for React applications. Flat, minimal, iOS-inspired components built on Tailwind CSS 4 and Astryx primitives.",
+    "url": "https://ui.n3wth.com",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Cross-platform",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
     "author": {
       "@type": "Person",
       "name": "Oliver Newth",
       "url": "https://n3wth.com"
     },
     "license": "https://opensource.org/licenses/MIT",
-    "isBasedOn": {
-      "@type": "SoftwareSourceCode",
-      "name": "Astryx Design System",
-      "url": "https://kit.n3wth.com"
-    }
+    "codeRepository": "https://github.com/n3wth/ui",
+    "programmingLanguage": ["TypeScript", "React", "CSS"]
   }
   </script>
 
   <!-- Critical CSS -->
   <style>
     html, body { background: #08090b; color: #f2f3f5; margin: 0; }
-    .seo-fallback { display: none; }
+    noscript { display: block; padding: 2rem; max-width: 72ch; margin: 0 auto; line-height: 1.6; }
+    noscript h1 { font-size: 2rem; margin-bottom: 1rem; }
+    noscript p { margin-bottom: 1rem; color: #86868b; }
+    noscript a { color: #fff; }
   </style>
 
   <!-- PostHog Analytics -->
@@ -73,69 +102,11 @@
 </head>
 <body>
   <div id="root">
-    <!-- Static content for SEO crawlers (hidden, replaced by React) -->
-    <main class="seo-fallback">
-      <h1>@n3wth/ui - Flat, Minimal Design System</h1>
-
-      <section>
-        <h2>About</h2>
-        <p>@n3wth/ui is an atomic design system for React applications. Components are flat and minimal, with no shadows or glows.</p>
-      </section>
-
-      <section>
-        <h2>Components</h2>
-        <p>The design system follows atomic design principles with three levels of components:</p>
-
-        <article>
-          <h3>Atoms</h3>
-          <p>Building blocks including Button, Badge, Input, Icon, AnimatedText, HamburgerIcon, NoiseOverlay, and ScrollIndicator. Each atom is designed to be minimal and composable.</p>
-        </article>
-
-        <article>
-          <h3>Molecules</h3>
-          <p>Functional UI patterns combining atoms: Card, NavLink, CommandBox, ThemeToggle, MobileDrawer, and ErrorBoundary. These handle common interaction patterns.</p>
-        </article>
-
-        <article>
-          <h3>Organisms</h3>
-          <p>Complex components for page-level structure: Nav, Hero, Section, and Footer. These provide consistent layouts across applications.</p>
-        </article>
-      </section>
-
-      <section>
-        <h2>Features</h2>
-        <ul>
-          <li>React 18+ and React 19 compatible</li>
-          <li>TypeScript with full type definitions</li>
-          <li>Tailwind CSS v4 preset included</li>
-          <li>Dark and light theme support</li>
-          <li>Respects user motion preferences</li>
-          <li>GSAP animation hooks (optional)</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>Installation</h2>
-        <p>Install via npm: <code>npm install @n3wth/ui</code></p>
-        <p>Import components: <code>import { Button, Card, Nav } from '@n3wth/ui'</code></p>
-      </section>
-
-      <nav aria-label="Main navigation">
-        <a href="#get-started">Get Started</a>
-        <a href="#atoms">Atoms</a>
-        <a href="#molecules">Molecules</a>
-        <a href="#organisms">Organisms</a>
-        <a href="https://github.com/n3wth/ui" rel="noopener">GitHub</a>
-        <a href="https://www.npmjs.com/package/@n3wth/ui" rel="noopener">npm</a>
-        <a href="https://kit.n3wth.com" rel="noopener">Astryx Design System</a>
-        <a href="https://garden.n3wth.com/astryx-vs-shadcn-vs-angular-material" rel="noopener">Astryx vs shadcn</a>
-      </nav>
-
-      <footer>
-        <p>Created by <a href="https://n3wth.com" rel="noopener">Oliver Newth</a>. Licensed under MIT.</p>
-        <a href="https://n3wth.com/privacy">Privacy Policy</a>
-      </footer>
-    </main>
+    <noscript>
+      <h1>@n3wth/ui</h1>
+      <p>Atomic design system for React applications. Flat, minimal, iOS-inspired components with no shadows or glows — just clean glass morphism. Built on Tailwind CSS 4.</p>
+      <p>This site requires JavaScript to run. Please enable JavaScript or visit the <a href="https://github.com/n3wth/ui">GitHub repository</a> for documentation.</p>
+    </noscript>
   </div>
   <script type="module" src="./main.tsx"></script>
 </body>
