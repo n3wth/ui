@@ -1,0 +1,58 @@
+{
+  "pkg": "@n3wth/ui",
+  "globalName": "N3wthUI",
+  "projectId": "fecd67c3-dd31-4554-b306-377ca37f5ddf",
+  "shape": "package",
+  "buildCmd": "npm run build && npx --yes @tailwindcss/cli@4.1.18 -i .design-sync/tailwind-entry.css -o .design-sync/.cache/compiled.css && sed -i '' \"s#'/fonts/#'../../public/fonts/#g\" .design-sync/.cache/compiled.css",
+  "cssEntry": ".design-sync/.cache/compiled.css",
+  "extraEntries": [
+    "./.design-sync/preview-provider.tsx"
+  ],
+  "provider": {
+    "component": "PreviewSurface",
+    "inner": {
+      "component": "N3wthProvider",
+      "props": {
+        "mode": "dark"
+      }
+    }
+  },
+  "overrides": {
+    "Toast": {
+      "cardMode": "column"
+    },
+    "Hero": {
+      "cardMode": "column"
+    },
+    "Progress": {
+      "cardMode": "column"
+    },
+    "Separator": {
+      "cardMode": "column"
+    },
+    "Skeleton": {
+      "cardMode": "column"
+    },
+    "Textarea": {
+      "cardMode": "column"
+    },
+    "Card": {
+      "cardMode": "column"
+    },
+    "Footer": {
+      "cardMode": "column"
+    },
+    "Nav": {
+      "cardMode": "column"
+    },
+    "Modal": {
+      "cardMode": "single",
+      "primaryStory": "Default"
+    },
+    "Tooltip": {
+      "cardMode": "single",
+      "primaryStory": "WithoutArrow"
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}

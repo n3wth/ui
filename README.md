@@ -1,15 +1,15 @@
-# n3wth/ui 🛠️
+# n3wth/ui
 
 Atomic design system for n3wth projects. Flat, minimal, iOS-inspired.  
 No shadows, no glows—just clean glassmorphism and precision typography.
 
-**[Live Demo](https://ui.newth.ai)** / **[npm package](https://www.npmjs.com/package/@n3wth/ui)** / **[Registry](https://github.com/n3wth/ui/blob/main/registry.json)**
+**[Live Demo](https://ui.n3wth.com)** / **[npm package](https://www.npmjs.com/package/@n3wth/ui)** / **[Registry](https://github.com/n3wth/ui/blob/main/registry.json)**
 
 ---
 
-## 🤖 AI-Native Integration
+## AI-Native Integration
 
-This library is optimized for AI-driven development (**v0**, **Cursor**, **Google AI Studio**, **Claude Code**).
+This library is optimized for AI-driven development (**v0**, **Cursor**, **Google AI Studio**).
 
 - **v0 / Shadcn**: Point v0 to this repo or use the [registry.json](./registry.json).
 - **Google AI Studio**: Use the [native system instructions](./google-ai-studio-instructions.json).
@@ -17,7 +17,7 @@ This library is optimized for AI-driven development (**v0**, **Cursor**, **Googl
 
 ---
 
-## 📦 Install
+## Install
 
 ```bash
 npm install @n3wth/ui
@@ -43,7 +43,7 @@ export default function App() {
 
 ---
 
-## 🎨 Design Tokens
+## Design Tokens
 
 Built on **Tailwind CSS 4**.
 
@@ -56,7 +56,7 @@ Built on **Tailwind CSS 4**.
 
 ---
 
-## 🧩 Components
+## Components
 
 | Category | Components |
 | :--- | :--- |
@@ -66,7 +66,7 @@ Built on **Tailwind CSS 4**.
 
 ---
 
-## 🪝 Hooks
+## Hooks
 
 - `useTheme` — Dark/light mode with system persistence.
 - `useMediaQuery` — Clean responsive breakpoint handling.
@@ -76,7 +76,29 @@ Built on **Tailwind CSS 4**.
 
 ---
 
-## 🛠️ Development
+## Open Graph Card
+
+Shared OG image template for n3wth sites. Use with Next.js `opengraph-image.tsx`:
+
+```tsx
+// app/opengraph-image.tsx
+import { ImageResponse } from 'next/og'
+import { OGCard } from '@n3wth/ui/og'
+
+export const runtime = 'edge'
+export const size = { width: 1200, height: 630 }
+export const contentType = 'image/png'
+
+export default function Image() {
+  return new ImageResponse(<OGCard title="My Site" />, size)
+}
+```
+
+Black background, white type, n3wth mark. 1200x630, Twitter `summary_large_image` compatible.
+
+---
+
+## Development
 
 ```bash
 # Clone and install
@@ -103,6 +125,6 @@ npm run release:patch
 
 ---
 
-## 📜 License
+## License
 
-MIT © [Oliver Newth](https://newth.ai)
+MIT © [Oliver Newth](https://n3wth.com)

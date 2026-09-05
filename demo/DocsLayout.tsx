@@ -1,10 +1,10 @@
 import { useState, useEffect, type ComponentType } from 'react'
 import { NavLink, useParams } from 'react-router'
-import { Nav } from '../src/organisms/Nav'
+import { SiteNav } from './SiteNav'
 import { Footer } from '../src/organisms/Footer'
 import { Icon } from '../src/atoms/Icon'
-import { useTheme } from '../src/hooks/useTheme'
 import { cn } from '../src/utils/cn'
+import { SEO, JsonLdWebPage, JsonLdBreadcrumb } from './SEO'
 
 const docModules = import.meta.glob<{ default: ComponentType }>([
   '../docs/getting-started.md',
@@ -17,7 +17,16 @@ const docModules = import.meta.glob<{ default: ComponentType }>([
 export interface DocPage {
   slug: string
   title: string
+  description: string
   Component: ComponentType
+}
+
+const DOC_DESCRIPTIONS: Record<string, string> = {
+  'getting-started': 'Quick setup guide for @n3wth/ui. Install, configure Tailwind CSS 4, and start building with flat, minimal React components.',
+  'theming': 'Customize @n3wth/ui with CSS custom properties. Dark and light themes, color tokens, and typography configuration.',
+  'components': 'Complete component reference for @n3wth/ui. Atoms, molecules, and organisms for building modern React interfaces.',
+  'hooks': 'React hooks included in @n3wth/ui. useTheme, useMediaQuery, useKeyboardShortcuts, useScrollReveal, and more.',
+  'css-utilities': 'CSS utility classes in @n3wth/ui. Glass effects, animations, typography, and responsive utilities.',
 }
 
 function slugToTitle(slug: string): string {
@@ -33,6 +42,7 @@ export const docPages: DocPage[] = Object.entries(docModules)
     return {
       slug,
       title: slugToTitle(slug),
+      description: DOC_DESCRIPTIONS[slug] || `Documentation for ${slugToTitle(slug)} in @n3wth/ui design system.`,
       Component: mod.default,
     }
   })
@@ -42,7 +52,6 @@ export const docPages: DocPage[] = Object.entries(docModules)
   })
 
 export function DocsLayout() {
-  const { theme, toggleTheme } = useTheme()
   const { slug } = useParams()
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
@@ -53,21 +62,38 @@ export function DocsLayout() {
     window.scrollTo(0, 0)
   }, [slug])
 
+  const pageUrl = `https://ui.n3wth.com/docs/${currentPage.slug}`
+
   return (
     <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-white)]">
-      <Nav
-        logo="@n3wth/ui"
-        logoHref="/"
-        items={[
-          { label: 'Components', href: '/' },
-          { label: 'Docs', href: '/docs/getting-started', isActive: true },
-          { label: 'GitHub', href: 'https://github.com/n3wth/ui', external: true },
-        ]}
-        theme={theme}
-        onThemeToggle={toggleTheme}
-        fixed
-        hideOnScroll
+      <SEO
+        title={currentPage.title}
+        description={currentPage.description}
+        path={`/docs/${currentPage.slug}`}
+        ogImage={`/og/${currentPage.slug}.png`}
       />
+      <JsonLdWebPage
+        title={`${currentPage.title} | @n3wth/ui`}
+        description={currentPage.description}
+        url={pageUrl}
+      />
+      <JsonLdBreadcrumb
+        items={[
+          { name: '@n3wth/ui', url: 'https://ui.n3wth.com' },
+          { name: 'Docs', url: 'https://ui.n3wth.com/docs/getting-started' },
+          { name: currentPage.title, url: pageUrl },
+        ]}
+      />
+
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-20 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-accent)] focus:text-[var(--color-bg)] focus:rounded-lg focus:outline-none"
+        aria-label="Skip to main content"
+      >
+        Skip to main content
+      </a>
+
+      <SiteNav />
 
       <div className="pt-24 max-w-6xl mx-auto px-6 md:px-12 pb-24">
         <div className="lg:grid lg:grid-cols-[220px_1fr] lg:gap-12">
@@ -129,7 +155,7 @@ export function DocsLayout() {
           </div>
 
           {/* Content */}
-          <main className="min-w-0 pt-8 lg:pt-0">
+          <main id="main-content" className="min-w-0 pt-8 lg:pt-0">
             <article className="prose">
               <Content />
             </article>
@@ -138,24 +164,20 @@ export function DocsLayout() {
       </div>
 
       <Footer
-        logo={<span className="font-display text-lg font-semibold">@n3wth/ui</span>}
-        description="A flat, minimal design system for modern web applications."
-        sections={[
-          {
-            title: 'Documentation',
-            links: docPages.map((p) => ({ label: p.title, href: `/docs/${p.slug}` })),
-          },
-          {
-            title: 'Resources',
-            links: [
-              { label: 'GitHub', href: 'https://github.com/n3wth/ui' },
-              { label: 'npm', href: 'https://www.npmjs.com/package/@n3wth/ui' },
-              { label: 'newth.ai', href: 'https://newth.ai' },
-            ],
-          },
+        sites={[
+          { name: 'hop.flights', href: 'https://hop.flights' },
+          { name: 'r3', href: 'https://r3.n3wth.com' },
+          { name: 'kit', href: 'https://kit.n3wth.com' },
+          { name: 'garden', href: 'https://garden.n3wth.com' },
+          { name: 'skills', href: 'https://skills.n3wth.com' },
+          { name: 'n3wth.com', href: 'https://n3wth.com' },
         ]}
-        theme={theme}
-        onThemeToggle={toggleTheme}
+        currentSite="n3wth/ui"
+        legalLinks={[
+          { label: 'Email', href: 'mailto:hey@n3wth.com' },
+          { label: 'Privacy', href: 'https://n3wth.com/privacy' },
+        ]}
+        copyright={`\u00A9 ${new Date().getFullYear()} n3wth`}
       />
     </div>
   )

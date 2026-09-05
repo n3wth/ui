@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Routes, Route, Navigate } from 'react-router'
 import { version } from '../package.json'
-import { Nav } from '../src/organisms/Nav'
+import { useGoogleAnalytics } from './useGoogleAnalytics'
+import { SiteNav } from './SiteNav'
 import { Hero } from '../src/organisms/Hero'
 import { Footer } from '../src/organisms/Footer'
 import { Icon } from '../src/atoms/Icon'
@@ -14,6 +15,7 @@ import { MoleculesSection } from './sections/MoleculesSection'
 import { OrganismsSection } from './sections/OrganismsSection'
 import { HooksSection } from './sections/HooksSection'
 import { DocsLayout } from './DocsLayout'
+import { SEO, JsonLdWebSite, JsonLdSoftwareApplication } from './SEO'
 
 const sidebarItems = [
   { id: 'tokens', label: 'Design Tokens', icon: 'sparkles' as const },
@@ -59,38 +61,36 @@ function Showcase() {
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-white)]">
+      <SEO
+        title="@n3wth/ui — Flat, Minimal Design System for React"
+        description="Atomic design system for React applications. Flat, minimal, iOS-inspired components with no shadows or glows — just clean glass morphism. Built on Tailwind CSS 4."
+        path="/"
+        ogImage="/og/home.png"
+      />
+      <JsonLdWebSite />
+      <JsonLdSoftwareApplication version={version} />
+
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-accent)] focus:text-[var(--color-bg)] focus:rounded"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-20 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[var(--color-accent)] focus:text-[var(--color-bg)] focus:rounded-lg focus:outline-none"
+        aria-label="Skip to main content"
       >
         Skip to main content
       </a>
 
       {/* Nav */}
-      <Nav
-        logo="@n3wth/ui"
-        logoHref="/"
-        items={[
-          { label: 'Components', href: '/', isActive: true },
-          { label: 'Docs', href: '/docs/getting-started' },
-          { label: 'GitHub', href: 'https://github.com/n3wth/ui', external: true },
-        ]}
-        theme={theme}
-        onThemeToggle={toggleTheme}
-        fixed
-        hideOnScroll
-      />
+      <SiteNav />
 
       {/* Hero */}
       <div className="relative">
         <FloatingShapes />
         <Hero
           badge={`v${version}`}
-          title="Flat. Minimal."
-          description={<>Atomic design system for Newth sites.<br />No shadows, no glows &mdash; just clean glass morphism.</>}
+          title="Flat, minimal components"
+          description={<>An atomic design system for Newth sites.<br />No shadows, no glows.</>}
           ctas={[
-            { label: 'Browse Components', href: '#atoms' },
-            { label: 'View Source', href: 'https://github.com/n3wth/ui', variant: 'secondary' },
+            { label: 'Browse components', href: '#atoms' },
+            { label: 'View source', href: 'https://github.com/n3wth/ui', variant: 'secondary' },
           ]}
         />
       </div>
@@ -165,41 +165,28 @@ function Showcase() {
 
       {/* Footer */}
       <Footer
-        logo={<span className="font-display text-lg font-semibold">@n3wth/ui</span>}
-        description="A flat, minimal design system for modern web applications."
-        sections={[
-          {
-            title: 'Documentation',
-            links: [
-              { label: 'Design Tokens', href: '#tokens' },
-              { label: 'Components', href: '#atoms' },
-              { label: 'Hooks', href: '#hooks' },
-            ],
-          },
-          {
-            title: 'Resources',
-            links: [
-              { label: 'GitHub', href: 'https://github.com/n3wth/ui' },
-              { label: 'npm', href: 'https://www.npmjs.com/package/@n3wth/ui' },
-              { label: 'newth.ai', href: 'https://newth.ai' },
-            ],
-          },
-          {
-            title: 'Legal',
-            links: [
-              { label: 'Privacy', href: 'https://newth.ai/privacy' },
-              { label: 'MIT License', href: 'https://opensource.org/licenses/MIT' },
-            ],
-          },
+        sites={[
+          { name: 'hop.flights', href: 'https://hop.flights' },
+          { name: 'r3', href: 'https://r3.n3wth.com' },
+          { name: 'kit', href: 'https://kit.n3wth.com' },
+          { name: 'garden', href: 'https://garden.n3wth.com' },
+          { name: 'skills', href: 'https://skills.n3wth.com' },
+          { name: 'n3wth.com', href: 'https://n3wth.com' },
         ]}
-        theme={theme}
-        onThemeToggle={toggleTheme}
+        currentSite="n3wth/ui"
+        legalLinks={[
+          { label: 'Email', href: 'mailto:hey@n3wth.com' },
+          { label: 'Privacy', href: 'https://n3wth.com/privacy' },
+        ]}
+        copyright={`\u00A9 ${new Date().getFullYear()} n3wth`}
       />
     </div>
   )
 }
 
 export function App() {
+  useGoogleAnalytics()
+
   return (
     <Routes>
       <Route path="/" element={<Showcase />} />

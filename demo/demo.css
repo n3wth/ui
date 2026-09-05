@@ -2,14 +2,13 @@
 @source "../src/**/*.tsx";
 @source "../demo/**/*.tsx";
 
-/* Canonical wireframe typography (src/theme.css): Geist for display AND
-   body. theme.css intentionally ships no fonts — each app declares its
-   own. The demo declares Geist here, overriding the library's legacy
-   Mona Sans display default (kept in styles.css for consumers). */
+/* Canonical wireframe typography: Satoshi for display, Geist Sans for body.
+   theme.css intentionally ships no fonts — each app declares its own.
+   The demo uses Satoshi for display headings, Geist Sans for body/UI. */
 :root,
 [data-theme='dark'],
 [data-theme='light'] {
-  --font-display: 'Geist Sans', system-ui, sans-serif;
+  --font-display: 'Satoshi', system-ui, sans-serif;
 }
 
 /* Prose styles for markdown docs */
@@ -244,4 +243,79 @@
 
 .prose .hljs-punctuation {
   color: var(--color-grey-400);
+}
+
+/* ---------- Nav-island (SiteNav.tsx) ----------
+   Frosted-glass pill matching n3wth family chrome.
+   Real Gaussian blur, translucent fill, hairline border. */
+.site-nav-pill {
+  isolation: isolate;
+  background: color-mix(in srgb, var(--color-bg) 72%, transparent);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  backdrop-filter: blur(16px) saturate(1.2);
+  border: 1px solid var(--glass-border);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .site-nav-pill {
+    background: var(--color-bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* Nav links: dim at rest, brighten on hover/active;
+   icons share the same resting shade. */
+.nav-pill-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.006em;
+  color: var(--color-grey-400);
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+.nav-pill-link:hover {
+  color: var(--color-white);
+  background: var(--glass-bg);
+}
+.nav-pill-link-active {
+  color: var(--color-white);
+  background: var(--glass-bg);
+}
+
+.nav-pill-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-grey-400);
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.nav-pill-icon:hover {
+  color: var(--color-white);
+}
+
+.mobile-nav-pill-link {
+  display: flex;
+  align-items: center;
+  height: 52px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--color-white);
+}
+.mobile-nav-pill-link:active {
+  background: var(--glass-bg);
 }

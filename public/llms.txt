@@ -1,0 +1,145 @@
+# @n3wth/ui
+
+> Atomic design system for React applications. Flat, minimal, iOS-inspired components built on Tailwind CSS 4.
+
+## Quick Start
+
+```bash
+npm install @n3wth/ui
+```
+
+```tsx
+import { Button, Card, Hero } from '@n3wth/ui'
+import '@n3wth/ui/styles'
+```
+
+## Overview
+
+@n3wth/ui is an open-source React component library following atomic design principles. It provides a flat, minimal aesthetic with no shadows or heavy effects — just clean glassmorphism and precise typography.
+
+- **Package**: https://www.npmjs.com/package/@n3wth/ui
+- **Source**: https://github.com/n3wth/ui
+- **Docs**: https://ui.n3wth.com
+- **License**: MIT
+
+## Design Principles
+
+1. **Flat Design**: No shadows, no gradients on surfaces — depth via borders and transparency
+2. **Glassmorphism**: Subtle backdrop blur and translucent backgrounds
+3. **Minimal**: Remove everything that doesn't serve function
+4. **iOS-Inspired**: Apple Human Interface Guidelines influence
+5. **Motion-Respecting**: Honors prefers-reduced-motion
+
+## Components
+
+### Atoms (Primitives)
+- **Button** - Primary actions, variants: default, secondary, ghost, destructive
+- **Badge** - Status indicators, labels, tags
+- **Input** - Text input with validation states
+- **Textarea** - Multi-line text input
+- **Label** - Form labels with required indicator
+- **Icon** - Iconoir icon wrapper with size variants
+- **Avatar** - User avatars with fallback initials
+- **Switch** - Toggle switches
+- **Progress** - Progress bars
+- **Skeleton** - Loading placeholders
+- **Separator** - Visual dividers
+- **Tooltip** - Hover tooltips
+- **AnimatedText** - Text reveal animations
+- **Character** - Animated character displays
+- **CodeBlock** - Syntax-highlighted code
+- **Shape** - Decorative geometric shapes
+- **SpeechBubble** - Chat-style bubbles
+- **ScrollIndicator** - Scroll position indicator
+- **NoiseOverlay** - Subtle texture overlay
+- **HamburgerIcon** - Animated menu icon
+
+### Molecules (Compositions)
+- **Card** - Content containers with glass effect
+- **Tabs** - Tab navigation
+- **Accordion** - Collapsible content sections
+- **Modal** - Dialog overlays
+- **Dropdown** - Select menus
+- **CommandBox** - Command palette / copy boxes
+- **NavLink** - Navigation links with active states
+- **ThemeToggle** - Dark/light mode switch
+- **MobileDrawer** - Slide-out mobile menus
+- **Toast** - Notification toasts
+- **CompositeShape** - Multi-shape compositions
+- **ErrorBoundary** - React error boundary
+
+### Organisms (Page Sections)
+- **Nav** - Fixed navigation with hide-on-scroll
+- **Hero** - Landing page hero sections
+- **Section** - Content sections with consistent spacing
+- **Footer** - Site footer with ecosystem links
+
+## Hooks
+
+- **useTheme** - Theme state management (dark/light)
+- **useMediaQuery** - Responsive breakpoint detection
+- **useKeyboardShortcuts** - Keyboard shortcut bindings
+- **useScrollReveal** - Scroll-triggered animations
+- **useReducedMotion** - Detect reduced motion preference
+- **useToast** - Toast notification management
+- **useCountUp** - Animated number counting
+- **useButtonPulse** - Button pulse animations
+- **usePageTransition** - Page transition animations
+- **useStaggerList** - Staggered list animations
+- **useTextReveal** - Text reveal animations
+
+## Design Tokens
+
+### Typography
+- Display: Satoshi (headings, titles)
+- Body: Geist Sans (UI text, paragraphs)
+- Mono: Geist Mono (code)
+
+### Colors
+- Background: `--color-bg` (#08090b dark, #ffffff light)
+- Text: `--color-white` (semantic, inverts with theme)
+- Accent: `--color-accent` (white in dark, black in light)
+- Category: sage (green), coral (red), mint (blue), gold (yellow)
+
+### Glass Effects
+- `.glass-card` - Card with translucent background
+- `.glass-pill` - Pill-shaped glass button
+- `.glass-nav` - Navigation glass effect
+
+## Tailwind CSS 4 Integration
+
+```css
+@import 'tailwindcss';
+@import '@n3wth/ui/styles';
+
+/* Scan @n3wth/ui for classes */
+@source "../node_modules/@n3wth/ui/dist";
+```
+
+## Accessibility
+
+- WCAG 2.1 AA color contrast
+- Keyboard navigation support
+- Focus indicators
+- Screen reader labels
+- Reduced motion support
+- Touch-friendly targets (44px minimum)
+
+## Browser Support
+
+- Chrome/Edge 88+
+- Firefox 78+
+- Safari 14+
+- iOS Safari 14+
+
+## Related Projects
+
+- **Astryx**: https://kit.n3wth.com (primitive layer)
+- **n3wth.com**: https://n3wth.com (portfolio)
+- **garden**: https://garden.n3wth.com (knowledge base)
+
+## Contact
+
+- Email: hey@n3wth.com
+- GitHub: https://github.com/n3wth/ui
+- Author: Oliver Newth (https://n3wth.com)
