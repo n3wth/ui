@@ -1,0 +1,46 @@
+{
+  "sites": [
+    {
+      "id": "n3wth",
+      "domain": "n3wth.com",
+      "repository": "n3wth/n3wth",
+      "rootDirectory": ".",
+      "checkCommand": "npm run lint && npm test -- --run && npm run build"
+    },
+    {
+      "id": "ui",
+      "domain": "ui.n3wth.com",
+      "repository": "n3wth/ui",
+      "rootDirectory": ".",
+      "checkCommand": "npm run lint && npm run build && npm run demo:build && npm test"
+    },
+    {
+      "id": "garden",
+      "domain": "garden.n3wth.com",
+      "repository": "n3wth/newth-garden",
+      "rootDirectory": ".",
+      "checkCommand": "npm run typecheck && npm run build"
+    },
+    {
+      "id": "skills",
+      "domain": "skills.n3wth.com",
+      "repository": "n3wth/skills",
+      "rootDirectory": ".",
+      "checkCommand": "npm run check"
+    },
+    {
+      "id": "r3",
+      "domain": "r3.n3wth.com",
+      "repository": "n3wth/r3",
+      "rootDirectory": "website",
+      "checkCommand": "npm run check"
+    },
+    {
+      "id": "kit",
+      "domain": "kit.n3wth.com",
+      "repository": "n3wth/kit",
+      "rootDirectory": ".",
+      "checkCommand": "npm run check"
+    }
+  ]
+}

@@ -3,6 +3,9 @@
   "version": "0.9.2",
   "description": "Atomic design system for Newth sites - flat, minimal, iOS-inspired",
   "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",

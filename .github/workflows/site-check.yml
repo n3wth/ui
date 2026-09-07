@@ -1,0 +1,36 @@
+name: Shared site check
+
+on:
+  workflow_call:
+    inputs:
+      working-directory:
+        description: Directory containing package.json and package-lock.json
+        type: string
+        default: '.'
+      check-command:
+        description: Repository-native validation command
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: ${{ inputs.working-directory }}/package-lock.json
+      - run: npm ci
+      - name: Validate site
+        env:
+          SITE_CHECK_COMMAND: ${{ inputs.check-command }}
+        run: bash -eo pipefail -c "$SITE_CHECK_COMMAND"
