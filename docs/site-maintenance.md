@@ -4,6 +4,8 @@
 
 ## Shared validation
 
+Use Node 24 locally (`nvm use` reads `.nvmrc`). The package engine and CI use the same major version. Dependabot opens grouped weekly npm and GitHub Actions updates; review and validate them before merging.
+
 `.github/workflows/site-check.yml` provides Node 24, a lockfile-keyed npm cache, `npm ci` and the caller's native check command. It checks out the calling repository. It needs only `contents: read` and no deployment secrets.
 
 Consumers should reference a reviewed full commit SHA of this workflow, not a moving branch. Pass `working-directory: website` for r3; root applications use the default `.`. Pass the command from the manifest as `check-command`. Updating the pinned SHA is an explicit dependency update.
