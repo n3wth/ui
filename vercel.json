@@ -1,7 +1,7 @@
 {
   "buildCommand": "npm run demo:build",
   "outputDirectory": "dist-demo",
-  "installCommand": "npm install",
+  "installCommand": "npm ci",
   "framework": null,
   "headers": [
     {

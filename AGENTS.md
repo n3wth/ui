@@ -153,7 +153,7 @@ Shortcut: `npm run release:patch` does all steps at once.
 The demo site at https://ui.n3wth.com deploys automatically from the `main` branch via Vercel.
 
 - **Project:** Linked to `n3wth/ui` GitHub repo
-- **Build:** Standard Vite build (`npm run build`)
+- **Build:** Demo Vite build (`npm run demo:build`), output `dist-demo`. `npm run build` builds the npm library.
 - **Auto-deploy:** Every push to `main` triggers a new deployment
 - **Preview:** PRs get preview deployments automatically
 

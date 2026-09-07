@@ -1,0 +1,15 @@
+name: Site CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    uses: ./.github/workflows/site-check.yml
+    with:
+      check-command: npm run lint && npm run build && npm run demo:build && npm test
