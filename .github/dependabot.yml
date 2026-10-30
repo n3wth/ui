@@ -4,6 +4,15 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    ignore:
+      # typescript-eslint 8.x peers typescript >=4.8.4 <6.1.0, so 7.x cannot install.
+      - dependency-name: typescript
+        versions: ['7.x']
+      # eslint-plugin-react@7.37.5 peers eslint through ^9.7 only.
+      - dependency-name: eslint
+        versions: ['10.x']
+      - dependency-name: '@eslint/js'
+        versions: ['10.x']
     groups:
       npm-dependencies:
         patterns: ['*']

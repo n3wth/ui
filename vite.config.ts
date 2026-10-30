@@ -62,8 +62,8 @@ export default defineConfig({
       },
     },
     cssCodeSplit: false,
-    // Minify for production
-    minify: 'esbuild',
+    // Vite 8 production minifier
+    minify: 'oxc',
     // Generate sourcemaps for debugging
     sourcemap: true,
     // Target modern browsers only
